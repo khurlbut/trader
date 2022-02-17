@@ -15,7 +15,7 @@ func PricingLoop() string {
      // var spotPrice float32  = 3.45
      // var latestTransctionPrice float32 = 22.5
      var spotPrice float32  = 5.0
-     var latestTransctionPrice float32 = .0
+     var latestTransctionPrice float32 = 10.0
      // var spotPrice float32  = 10.0
      // var latestTransctionPrice float32 = 5.0
      buy := isBuy(spotPrice, latestTransctionPrice)
