@@ -35,8 +35,8 @@ func isSell(spot float32, last float32) bool {
 
 func delta(spot float32, last float32) float32 {
      var d = spot - last
-     if spot < last {
-          d = last - spot
+     if d < 0 {
+          d = d * -1.0
      }
      return d / last
 }
