@@ -12,11 +12,14 @@ var fiatVal = 1000.00
 
 var spotPriceIndex = 0
 
+// var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
 var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
 
 func PricingLoop() string {
      var spotPrice float64
      lastTransctionPrice := 7.0
+     
+     fmt.Printf("Initial Wallet Value %f\n", walletVal(lastTransctionPrice))
 
      for hasNextPrice() {
           spotPrice = nextPrice()
@@ -33,18 +36,19 @@ func PricingLoop() string {
                fiatVal -= fiatPurchaseAmount
                cryptoVal += (fiatPurchaseAmount / spotPrice)
                lastTransctionPrice  = spotPrice
-               fmt.Printf("BUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
+               fmt.Printf("\tBUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
           } else if isSell(spotPrice, lastTransctionPrice){
                cryptoSellAmount := SellScale * cryptoVal
                // Place sell order for cryptoSellAmount of crypto
                fiatVal += (cryptoSellAmount * spotPrice)
                cryptoVal -= cryptoSellAmount
                lastTransctionPrice = spotPrice
-               fmt.Printf("SELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
+               fmt.Printf("\tSELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
           }
+          fmt.Print("New Wallet Value: %f\n", walletVal(lastTransctionPrice))
 
      }
-     return fmt.Sprintf("fiatVal %f cryptoVal %f\n", fiatVal, cryptoVal)
+     return fmt.Sprintf("Final Wallet Value %f\n", walletVal(lastTransctionPrice))
 }
 
 func isBuy(spot float64, last float64) bool {
@@ -77,4 +81,9 @@ func nextPrice() float64 {
      p := prices[spotPriceIndex]
      spotPriceIndex++
      return p
+}
+
+func walletVal(spot float64) {
+     f := spot * cryptoVal
+     return f + fiatVal
 }
