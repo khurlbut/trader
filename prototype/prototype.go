@@ -12,15 +12,25 @@ var fiatVal = 1000
 
 func PricingLoop() string {
 
-     // var spotPrice float32  = 3.45
-     // var latestTransctionPrice float32 = 22.5
+     var spotPrice float32  = 3.45
+     var latestTransctionPrice float32 = 22.5
      // var spotPrice float32  = 5.0
      // var latestTransctionPrice float32 = 10.0
-     var spotPrice float32  = 10.0
-     var latestTransctionPrice float32 = 5.0
+     // var spotPrice float32  = 10.0
+     // var latestTransctionPrice float32 = 5.0
      buy := isBuy(spotPrice, latestTransctionPrice)
      sell := isSell(spotPrice, latestTransctionPrice)
      d := delta(spotPrice, latestTransctionPrice)
+
+     if isBuy(spotPrice, latestTransctionPrice) {
+          fiatPurchaseAmount := PurchaseScale * fiatVal
+          // Place buy order for fiatPurchaseAmount of crypto
+          fiatVal -= fiatPurchaseAmount
+          cryptoVal += (fiatPurchaseAmount / spotPrice)
+          latestTransctionPrice  = spotPrice
+     }
+
+     fmt.Printf("fiatVal: %f cryptoVal: %f", fiatVal, cryptoVal)
      return fmt.Sprintf("spot: %f last: %f isBuy: %t isSell: %t delta: %f", spotPrice, latestTransctionPrice, buy, sell, d)
 }
 
