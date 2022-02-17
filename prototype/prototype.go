@@ -17,7 +17,7 @@ var prices = []float64{1000.0, 1020.0, 1040.4, 1019.592, 999.20016, 1000}
 
 func PricingLoop() string {
      var spotPrice float64
-     lastTransctionPrice := 7.0
+     lastTransctionPrice := 1000.0
      
      fmt.Printf("Initial Wallet Value: %f\n", walletVal(lastTransctionPrice))
 
