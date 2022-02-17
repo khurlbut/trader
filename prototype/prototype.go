@@ -7,8 +7,8 @@ const SellTrigger = 0.50
 const PurchaseScale = 0.50
 const SellScale = 0.50
 
-var cryptoVal = 0
-var fiatVal = 1000
+var cryptoVal = 0.00
+var fiatVal = 1000.00
 
 func PricingLoop() string {
 
