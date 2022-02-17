@@ -43,7 +43,7 @@ func PricingLoop() string {
                cryptoSellAmount := SellScale * cryptoVal
                // Place sell order for cryptoSellAmount of crypto
                fVal = cryptoSellAmount * spotPrice
-               fiatVal += fVal = fVal * tradingFeePercentage
+               fiatVal += fVal * tradingFeePercentage
                cryptoVal -= cryptoSellAmount
                lastTransctionPrice = spotPrice
                fmt.Printf("\tSELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
