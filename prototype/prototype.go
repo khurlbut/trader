@@ -36,5 +36,5 @@ func delta(spot float32, last float32) float32 {
      if spot < last {
           d = last - spot
      }
-     return d / l
+     return d / last
 }
