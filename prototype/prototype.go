@@ -10,8 +10,17 @@ const SellScale = 0.50
 var cryptoVal = 50.00
 var fiatVal = 1000.00
 
+var spotPriceIndex = 0
+
+const prices := [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
+
 func PricingLoop() string {
 
+     while hasNextPrice() {
+          sp := nextPrice()
+          fmt.Println(sp)
+     }
+     
      // var spotPrice float64  = 3.45
      // var lastTransctionPrice float64 = 22.5
      // var spotPrice float64  = 5.0
@@ -63,4 +72,12 @@ func delta(spot float64, last float64) float64 {
           d = d * -1.0
      }
      return d / last
+}
+
+func hasNextPrice() bool {
+     return spotPriceIndex < len(prices)
+}
+
+func nextPrice() float64 {
+     return prices[spotPriceIndex]
 }
