@@ -28,14 +28,14 @@ func PricingLoop() string {
           fiatVal -= fiatPurchaseAmount
           cryptoVal += (fiatPurchaseAmount / spotPrice)
           latestTransctionPrice  = spotPrice
+          fmt.Printf("fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
      }
 
-     fmt.Printf("fiatVal: %f cryptoVal: %f", fiatVal, cryptoVal)
      return fmt.Sprintf("spot: %f last: %f isBuy: %t isSell: %t delta: %f", spotPrice, latestTransctionPrice, buy, sell, d)
 }
 
 func isBuy(spot float64, last float64) bool {
-     if spot < last {
+     if fiatVal > 0 && spot < last {
           return delta(spot, last) >= BuyTrigger
      }
      return false
