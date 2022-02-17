@@ -23,7 +23,7 @@ func PricingLoop() string {
      d := delta(spotPrice, latestTransctionPrice)
 
      if isBuy(spotPrice, latestTransctionPrice) {
-          var fiatPurchaseAmount float32 := PurchaseScale * fiatVal
+          var fiatPurchaseAmount float32 = PurchaseScale * fiatVal
           // Place buy order for fiatPurchaseAmount of crypto
           fiatVal -= fiatPurchaseAmount
           cryptoVal += (fiatPurchaseAmount / spotPrice)
