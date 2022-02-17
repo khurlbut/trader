@@ -14,7 +14,7 @@ func PricingLoop() string {
      var spotPrice float32  = 3.45
      var latestTransctionPrice float32 = 22.5
 
-     return fmt.Sprintf("isBuy: %t isSell: %t", isBuy(spotPrice, latestTransctionPrice), isSell(spotPrice, latestTransctionPrice))
+     return fmt.Sprintf("isBuy: %t isSell: %t delta: %f", isBuy(spotPrice, latestTransctionPrice), isSell(spotPrice, latestTransctionPrice), delta(spot, latestTransctionPrice))
 }
 
 func isBuy(spot float32, last float32) bool {
@@ -29,4 +29,12 @@ func isSell(spot float32, last float32) bool {
           return true
      }
      return false
+}
+
+func delta(spot float32, last float32) float32 {
+     var d = spot - last
+     if spot < last {
+          d = last - spot
+     }
+     return d / l
 }
