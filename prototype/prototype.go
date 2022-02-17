@@ -7,6 +7,8 @@ const SellTrigger = 0.04
 const PurchaseScale = 0.50
 const SellScale = 0.50
 
+const tradingFeePercentage = 0.006
+
 var cryptoVal = 1.00
 var fiatVal = 1000.00
 
@@ -33,14 +35,15 @@ func PricingLoop() string {
           if isBuy(spotPrice, lastTransctionPrice) {
                var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
                // Place buy order for fiatPurchaseAmount worth of crypto
-               fiatVal -= fiatPurchaseAmount
+               fiatVal -= (fiatPurchaseAmount - fiatPurchaseAmount*tradingFeePercentage)
                cryptoVal += (fiatPurchaseAmount / spotPrice)
                lastTransctionPrice  = spotPrice
                fmt.Printf("\tBUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
           } else if isSell(spotPrice, lastTransctionPrice){
                cryptoSellAmount := SellScale * cryptoVal
                // Place sell order for cryptoSellAmount of crypto
-               fiatVal += (cryptoSellAmount * spotPrice)
+               fVal = cryptoSellAmount * spotPrice
+               fiatVal += fVal = fVal * tradingFeePercentage
                cryptoVal -= cryptoSellAmount
                lastTransctionPrice = spotPrice
                fmt.Printf("\tSELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
