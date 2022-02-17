@@ -29,3 +29,4 @@ func isSell(spot float32, last float32) bool {
           return true
      }
      return false
+}
