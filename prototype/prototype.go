@@ -15,40 +15,34 @@ var spotPriceIndex = 0
 var prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
 
 func PricingLoop() string {
+     lastTransctionPrice := 7.0
 
      for hasNextPrice() {
           sp := nextPrice()
-          fmt.Println(sp)
+          // fmt.Println(sp)
+          buy := isBuy(spotPrice, lastTransctionPrice)
+          sell := isSell(spotPrice, lastTransctionPrice)
+          d := delta(spotPrice, lastTransctionPrice)
+
+          fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
+
+          if isBuy(spotPrice, lastTransctionPrice) {
+               var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
+               // Place buy order for fiatPurchaseAmount worth of crypto
+               fiatVal -= fiatPurchaseAmount
+               cryptoVal += (fiatPurchaseAmount / spotPrice)
+               lastTransctionPrice  = spotPrice
+               fmt.Printf("BUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
+          } else if isSell(spotPrice, lastTransctionPrice){
+               cryptoSellAmount := SellScale * cryptoVal
+               // Place sell order for cryptoSellAmount of crypto
+               fiatVal += (cryptoSellAmount * spotPrice)
+               cryptoVal -= cryptoSellAmount
+               lastTransctionPrice = spotPrice
+               fmt.Printf("SELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
+          }
+
      }
-     
-     // var spotPrice float64  = 3.45
-     // var lastTransctionPrice float64 = 22.5
-     // var spotPrice float64  = 5.0
-     // var lastTransctionPrice float64 = 10.0
-     var spotPrice float64  = 10.0
-     var lastTransctionPrice float64 = 5.0
-     buy := isBuy(spotPrice, lastTransctionPrice)
-     sell := isSell(spotPrice, lastTransctionPrice)
-     d := delta(spotPrice, lastTransctionPrice)
-
-     fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
-
-     if isBuy(spotPrice, lastTransctionPrice) {
-          var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
-          // Place buy order for fiatPurchaseAmount worth of crypto
-          fiatVal -= fiatPurchaseAmount
-          cryptoVal += (fiatPurchaseAmount / spotPrice)
-          lastTransctionPrice  = spotPrice
-          fmt.Printf("BUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
-     } else if isSell(spotPrice, lastTransctionPrice){
-          cryptoSellAmount := SellScale * cryptoVal
-          // Place sell order for cryptoSellAmount of crypto
-          fiatVal += (cryptoSellAmount * spotPrice)
-          cryptoVal -= cryptoSellAmount
-          lastTransctionPrice = spotPrice
-          fmt.Printf("SELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
-     }
-
      return "done"
 }
 
