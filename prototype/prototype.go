@@ -79,5 +79,7 @@ func hasNextPrice() bool {
 }
 
 func nextPrice() float64 {
-     return prices[spotPriceIndex++]
+     p := prices[spotPriceIndex]
+     spotPriceIndex++
+     return p
 }
