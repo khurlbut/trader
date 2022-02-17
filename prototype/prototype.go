@@ -34,8 +34,8 @@ func PricingLoop() string {
      } else if isSell(spotPrice, lastTransctionPrice){
           cryptoSellAmount := SellScale * cryptoVal
           // Place sell order for cryptoSellAmount of crypto
-          cryptoVal += cryptoSellAmount
-          fiatVal -= (cryptoSellAmount * spotPrice)
+          fiatVal += (cryptoSellAmount * spotPrice)
+          cryptoVal -= cryptoSellAmount
           lastTransctionPrice = spotPrice
           fmt.Printf("SELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
      }
