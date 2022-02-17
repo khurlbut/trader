@@ -12,12 +12,12 @@ var fiatVal = 1000.00
 
 func PricingLoop() string {
 
-     var spotPrice float64  = 3.45
-     var latestTransctionPrice float64 = 22.5
+     // var spotPrice float64  = 3.45
+     // var latestTransctionPrice float64 = 22.5
      // var spotPrice float64  = 5.0
      // var latestTransctionPrice float64 = 10.0
-     // var spotPrice float64  = 10.0
-     // var latestTransctionPrice float64 = 5.0
+     var spotPrice float64  = 10.0
+     var latestTransctionPrice float64 = 5.0
      buy := isBuy(spotPrice, latestTransctionPrice)
      sell := isSell(spotPrice, latestTransctionPrice)
      d := delta(spotPrice, latestTransctionPrice)
