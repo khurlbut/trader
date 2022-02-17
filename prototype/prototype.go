@@ -16,7 +16,7 @@ var prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
 
 func PricingLoop() string {
 
-     while hasNextPrice() {
+     for hasNextPrice() {
           sp := nextPrice()
           fmt.Println(sp)
      }
