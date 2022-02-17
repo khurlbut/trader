@@ -16,10 +16,10 @@ var prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
 
 func PricingLoop() string {
 
-     // while hasNextPrice() {
-     //      sp := nextPrice()
-     //      fmt.Println(sp)
-     // }
+     while hasNextPrice() {
+          sp := nextPrice()
+          fmt.Println(sp)
+     }
      
      // var spotPrice float64  = 3.45
      // var lastTransctionPrice float64 = 22.5
@@ -74,10 +74,10 @@ func delta(spot float64, last float64) float64 {
      return d / last
 }
 
-// func hasNextPrice() bool {
-//      return spotPriceIndex < len(prices)
-// }
+func hasNextPrice() bool {
+     return spotPriceIndex < len(prices)
+}
 
-// func nextPrice() float64 {
-//      return prices[spotPriceIndex++]
-// }
+func nextPrice() float64 {
+     return prices[spotPriceIndex++]
+}
