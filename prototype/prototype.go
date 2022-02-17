@@ -22,6 +22,7 @@ func isBuy(spot float32, last float32) bool {
           return true
      }
      return false
+}
 
 func isSell(spot float32, last float32) bool {
      if spot > last {
