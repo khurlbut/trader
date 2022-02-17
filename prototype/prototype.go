@@ -16,7 +16,7 @@ const SellScale = 0.50
 var cryptoVal = 0
 var fiatVal = 1000
 
-func PricingLoop() int {
+func PricingLoop() string {
      spotPrice := 23.45
      latestTransctionPrice = 22.5
 
