@@ -49,7 +49,7 @@ func isBuy(spot float64, last float64) bool {
 }
 
 func isSell(spot float64, last float64) bool {
-     if spot > last {
+     if cryptoVal > 0 && spot > last {
           return delta(spot, last) >= SellTrigger
      }
      return false
