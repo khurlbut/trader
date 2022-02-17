@@ -19,7 +19,7 @@ func PricingLoop() string {
      var spotPrice float64
      lastTransctionPrice := 7.0
      
-     fmt.Printf("Initial Wallet Value %f\n", walletVal(lastTransctionPrice))
+     fmt.Printf("Initial Wallet Value: %f\n", walletVal(lastTransctionPrice))
 
      for hasNextPrice() {
           spotPrice = nextPrice()
@@ -48,7 +48,7 @@ func PricingLoop() string {
           fmt.Print("New Wallet Value: %f\n", walletVal(lastTransctionPrice))
 
      }
-     return fmt.Sprintf("Final Wallet Value %f\n", walletVal(lastTransctionPrice))
+     return fmt.Sprintf("Final Wallet Value: %f\n", walletVal(lastTransctionPrice))
 }
 
 func isBuy(spot float64, last float64) bool {
@@ -83,7 +83,7 @@ func nextPrice() float64 {
      return p
 }
 
-func walletVal(spot float64) {
+func walletVal(spot float64) float64 {
      f := spot * cryptoVal
      return f + fiatVal
 }
