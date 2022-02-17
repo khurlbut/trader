@@ -1,12 +1,6 @@
 package prototype
 
-func BuildHello() string {
-     return "Hello, world."
-}
-
-func BuildHi() string {
-     return "Hi, world."
-}
+import "fmt"
 
 const BuyTrigger = 0.25
 const SellTrigger = 0.50
@@ -20,7 +14,7 @@ func PricingLoop() string {
      spotPrice := 23.45
      latestTransctionPrice := 22.5
 
-     return "done"+spotPrice+latestTransctionPrice
+     return fmt.Sprint("done %f %f",spotPrice,latestTransctionPrice)
 }
 
 func isBuy() bool {
