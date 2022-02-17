@@ -15,10 +15,11 @@ var spotPriceIndex = 0
 var prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
 
 func PricingLoop() string {
+     var spotPrice float64
      lastTransctionPrice := 7.0
 
      for hasNextPrice() {
-          sp := nextPrice()
+          spotPrice = nextPrice()
           // fmt.Println(sp)
           buy := isBuy(spotPrice, lastTransctionPrice)
           sell := isSell(spotPrice, lastTransctionPrice)
