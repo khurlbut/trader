@@ -12,18 +12,18 @@ var fiatVal = 1000.00
 
 func PricingLoop() string {
 
-     var spotPrice float32  = 3.45
-     var latestTransctionPrice float32 = 22.5
-     // var spotPrice float32  = 5.0
-     // var latestTransctionPrice float32 = 10.0
-     // var spotPrice float32  = 10.0
-     // var latestTransctionPrice float32 = 5.0
+     var spotPrice float64  = 3.45
+     var latestTransctionPrice float64 = 22.5
+     // var spotPrice float64  = 5.0
+     // var latestTransctionPrice float64 = 10.0
+     // var spotPrice float64  = 10.0
+     // var latestTransctionPrice float64 = 5.0
      buy := isBuy(spotPrice, latestTransctionPrice)
      sell := isSell(spotPrice, latestTransctionPrice)
      d := delta(spotPrice, latestTransctionPrice)
 
      if isBuy(spotPrice, latestTransctionPrice) {
-          var fiatPurchaseAmount float32 = PurchaseScale * fiatVal
+          var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
           // Place buy order for fiatPurchaseAmount of crypto
           fiatVal -= fiatPurchaseAmount
           cryptoVal += (fiatPurchaseAmount / spotPrice)
@@ -34,21 +34,21 @@ func PricingLoop() string {
      return fmt.Sprintf("spot: %f last: %f isBuy: %t isSell: %t delta: %f", spotPrice, latestTransctionPrice, buy, sell, d)
 }
 
-func isBuy(spot float32, last float32) bool {
+func isBuy(spot float64, last float64) bool {
      if spot < last {
           return delta(spot, last) >= BuyTrigger
      }
      return false
 }
 
-func isSell(spot float32, last float32) bool {
+func isSell(spot float64, last float64) bool {
      if spot > last {
           return delta(spot, last) >= SellTrigger
      }
      return false
 }
 
-func delta(spot float32, last float32) float32 {
+func delta(spot float64, last float64) float64 {
      var d = spot - last
      if d < 0 {
           d = d * -1.0
