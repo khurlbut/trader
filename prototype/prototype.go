@@ -8,7 +8,7 @@ const PurchaseScale = 0.50
 const SellScale = 0.50
 
 var coinCount = 1.00
-var fiatVal = 1000.00
+var fiatVal = 0.00
 
 var spotPriceIndex = 0
 
@@ -16,7 +16,7 @@ var spotPriceIndex = 0
 var prices = []float64{1000.0, 1020.0, 1040.4, 1019.592, 999.20016, 1000}
 
 func PricingLoop() string {
-     lastTransctionPrice := 1000.0
+     lastTransctionPrice := currentPrice()
      spotPrice := lastTransctionPrice
      
      fmt.Printf("Initial Wallet Value: %f\n", walletVal(spotPrice))
@@ -81,6 +81,10 @@ func nextPrice() float64 {
      p := prices[spotPriceIndex]
      spotPriceIndex++
      return p
+}
+
+func currentPrice() float64 {
+     return prices[spotPriceIndex]
 }
 
 func walletVal(spot float64) float64 {
