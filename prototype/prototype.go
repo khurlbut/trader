@@ -13,32 +13,34 @@ var fiatVal = 1000.00
 func PricingLoop() string {
 
      // var spotPrice float64  = 3.45
-     // var latestTransctionPrice float64 = 22.5
+     // var lastTransctionPrice float64 = 22.5
      // var spotPrice float64  = 5.0
-     // var latestTransctionPrice float64 = 10.0
+     // var lastTransctionPrice float64 = 10.0
      var spotPrice float64  = 10.0
-     var latestTransctionPrice float64 = 5.0
-     buy := isBuy(spotPrice, latestTransctionPrice)
-     sell := isSell(spotPrice, latestTransctionPrice)
-     d := delta(spotPrice, latestTransctionPrice)
+     var lastTransctionPrice float64 = 5.0
+     buy := isBuy(spotPrice, lastTransctionPrice)
+     sell := isSell(spotPrice, lastTransctionPrice)
+     d := delta(spotPrice, lastTransctionPrice)
 
-     if isBuy(spotPrice, latestTransctionPrice) {
+     fmt.Sprintf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
+
+     if isBuy(spotPrice, lastTransctionPrice) {
           var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
           // Place buy order for fiatPurchaseAmount worth of crypto
           fiatVal -= fiatPurchaseAmount
           cryptoVal += (fiatPurchaseAmount / spotPrice)
-          latestTransctionPrice  = spotPrice
+          lastTransctionPrice  = spotPrice
           fmt.Printf("BUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
-     } else if isSell(spotPrice, latestTransctionPrice){
+     } else if isSell(spotPrice, lastTransctionPrice){
           cryptoSellAmount := SellScale * cryptoVal
           // Place sell order for cryptoSellAmount of crypto
           cryptoVal += cryptoSellAmount
           fiatVal -= (cryptoSellAmount * spotPrice)
-          latestTransctionPrice = spotPrice
+          lastTransctionPrice = spotPrice
           fmt.Printf("SELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
      }
 
-     return fmt.Sprintf("spot: %f last: %f isBuy: %t isSell: %t delta: %f", spotPrice, latestTransctionPrice, buy, sell, d)
+     return "done"
 }
 
 func isBuy(spot float64, last float64) bool {
