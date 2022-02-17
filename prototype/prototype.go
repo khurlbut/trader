@@ -7,9 +7,7 @@ const SellTrigger = 0.04
 const PurchaseScale = 0.50
 const SellScale = 0.50
 
-const tradingFeePercentage = 0.006
-
-var cryptoVal = 1.00
+var coinCount = 1.00
 var fiatVal = 1000.00
 
 var spotPriceIndex = 0
@@ -36,16 +34,16 @@ func PricingLoop() string {
                var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
                // Place buy order for fiatPurchaseAmount worth of crypto
                fiatVal -= fiatPurchaseAmount
-               cryptoVal += (fiatPurchaseAmount / spotPrice)
+               coinCount += (fiatPurchaseAmount / spotPrice)
                lastTransctionPrice  = spotPrice
-               fmt.Printf("\tBUY Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
+               fmt.Printf("\tBUY Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           } else if isSell(spotPrice, lastTransctionPrice){
-               cryptoSellAmount := SellScale * cryptoVal
+               cryptoSellAmount := SellScale * coinCount
                // Place sell order for cryptoSellAmount of crypto
                fiatVal += (cryptoSellAmount * spotPrice)
-               cryptoVal -= cryptoSellAmount
+               coinCount -= cryptoSellAmount
                lastTransctionPrice = spotPrice
-               fmt.Printf("\tSELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
+               fmt.Printf("\tSELL Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           }
           fmt.Printf("New Wallet Value: %f\n", walletVal(lastTransctionPrice))
 
@@ -61,7 +59,7 @@ func isBuy(spot float64, last float64) bool {
 }
 
 func isSell(spot float64, last float64) bool {
-     if cryptoVal > 0 && spot > last {
+     if coinCount > 0 && spot > last {
           return delta(spot, last) >= SellTrigger
      }
      return false
@@ -86,6 +84,9 @@ func nextPrice() float64 {
 }
 
 func walletVal(spot float64) float64 {
-     f := spot * cryptoVal
-     return f + fiatVal
+     return coinVal(spot) + fiatVal
+}
+
+func coinVal(spot float64) float64 {
+     return spot * coinCount
 }
