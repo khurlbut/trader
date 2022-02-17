@@ -12,7 +12,7 @@ var fiatVal = 1000.00
 
 var spotPriceIndex = 0
 
-var prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
+var prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
 
 func PricingLoop() string {
      var spotPrice float64
@@ -44,7 +44,7 @@ func PricingLoop() string {
           }
 
      }
-     return "done"
+     return fmt.Printf("fiatVal %f cryptoVal %f\n", fiatVal, cryptoVal)
 }
 
 func isBuy(spot float64, last float64) bool {
