@@ -20,7 +20,7 @@ func PricingLoop() string {
      spotPrice := 23.45
      latestTransctionPrice := 22.5
 
-     return "done"
+     return "done"+spotPrice+latestTransctionPrice
 }
 
 func isBuy() bool {
