@@ -3,6 +3,7 @@ package main
 import(
 "fmt"
 "github.com/khurlbut/trader/hello"
+"github.com/khurlbut/trader/prototype"
 )
 
 func main() {
