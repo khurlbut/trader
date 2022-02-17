@@ -11,12 +11,15 @@ var cryptoVal = 0
 var fiatVal = 1000
 
 func PricingLoop() string {
-     spotPrice := 23.45
-     latestTransctionPrice := 22.5
+     var spotPrice float32  = 3.45
+     var latestTransctionPrice float32 = 22.5
 
-     return fmt.Sprintf("done %f %f",spotPrice,latestTransctionPrice)
+     return fmt.Sprintf("%f %f isBuy: %b",spotPrice,latestTransctionPrice, isBuy(spotPrice, latestTransctionPrice))
 }
 
-func isBuy() bool {
-     return true
+func isBuy(spot float32, last float32) bool {
+     if spot < last {
+          return true
+     }
+     return false
 }

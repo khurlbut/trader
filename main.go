@@ -6,5 +6,5 @@ import(
 )
 
 func main() {
-	fmt.Println(prototype.PricingLoop())
+	fmt.Println("changed", prototype.PricingLoop())
 }
