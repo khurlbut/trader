@@ -22,7 +22,7 @@ func PricingLoop() string {
      sell := isSell(spotPrice, lastTransctionPrice)
      d := delta(spotPrice, lastTransctionPrice)
 
-     fmt.Sprintf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
+     fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
 
      if isBuy(spotPrice, lastTransctionPrice) {
           var fiatPurchaseAmount float64 = PurchaseScale * fiatVal
