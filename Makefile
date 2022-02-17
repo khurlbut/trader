@@ -1,5 +1,5 @@
 # VARIABLES
-PACKAGE="github.com/khurlbut/trader"
+PACKAGE="github.com/khurlbut/trader@latest"
 BINARY_NAME="trader"
 
 default: usage

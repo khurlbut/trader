@@ -7,4 +7,6 @@ import(
 
 func main() {
 	fmt.Println(hello.BuildHello())
+	fmt.Println(hello.BuildHi())
+	fmt.Println("hey", prototype.PricingLoop())
 }
