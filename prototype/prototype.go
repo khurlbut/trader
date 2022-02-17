@@ -45,7 +45,7 @@ func PricingLoop() string {
                lastTransctionPrice = spotPrice
                fmt.Printf("\tSELL Executed: fiatVal: %f cryptoVal: %f\n", fiatVal, cryptoVal)
           }
-          fmt.Print("New Wallet Value: %f\n", walletVal(lastTransctionPrice))
+          fmt.Sprintf("New Wallet Value: %f\n", walletVal(lastTransctionPrice))
 
      }
      return fmt.Sprintf("Final Wallet Value: %f\n", walletVal(lastTransctionPrice))
