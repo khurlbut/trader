@@ -18,7 +18,7 @@ var fiatVal = 1000
 
 func PricingLoop() string {
      spotPrice := 23.45
-     latestTransctionPrice = 22.5
+     latestTransctionPrice := 22.5
 
      return "done"
 }
