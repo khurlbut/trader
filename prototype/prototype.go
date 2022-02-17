@@ -3,7 +3,7 @@ package prototype
 import "fmt"
 
 const BuyTrigger = 0.02
-const SellTrigger = 0.02
+const SellTrigger = 0.04
 const PurchaseScale = 0.50
 const SellScale = 0.50
 
