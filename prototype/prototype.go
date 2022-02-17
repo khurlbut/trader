@@ -12,7 +12,7 @@ var fiatVal = 1000.00
 
 var spotPriceIndex = 0
 
-const prices := [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
+const prices = [5]float64{5.0, 8.0, 4.0, 2.0, 6.0}
 
 func PricingLoop() string {
 
