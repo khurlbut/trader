@@ -13,7 +13,7 @@ import
 )
 
 const BuyTrigger = 0.05
-const SellTrigger = 0.10
+const SellTrigger = 0.75
 const fiatPercentageTarget = 0.20
 // const PurchaseScale = 0.250
 // const SellScale = 0.40
