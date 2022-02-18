@@ -1,6 +1,10 @@
 package prototype
 
-import "fmt"
+import
+(
+"fmt"
+"github.com/khurlbut/trader/price_quotes"
+)
 
 const BuyTrigger = 0.04
 const SellTrigger = 0.02
@@ -11,19 +15,14 @@ const tradingFeePercentage = 0.006
 var coinCount = 1.00
 var fiatVal = 0.00
 
-var spotPriceIndex = 0
-
-// var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
-var prices = []float64{1000.0, 1020.0, 1040.4, 1019.592, 998.784, 1000}
-
 func PricingLoop() string {
-     lastTransctionPrice := currentPrice()
+     lastTransctionPrice := price_quotes.currentPrice()
      spotPrice := lastTransctionPrice
      
      fmt.Printf("Initial Wallet Value: %f\n", walletVal(spotPrice))
 
-     for hasNextPrice() {
-          spotPrice = nextPrice()
+     for price_quotes.hasNextPrice() {
+          spotPrice = price_quotes.nextPrice()
           // fmt.Println(sp)
           buy := isBuy(spotPrice, lastTransctionPrice)
           sell := isSell(spotPrice, lastTransctionPrice)
@@ -79,20 +78,6 @@ func delta(spot float64, last float64) float64 {
           d = d * -1.0
      }
      return d / last
-}
-
-func hasNextPrice() bool {
-     return spotPriceIndex < len(prices)
-}
-
-func nextPrice() float64 {
-     p := prices[spotPriceIndex]
-     spotPriceIndex++
-     return p
-}
-
-func currentPrice() float64 {
-     return prices[spotPriceIndex]
 }
 
 func walletVal(spot float64) float64 {
