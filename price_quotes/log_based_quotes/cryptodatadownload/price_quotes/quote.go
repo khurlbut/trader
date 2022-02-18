@@ -6,6 +6,7 @@ import (
      "log"
      "strings"
      "bufio"
+     "strconv"
 )
 
 const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
@@ -51,7 +52,7 @@ func HasNextPrice() bool {
 func NextPrice() float64 {
      line := scanner.Text()
      checkScanner()
-     return strings.Split(line, ",")[open_index]
+     return strconv.ParseFloat(strings.Split(line, ",")[open_index], 64)
      // fmt.Println(strings.Split(scanner.Text(), ",")[open_index])
      // return 0
 }
