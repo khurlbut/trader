@@ -9,7 +9,6 @@ package prototype
 import
 (
      "fmt"
-     "math"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
