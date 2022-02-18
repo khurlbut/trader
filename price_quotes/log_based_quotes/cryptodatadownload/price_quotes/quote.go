@@ -98,6 +98,9 @@ func Close() {
 
 // var i = 0
 func HasNextPrice() bool {
+     // fmt.Println("HasNextPrice")
+     scanner.Scan()
+     checkScanner()
      return readDate().Before(end_time)
      // if i < 100 {
      //      i++
