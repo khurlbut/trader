@@ -1,6 +1,7 @@
 package prototype
 
-import(
+import
+(
 "fmt"
 "github.com/khurlbut/trader/price_quotes"
 )
