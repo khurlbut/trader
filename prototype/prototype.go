@@ -6,6 +6,7 @@ const BuyTrigger = 0.04
 const SellTrigger = 0.02
 const PurchaseScale = 0.50
 const SellScale = 0.50
+const tradingFeePercentage = 0.006
 
 var coinCount = 1.00
 var fiatVal = 0.00
@@ -91,6 +92,15 @@ func walletVal(spot float64) float64 {
      return coinVal(spot) + fiatVal
 }
 
-func coinVal(spot float64) float64 {
-     return spot * coinCount
+func coinVal(fiatPrice float64) float64 {
+     return coinValInFiat(fiatPrice, coinCount)
+     // return fiatPrice * coinCount
+}
+
+func coinValInFiat(fiatPrice float64, coinAmount float64) {
+     return fiatPrice * coinAmount
+}
+
+func tradingFee(fiat float64) float64 {
+     fiat * tradingFeePercentage
 }
