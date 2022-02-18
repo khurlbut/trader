@@ -28,7 +28,7 @@ func PricingLoop() string {
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     fmt.Printf("Initial Wallet Value: %f\n", walletVal(spotPrice))
+     fmt.Printf("Initial: %s\n", walletVal(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -63,7 +63,7 @@ func PricingLoop() string {
           // fmt.Printf("New Wallet Value: %f\n", walletVal(spotPrice))
 
      }
-     return fmt.Sprintf("Final Wallet Value: %f\n", walletVal(spotPrice))
+     return fmt.Sprintf("Final: %s\n", walletVal(spotPrice))
 }
 
 func isBuy(spot float64, last float64) bool {
@@ -88,7 +88,7 @@ func delta(spot float64, last float64) float64 {
      return d / last
 }
 
-func walletVal(spot float64) float64 {
+func walletVal(spot float64) string {
      return fmt.Sprintf("Spot: %f Fiat %f Total in Wallet: %f", spot, fiatVal, coinVal(spot) + fiatVal)
      // return coinVal(spot) + fiatVal
 }
