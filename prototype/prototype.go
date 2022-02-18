@@ -89,7 +89,8 @@ func delta(spot float64, last float64) float64 {
 }
 
 func walletVal(spot float64) float64 {
-     return coinVal(spot) + fiatVal
+     return fmt.Sprintf("Spot: %f Fiat %f Total in Wallet: %f", spot, fiatVal, coinVal(spot) + fiatVal)
+     // return coinVal(spot) + fiatVal
 }
 
 func coinVal(fiatPrice float64) float64 {
