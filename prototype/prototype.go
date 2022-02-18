@@ -102,5 +102,5 @@ func coinValInFiat(fiatPrice float64, coinAmount float64) float64 {
 }
 
 func tradingFee(fiat float64) float64 {
-     fiat * tradingFeePercentage
+     return fiat * tradingFeePercentage
 }
