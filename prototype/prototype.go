@@ -32,7 +32,7 @@ func PricingLoop() string {
      coinCount = (0.5*fiatVal)/spotPrice
      fiatVal = 0.5*fiatVal
 
-     fmt.Printf("Initial: %s\n", purseVal(spotPrice))
+     fmt.Printf("Initial: %s\n", purseValReport(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -70,7 +70,7 @@ func PricingLoop() string {
           // fmt.Printf("New purse Value: %f\n", purseVal(spotPrice))
 
      }
-     return fmt.Sprintf("Final: %s\n", purseVal(spotPrice))
+     return fmt.Sprintf("Final: %s\n", purseValReport(spotPrice))
 }
 
 func targetFiatAmount(purse float64) float64 {
@@ -99,9 +99,12 @@ func delta(spot float64, last float64) float64 {
      return d / last
 }
 
-func purseVal(spot float64) string {
+func purseVal(spot float64) float64 {
+     return coinVal(spot) + fiatVal
+}
+
+func purseValReport(spot float64) string {
      return fmt.Sprintf("Spot: %f Fiat %f Total in purse: %f", spot, fiatVal, coinVal(spot) + fiatVal)
-     // return coinVal(spot) + fiatVal
 }
 
 func coinVal(fiatPrice float64) float64 {
