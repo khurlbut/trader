@@ -33,19 +33,24 @@ func PricingLoop() string {
 
           if isBuy(spotPrice, lastTransctionPrice) {
                fiatTransactionVal := PurchaseScale * fiatVal
+
                // Place buy order for fiatPurchaseAmount worth of crypto
+
                fiatVal -= (fiatTransactionVal + tradingFee(fiatTransactionVal))
                coinCount += (fiatTransactionVal / spotPrice)
                lastTransctionPrice  = spotPrice
+
                fmt.Printf("\tBUY Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           } else if isSell(spotPrice, lastTransctionPrice){
                cryptoSellAmount := SellScale * coinCount
-               // Place sell order for cryptoSellAmount of crypto
-               // fiatVal += (cryptoSellAmount * spotPrice)
                fiatTransactionVal := coinValInFiat(spotPrice, cryptoSellAmount)  
-               fiatVal +=  fiatTransactionVal - tradingFee(fiatTransactionVal)
+          
+               // Place sell order for cryptoSellAmount of crypto
+
+               fiatVal +=  (fiatTransactionVal - tradingFee(fiatTransactionVal))
                coinCount -= cryptoSellAmount
                lastTransctionPrice = spotPrice
+
                fmt.Printf("\tSELL Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           }
           fmt.Printf("New Wallet Value: %f\n", walletVal(spotPrice))
