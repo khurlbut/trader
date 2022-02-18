@@ -52,7 +52,7 @@ func PricingLoop() string {
                coinCount += (fiatTransactionVal / spotPrice)
                lastTransctionPrice  = spotPrice
 
-               fmt.Printf("\t" + transactionReport("BUY", spotPrice, fiatVal, coinAmount))
+               fmt.Printf("\t" + transactionReport("BUY", spotPrice, fiatVal, coinCount))
           } else if isSell(spotPrice, lastTransctionPrice){
                // cryptoSellAmount := SellScale * coinCount
                // fiatTransactionVal := coinValInFiat(spotPrice, cryptoSellAmount)  
@@ -65,7 +65,7 @@ func PricingLoop() string {
                coinCount -= (fiatTransactionVal / spotPrice)
                lastTransctionPrice = spotPrice
 
-               fmt.Printf("\t" + transactionReport("SELL", spotPrice, fiatVal, coinAmount))
+               fmt.Printf("\t" + transactionReport("SELL", spotPrice, fiatVal, coinCount))
           }
           // fmt.Printf("New purse Value: %f\n", purseVal(spotPrice))
 
