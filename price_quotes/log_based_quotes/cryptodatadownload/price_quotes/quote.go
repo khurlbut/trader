@@ -26,7 +26,8 @@ func Close() {
 
 var i = 0
 func HasNextPrice() bool {
-     if i++ < 10 {
+     if i < 10 {
+          i++
           return true
      }
      return false
