@@ -4,6 +4,7 @@ import (
      "fmt"
      "os"
      "log"
+     "strings"
      "bufio"
 )
 
@@ -47,7 +48,7 @@ func HasNextPrice() bool {
 }
 
 func NextPrice() float64 {
-     fmt.Println(scanner.Text())
+     fmt.Println(strings.Split(scanner.Text(), ",")
      checkScanner()
      return 0
 }
