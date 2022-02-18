@@ -32,10 +32,10 @@ func PricingLoop() string {
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
-          buy := isBuy(spotPrice, lastTransctionPrice)
-          sell := isSell(spotPrice, lastTransctionPrice)
-          d := delta(spotPrice, lastTransctionPrice)
-
+          
+          // buy := isBuy(spotPrice, lastTransctionPrice)
+          // sell := isSell(spotPrice, lastTransctionPrice)
+          // d := delta(spotPrice, lastTransctionPrice)
           // fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
 
           if isBuy(spotPrice, lastTransctionPrice) {
