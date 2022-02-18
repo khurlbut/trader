@@ -59,7 +59,7 @@ func PricingLoop() string {
                // cryptoSellAmount := SellScale * coinCount
                // fiatPurseTarget := coinValInFiat(spotPrice, cryptoSellAmount)  
                fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
-               fiatTranscactionAmount := fiatPurseTarget - fiatVal
+               fiatTransactionAmount := fiatPurseTarget - fiatVal
                fmt.Printf("\tfiatPurseTarget (sell): %f\n", fiatPurseTarget)
           
                // Place sell order for cryptoSellAmount of crypto
