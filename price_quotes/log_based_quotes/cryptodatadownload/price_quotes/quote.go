@@ -9,7 +9,7 @@ import (
 // var spotPriceIndex = 0
 // var prices = []float64{10.00, 10.200, 10.404, 10.19592, 9.98784, 10.00}
 
-const datafile := "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
+const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
 
 var file *os.File = nil
 
