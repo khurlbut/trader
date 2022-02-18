@@ -14,8 +14,9 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const PurchaseScale = 0.250
-const SellScale = 0.40
+const fiatPercentageTarget = 0.25
+// const PurchaseScale = 0.250
+// const SellScale = 0.40
 const tradingFeePercentage = 0.006
 
 var coinCount = 1.00
@@ -31,7 +32,7 @@ func PricingLoop() string {
      coinCount = (0.5*fiatVal)/spotPrice
      fiatVal = 0.5*fiatVal
 
-     fmt.Printf("Initial: %s\n", walletVal(spotPrice))
+     fmt.Printf("Initial: %s\n", purseVal(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -42,7 +43,8 @@ func PricingLoop() string {
           // fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
 
           if isBuy(spotPrice, lastTransctionPrice) {
-               fiatTransactionVal := PurchaseScale * fiatVal
+               // fiatTransactionVal := PurchaseScale * fiatVal
+               fiatTransactionVal := targetFiatAmount(purseVal(spotPrice))
 
                // Place buy order for fiatPurchaseAmount worth of crypto
 
@@ -52,21 +54,27 @@ func PricingLoop() string {
 
                fmt.Printf("\tBUY Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           } else if isSell(spotPrice, lastTransctionPrice){
-               cryptoSellAmount := SellScale * coinCount
-               fiatTransactionVal := coinValInFiat(spotPrice, cryptoSellAmount)  
+               // cryptoSellAmount := SellScale * coinCount
+               // fiatTransactionVal := coinValInFiat(spotPrice, cryptoSellAmount)  
+               fiatTransactionVal := targetFiatAmount(purseVal(spotPrice))
           
                // Place sell order for cryptoSellAmount of crypto
 
                fiatVal +=  (fiatTransactionVal - tradingFee(fiatTransactionVal))
-               coinCount -= cryptoSellAmount
+               // coinCount -= cryptoSellAmount
+               coinCount -= (fiatTransactionVal / spotPrice)
                lastTransctionPrice = spotPrice
 
                fmt.Printf("\tSELL Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           }
-          // fmt.Printf("New Wallet Value: %f\n", walletVal(spotPrice))
+          // fmt.Printf("New purse Value: %f\n", purseVal(spotPrice))
 
      }
-     return fmt.Sprintf("Final: %s\n", walletVal(spotPrice))
+     return fmt.Sprintf("Final: %s\n", purseVal(spotPrice))
+}
+
+func targetFiatAmount(purse float64) float64 {
+     return purse * fiatPercentageTarget
 }
 
 func isBuy(spot float64, last float64) bool {
@@ -91,8 +99,8 @@ func delta(spot float64, last float64) float64 {
      return d / last
 }
 
-func walletVal(spot float64) string {
-     return fmt.Sprintf("Spot: %f Fiat %f Total in Wallet: %f", spot, fiatVal, coinVal(spot) + fiatVal)
+func purseVal(spot float64) string {
+     return fmt.Sprintf("Spot: %f Fiat %f Total in purse: %f", spot, fiatVal, coinVal(spot) + fiatVal)
      // return coinVal(spot) + fiatVal
 }
 
