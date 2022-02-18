@@ -71,8 +71,8 @@ func targetFiatAmount(purse float64) float64 {
      return purse * fiatPercentageTarget
 }
 
-func isActionable(spot float64, lastTransctionPrice) bool {
-     return isBuy(spot, lastTransctionPrice) || isSell(spot, lastTransctionPrice)
+func isActionable(spot float64, ltp float64) bool {
+     return isBuy(spot, ltp) || isSell(spot, ltp)
 }
 
 func isBuy(spot float64, last float64) bool {
