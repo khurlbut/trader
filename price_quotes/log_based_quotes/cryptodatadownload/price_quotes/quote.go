@@ -53,7 +53,7 @@ func NextPrice() float64 {
      l := scanner.Text()
      checkScanner()
      p, err := strconv.ParseFloat(strings.Split(l, ",")[open_index], 64) 
-     if err {
+     if err != nil {
           log.Fatal(err)
      }
      return p
