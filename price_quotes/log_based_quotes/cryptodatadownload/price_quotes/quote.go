@@ -13,10 +13,11 @@ var file *os.File = nil
 
 func Init() {
      fmt.Println("cryptodatadownload price_quotes Init()")
-     file, err := os.Open("~/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv")
+     f, err := os.Open("~/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv")
      if err != nil {
           log.Fatal(err)
      }
+     file = f
 }
 
 func Close() {
