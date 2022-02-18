@@ -4,8 +4,8 @@ import "fmt"
 
 const BuyTrigger = 0.04
 const SellTrigger = 0.02
-const PurchaseScale = 0.50
-const SellScale = 0.50
+const PurchaseScale = 0.250
+const SellScale = 0.40
 const tradingFeePercentage = 0.006
 
 var coinCount = 1.00
