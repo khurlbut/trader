@@ -3,7 +3,7 @@ package price_quotes
 var spotPriceIndex = 0
 
 // var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
-var prices = []float64{1000.0, 1020.0, 1040.4, 1019.592, 998.784, 1000}
+var prices = []float64{10.00, 10.200, 10.404, 10.19592, 9.98784, 10.00}
 
 func HasNextPrice() bool {
      return spotPriceIndex < len(prices)
