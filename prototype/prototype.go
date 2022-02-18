@@ -13,7 +13,7 @@ var fiatVal = 0.00
 var spotPriceIndex = 0
 
 // var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
-var prices = []float64{1000.0, 1020.0, 1040.4, 1019.592, 999.20016, 1000}
+var prices = []float64{1000.0, 1020.0, 1040.4, 1019.592, 998.784, 1000}
 
 func PricingLoop() string {
      lastTransctionPrice := currentPrice()
