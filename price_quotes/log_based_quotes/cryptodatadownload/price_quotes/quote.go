@@ -67,7 +67,7 @@ func readPrice() float64 {
 }
 
 func readDate() time.Time {
-     t, err := time.Parse(layout, readLineArray()[date_time_index])
+     t, err := time.Parse(date_time_layout, readLineArray()[date_time_index])
      if err != nil {
           log.Fatal(err)
      }
@@ -75,13 +75,13 @@ func readDate() time.Time {
 }
 
 func readLineArray() []string {
-     l := readLine()
-     return strings.Split(line, ",")
+     return strings.Split(readLine(), ",")
 }
 
 func readLine() string {
-     line := scanner.Text()
+     l := scanner.Text()
      checkScanner()
+     return l
 }
 
 func checkScanner() {
