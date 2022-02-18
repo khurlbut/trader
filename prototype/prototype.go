@@ -36,7 +36,7 @@ func PricingLoop() string {
           sell := isSell(spotPrice, lastTransctionPrice)
           d := delta(spotPrice, lastTransctionPrice)
 
-          fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
+          // fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
 
           if isBuy(spotPrice, lastTransctionPrice) {
                fiatTransactionVal := PurchaseScale * fiatVal
@@ -60,7 +60,7 @@ func PricingLoop() string {
 
                fmt.Printf("\tSELL Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
           }
-          fmt.Printf("New Wallet Value: %f\n", walletVal(spotPrice))
+          // fmt.Printf("New Wallet Value: %f\n", walletVal(spotPrice))
 
      }
      return fmt.Sprintf("Final Wallet Value: %f\n", walletVal(spotPrice))

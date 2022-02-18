@@ -23,7 +23,6 @@ var start_time time.Time
 var end_time time.Time
 
 func Init() {
-     fmt.Println("cryptodatadownload price_quotes Init()")
      f, err := os.Open(datafile)
      if err != nil {
           log.Fatal(err)
@@ -46,6 +45,10 @@ func Init() {
      scanToStartDate()
 }
 
+func Close() {
+     file.Close()
+}
+
 func scanToStartDate() {
      scan()
 
@@ -54,7 +57,7 @@ func scanToStartDate() {
           scan()
           d = readDate()
      }
-     fmt.Printf("Start Time: " + d.String())
+     fmt.Println("Start Time: " + d.String())
 
 }
 
@@ -93,11 +96,6 @@ func checkScanner() {
      if err := scanner.Err(); err != nil {
           log.Fatal(err)
      }
-}
-
-func Close() {
-     fmt.Println("cryptodatadownload price_quotes Close()")
-     file.Close()
 }
 
 func HasNextPrice() bool {
