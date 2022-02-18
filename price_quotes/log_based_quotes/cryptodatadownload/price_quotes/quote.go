@@ -49,9 +49,12 @@ func Init() {
 func scanToStartDate() {
      scan()
 
-     for readDate().Before(start_time) {
+     d := readDate()
+     for d.Before(start_time) {
           scan()
+          d = readDate()
      }
+     fmt.Printf("Start Time: " + d.String())
 
 }
 
@@ -99,7 +102,12 @@ func Close() {
 
 func HasNextPrice() bool {
      scan()
-     return readDate().Before(end_time)
+     d := readDate()
+     if d.Before(end_time) {
+          return true
+     }
+     fmt.Println("End Time: " + d.String())
+     return false
 }
 
 func NextPrice() float64 {
