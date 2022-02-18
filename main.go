@@ -1,8 +1,8 @@
 package main
 
 import(
-"fmt"
-"github.com/khurlbut/trader/prototype"
+	"fmt"
+	"github.com/khurlbut/trader/prototype"
 )
 
 func main() {
