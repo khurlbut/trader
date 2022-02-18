@@ -1,7 +1,6 @@
 package prototype
 
-import
-(
+import(
 "fmt"
 "github.com/khurlbut/trader/price_quotes"
 )
@@ -16,13 +15,13 @@ var coinCount = 1.00
 var fiatVal = 0.00
 
 func PricingLoop() string {
-     lastTransctionPrice := price_quotes.CurrentPrice()
+     lastTransctionPrice := price_quotes.currentPrice()
      spotPrice := lastTransctionPrice
      
      fmt.Printf("Initial Wallet Value: %f\n", walletVal(spotPrice))
 
-     for price_quotes.HasNextPrice() {
-          spotPrice = price_quotes.NextPrice()
+     for price_quotes.hasNextPrice() {
+          spotPrice = price_quotes.nextPrice()
           buy := isBuy(spotPrice, lastTransctionPrice)
           sell := isSell(spotPrice, lastTransctionPrice)
           d := delta(spotPrice, lastTransctionPrice)
