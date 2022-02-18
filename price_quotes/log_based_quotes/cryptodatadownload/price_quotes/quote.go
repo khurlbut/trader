@@ -48,7 +48,7 @@ func HasNextPrice() bool {
 }
 
 func NextPrice() float64 {
-     fmt.Println(strings.Split(scanner.Text(), ",")
+     fmt.Println(strings.Split(scanner.Text(), ","))
      checkScanner()
      return 0
 }
