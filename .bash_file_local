@@ -1,0 +1,4 @@
+alias b='./build.sh'
+alias r='make run'
+
+gvm use go1.17
