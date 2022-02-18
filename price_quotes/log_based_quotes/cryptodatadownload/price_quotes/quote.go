@@ -81,6 +81,7 @@ func readLineArray() []string {
 func readLine() string {
      l := scanner.Text()
      checkScanner()
+     fmt.Printf("readLine returning %s\n", l)
      return l
 }
 
