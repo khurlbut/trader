@@ -1,9 +1,15 @@
 package prototype
 
+
+/* 
+     Alternative price sources
+     "github.com/khurlbut/trader/price_quotes/price_quotes"
+     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
+*/
 import
 (
      "fmt"
-     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
+     "github.com/khurlbut/trader/price_quotes/price_quotes"
 )
 
 const BuyTrigger = 0.04
@@ -16,6 +22,9 @@ var coinCount = 1.00
 var fiatVal = 0.00
 
 func PricingLoop() string {
+     price_quotes.Init()
+     defer price_quotes.Close()
+
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      

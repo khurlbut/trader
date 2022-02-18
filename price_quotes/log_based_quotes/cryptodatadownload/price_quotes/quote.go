@@ -1,20 +1,44 @@
 package price_quotes
 
-var spotPriceIndex = 0
+import (
+     "os"
+     "log"
+)
 
-// var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
-var prices = []float64{10.00, 10.200, 10.404, 10.19592, 9.98784, 10.00}
+// var spotPriceIndex = 0
+// var prices = []float64{10.00, 10.200, 10.404, 10.19592, 9.98784, 10.00}
+
+var file File = nil
+
+func Init() {
+     file = openFile()
+}
+
+func Close() {
+     file.Close()
+}
+
+func openFile() File {
+     file, err := os.Open("~/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv")
+     if err != nil {
+          log.Fatal(err)
+     }
+     return file
+}
 
 func HasNextPrice() bool {
-     return spotPriceIndex < len(prices)
+     false
+     // return spotPriceIndex < len(prices)
 }
 
 func NextPrice() float64 {
-     p := prices[spotPriceIndex]
-     spotPriceIndex++
-     return p
+     return nil
+     // p := prices[spotPriceIndex]
+     // spotPriceIndex++
+     // return p
 }
 
 func CurrentPrice() float64 {
-     return prices[spotPriceIndex]
+     return 0.0
+     // return prices[spotPriceIndex]
 }
