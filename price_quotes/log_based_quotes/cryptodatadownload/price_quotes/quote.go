@@ -58,7 +58,8 @@ func NextPrice() float64 {
      if err != nil {
           log.Fatal(err)
      }
-     layout := "2006-01-02T15:04:05.000Z"
+     // layout := "2006-01-02T15:04:05.000Z"
+     layout := "2006-01-02T15:04:05"
      t, err := time.Parse(layout, line_arr[1])
      if err != nil {
           log.Fatal(err)
