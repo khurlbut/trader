@@ -9,7 +9,7 @@ import (
 // var spotPriceIndex = 0
 // var prices = []float64{10.00, 10.200, 10.404, 10.19592, 9.98784, 10.00}
 
-var file File = nil
+var file *os.File = nil
 
 func Init() {
      fmt.Println("cryptodatadownload price_quotes Init()")
