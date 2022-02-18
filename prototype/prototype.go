@@ -36,7 +36,7 @@ func PricingLoop() string {
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
           
-          if isActionable(spot, lastTransctionPrice) {
+          if isActionable(spotPrice, lastTransctionPrice) {
                var action string
 
                fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
