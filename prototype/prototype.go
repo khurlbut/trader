@@ -45,7 +45,7 @@ func PricingLoop() string {
           if isBuy(spotPrice, lastTransctionPrice) {
                // fiatTransactionVal := PurchaseScale * fiatVal
                fiatTransactionVal := targetFiatAmount(purseVal(spotPrice))
-               fmt.Println("\tfiatTranscationVal:" + fiatTransactionVal)
+               fmt.Printf("\tfiatTranscationVal: %f\n", fiatTransactionVal)
 
                // Place buy order for fiatPurchaseAmount worth of crypto
 
