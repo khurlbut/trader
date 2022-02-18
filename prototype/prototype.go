@@ -2,8 +2,8 @@ package prototype
 
 import
 (
-"fmt"
-"github.com/khurlbut/trader/price_quotes"
+     "fmt"
+     "github.com/khurlbut/trader/price_quotes"
 )
 
 const BuyTrigger = 0.04
