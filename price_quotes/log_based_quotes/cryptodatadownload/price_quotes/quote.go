@@ -25,12 +25,12 @@ func Close() {
 }
 
 func HasNextPrice() bool {
-     false
+     return false
      // return spotPriceIndex < len(prices)
 }
 
 func NextPrice() float64 {
-     return nil
+     return 0
      // p := prices[spotPriceIndex]
      // spotPriceIndex++
      // return p
