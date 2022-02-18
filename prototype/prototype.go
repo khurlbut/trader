@@ -3,13 +3,13 @@ package prototype
 
 /* 
      Alternative price sources
-     "github.com/khurlbut/trader/price_quotes/price_quotes"
+     "github.com/khurlbut/trader/price_quotes"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 */
 import
 (
      "fmt"
-     "github.com/khurlbut/trader/price_quotes/price_quotes"
+     "github.com/khurlbut/trader/price_quotes"
 )
 
 const BuyTrigger = 0.04
