@@ -9,6 +9,7 @@ import (
 )
 
 const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
+const open_index = 3
 
 var file *os.File = nil
 var scanner *bufio.Scanner = nil
@@ -48,7 +49,7 @@ func HasNextPrice() bool {
 }
 
 func NextPrice() float64 {
-     fmt.Println(strings.Split(scanner.Text(), ","))
+     fmt.Println(strings.Split(scanner.Text(), ",")[open_index])
      checkScanner()
      return 0
 }
