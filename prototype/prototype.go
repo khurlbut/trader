@@ -97,7 +97,7 @@ func coinVal(fiatPrice float64) float64 {
      // return fiatPrice * coinCount
 }
 
-func coinValInFiat(fiatPrice float64, coinAmount float64) {
+func coinValInFiat(fiatPrice float64, coinAmount float64) float64 {
      return fiatPrice * coinAmount
 }
 
