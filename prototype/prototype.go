@@ -41,7 +41,8 @@ func PricingLoop() string {
           } else if isSell(spotPrice, lastTransctionPrice){
                cryptoSellAmount := SellScale * coinCount
                // Place sell order for cryptoSellAmount of crypto
-               fiatVal += (cryptoSellAmount * spotPrice)
+               // fiatVal += (cryptoSellAmount * spotPrice)
+               fiatVal += coinValInFiat(spotPrice, cryptoSellAmount)
                coinCount -= cryptoSellAmount
                lastTransctionPrice = spotPrice
                fmt.Printf("\tSELL Executed: fiatVal: %f coinCount: %f\n", fiatVal, coinCount)
@@ -94,7 +95,6 @@ func walletVal(spot float64) float64 {
 
 func coinVal(fiatPrice float64) float64 {
      return coinValInFiat(fiatPrice, coinCount)
-     // return fiatPrice * coinCount
 }
 
 func coinValInFiat(fiatPrice float64, coinAmount float64) float64 {
