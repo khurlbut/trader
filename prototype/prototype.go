@@ -36,7 +36,7 @@ func PricingLoop() string {
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
           
-          if isActionable(spot) {
+          if isActionable(spot, lastTransctionPrice) {
                var action string
 
                fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
@@ -46,19 +46,15 @@ func PricingLoop() string {
                     fmt.Printf("\tfiatPurseTarget (buy): %f\n", fiatPurseTarget)
 
                     // Place buy order for fiatPurchaseAmount worth of crypto
-
                     fiatVal -= (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
                     coinCount += (fiatTransactionAmount / spotPrice)
-
                } else if isSell(spotPrice, lastTransctionPrice){
                     action = "SELL"
                     fmt.Printf("\tfiatPurseTarget (sell): %f\n", fiatPurseTarget)
                
                     // Place sell order for cryptoSellAmount of crypto
-
                     fiatVal +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
                     coinCount -= (fiatTransactionAmount / spotPrice)
-
                }
                lastTransctionPrice = spotPrice
                fmt.Printf("\t" + transactionReport(action, spotPrice))
@@ -75,8 +71,8 @@ func targetFiatAmount(purse float64) float64 {
      return purse * fiatPercentageTarget
 }
 
-func isActionable(spot float64) bool {
-     return isBuy(spot) || isSell(spot)
+func isActionable(spot float64, lastTransctionPrice) bool {
+     return isBuy(spot, lastTransctionPrice) || isSell(spot, lastTransctionPrice)
 }
 
 func isBuy(spot float64, last float64) bool {
