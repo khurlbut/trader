@@ -42,6 +42,8 @@ func Init() {
      
      scanner = bufio.NewScanner(file)
      checkScanner()
+
+     scanToStartDate()
 }
 
 func scanToStartDate() {
@@ -51,6 +53,9 @@ func scanToStartDate() {
      // if err != nil {
      //      log.Fatal(err)
      // }
+
+     scanner.Scan()
+     checkScanner()
 
      for readDate().Before(start_time) {
          scanner.Scan() 
@@ -81,7 +86,6 @@ func readLineArray() []string {
 func readLine() string {
      l := scanner.Text()
      checkScanner()
-     fmt.Printf("readLine returning %s\n", l)
      return l
 }
 
@@ -98,7 +102,6 @@ func Close() {
 
 // var i = 0
 func HasNextPrice() bool {
-     // fmt.Println("HasNextPrice")
      scanner.Scan()
      checkScanner()
      return readDate().Before(end_time)
