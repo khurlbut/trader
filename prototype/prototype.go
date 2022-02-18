@@ -64,7 +64,7 @@ func PricingLoop() string {
           
                // Place sell order for cryptoSellAmount of crypto
 
-               fiatVal +=  (fiatTransactionAmount - tradingFee(fiatTranscationAmount))
+               fiatVal +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
                // coinCount -= cryptoSellAmount
                coinCount -= (fiatTransactionAmount / spotPrice)
                lastTransctionPrice = spotPrice
