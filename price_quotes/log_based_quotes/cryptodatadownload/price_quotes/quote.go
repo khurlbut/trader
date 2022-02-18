@@ -1,6 +1,7 @@
 package price_quotes
 
 import (
+     "fmt"
      "os"
      "log"
 )
@@ -11,19 +12,16 @@ import (
 var file File = nil
 
 func Init() {
-     file = openFile()
-}
-
-func Close() {
-     file.Close()
-}
-
-func openFile() File {
+     fmt.Println("cryptodatadownload price_quotes Init()")
      file, err := os.Open("~/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv")
      if err != nil {
           log.Fatal(err)
      }
-     return file
+}
+
+func Close() {
+     fmt.Println("cryptodatadownload price_quotes Close()")
+     file.Close()
 }
 
 func HasNextPrice() bool {
