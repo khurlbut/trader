@@ -9,14 +9,13 @@ package prototype
 import
 (
      "fmt"
+     "math"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
 const fiatPercentageTarget = 0.80
-// const PurchaseScale = 0.250
-// const SellScale = 0.40
 const tradingFeePercentage = 0.006
 
 var coinCount = 1.00
@@ -37,42 +36,33 @@ func PricingLoop() string {
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
           
-          // buy := isBuy(spotPrice, lastTransctionPrice)
-          // sell := isSell(spotPrice, lastTransctionPrice)
-          // d := delta(spotPrice, lastTransctionPrice)
-          // fmt.Printf("spot: %f last: %f isBuy: %t isSell: %t delta: %f\n", spotPrice, lastTransctionPrice, buy, sell, d)
+          if isActionable(spot) {
+               var action string
 
-          if isBuy(spotPrice, lastTransctionPrice) {
-               // fiatPurseTarget := PurchaseScale * fiatVal
                fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
-               fiatTransactionAmount := fiatVal - fiatPurseTarget 
-               fmt.Printf("\tfiatPurseTarget (buy): %f\n", fiatPurseTarget)
+               fiatTransactionAmount := math.Abs(fiatVal - fiatPurseTarget)
+               if isBuy(spotPrice, lastTransctionPrice) {
+                    action = "BUY"
+                    fmt.Printf("\tfiatPurseTarget (buy): %f\n", fiatPurseTarget)
 
-               // Place buy order for fiatPurchaseAmount worth of crypto
+                    // Place buy order for fiatPurchaseAmount worth of crypto
 
-               fiatVal -= (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
-               coinCount += (fiatTransactionAmount / spotPrice)
-               lastTransctionPrice  = spotPrice
+                    fiatVal -= (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
+                    coinCount += (fiatTransactionAmount / spotPrice)
 
-               fmt.Printf("\t" + transactionReport("BUY", spotPrice))
-          } else if isSell(spotPrice, lastTransctionPrice){
-               // cryptoSellAmount := SellScale * coinCount
-               // fiatPurseTarget := coinValInFiat(spotPrice, cryptoSellAmount)  
-               fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
-               fiatTransactionAmount := fiatPurseTarget - fiatVal
-               fmt.Printf("\tfiatPurseTarget (sell): %f\n", fiatPurseTarget)
-          
-               // Place sell order for cryptoSellAmount of crypto
+               } else if isSell(spotPrice, lastTransctionPrice){
+                    action = "SELL"
+                    fmt.Printf("\tfiatPurseTarget (sell): %f\n", fiatPurseTarget)
+               
+                    // Place sell order for cryptoSellAmount of crypto
 
-               fiatVal +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
-               // coinCount -= cryptoSellAmount
-               coinCount -= (fiatTransactionAmount / spotPrice)
+                    fiatVal +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
+                    coinCount -= (fiatTransactionAmount / spotPrice)
+
+               }
                lastTransctionPrice = spotPrice
-
-               fmt.Printf("\t" + transactionReport("SELL", spotPrice))
+               fmt.Printf("\t" + transactionReport(action, spotPrice))
           }
-          // fmt.Printf("New purse Value: %f\n", purseVal(spotPrice))
-
      }
      return fmt.Sprintf("Final: %s\n", purseValReport(spotPrice))
 }
@@ -83,6 +73,10 @@ func transactionReport(action string, spot float64) string {
 
 func targetFiatAmount(purse float64) float64 {
      return purse * fiatPercentageTarget
+}
+
+func isActionable(spot float64) bool {
+     return isBuy(spot) || isSell(spot)
 }
 
 func isBuy(spot float64, last float64) bool {
