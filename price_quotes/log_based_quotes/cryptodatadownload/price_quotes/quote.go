@@ -47,20 +47,12 @@ func Init() {
 }
 
 func scanToStartDate() {
-     // line := readLine()
-     
-     // t, err := time.Parse(layout, line_arr[date_time_index])
-     // if err != nil {
-     //      log.Fatal(err)
-     // }
-
-     scanner.Scan()
-     checkScanner()
+     scan()
 
      for readDate().Before(start_time) {
-         scanner.Scan() 
-         checkScanner()
+          scan()
      }
+
 }
 
 func readPrice() float64 {
@@ -89,6 +81,11 @@ func readLine() string {
      return l
 }
 
+func scan() {
+     scanner.Scan()
+     checkScanner()
+}
+
 func checkScanner() {
      if err := scanner.Err(); err != nil {
           log.Fatal(err)
@@ -100,41 +97,17 @@ func Close() {
      file.Close()
 }
 
-// var i = 0
 func HasNextPrice() bool {
-     scanner.Scan()
-     checkScanner()
+     scan()
      return readDate().Before(end_time)
-     // if i < 100 {
-     //      i++
-     //      scanner.Scan()
-     //      checkScanner()
-     //      return true
-     // }
-     // return false
 }
 
 func NextPrice() float64 {
      p := readPrice()
-     scanner.Scan()
+     scan()
      return p
-     // line := scanner.Text()
-     // checkScanner()
-     // line_arr := strings.Split(line, ",")
-     // p, err := strconv.ParseFloat(line_arr[open_index], 64) 
-     // if err != nil {
-     //      log.Fatal(err)
-     // }
-     // // layout := "2006-01-02T15:04:05.000Z"
-     // layout := "2006-01-02 15:04:05"
-     // t, err := time.Parse(layout, line_arr[date_time_index])
-     // if err != nil {
-     //      log.Fatal(err)
-     // }
-     // fmt.Println(t)
-     // return p
 }
 
 func CurrentPrice() float64 {
-     return 0.0
+     return readPrice()
 }
