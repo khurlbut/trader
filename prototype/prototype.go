@@ -52,7 +52,7 @@ func PricingLoop() string {
                coinCount += (fiatTransactionVal / spotPrice)
                lastTransctionPrice  = spotPrice
 
-               fmt.Printf("\t" + transactionReport("BUY", spotPrice, fiatVal, coinCount))
+               fmt.Printf("\t" + transactionReport("BUY", spotPrice))
           } else if isSell(spotPrice, lastTransctionPrice){
                // cryptoSellAmount := SellScale * coinCount
                // fiatTransactionVal := coinValInFiat(spotPrice, cryptoSellAmount)  
@@ -65,7 +65,7 @@ func PricingLoop() string {
                coinCount -= (fiatTransactionVal / spotPrice)
                lastTransctionPrice = spotPrice
 
-               fmt.Printf("\t" + transactionReport("SELL", spotPrice, fiatVal, coinCount))
+               fmt.Printf("\t" + transactionReport("SELL", spotPrice))
           }
           // fmt.Printf("New purse Value: %f\n", purseVal(spotPrice))
 
@@ -73,8 +73,8 @@ func PricingLoop() string {
      return fmt.Sprintf("Final: %s\n", purseValReport(spotPrice))
 }
 
-func transactionReport(action string, s float64, f float64, c float64) string {
-     return fmt.Sprintf("%s Executed: spot: %f fiat: %f coinCount: %f\n", action, s, f, c)
+func transactionReport(action string, spot float64) string {
+     return fmt.Sprintf("%sExecuted: Purse: %f\n", action, purseValReport(spot))
 }
 
 func targetFiatAmount(purse float64) float64 {
@@ -108,7 +108,7 @@ func purseVal(spot float64) float64 {
 }
 
 func purseValReport(spot float64) string {
-     return fmt.Sprintf("Spot: %f Fiat %f Total in purse: %f", spot, fiatVal, coinVal(spot) + fiatVal)
+     return fmt.Sprintf("Spot: %f\tFiat %f\tCoin: %f\tTotal: %f", spot, fiatVal, coinCount, coinVal(spot) + fiatVal)
 }
 
 func coinVal(fiatPrice float64) float64 {
