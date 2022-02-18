@@ -50,11 +50,13 @@ func HasNextPrice() bool {
 }
 
 func NextPrice() float64 {
-     line := scanner.Text()
+     l := scanner.Text()
      checkScanner()
-     return strconv.ParseFloat(strings.Split(line, ",")[open_index], 64)
-     // fmt.Println(strings.Split(scanner.Text(), ",")[open_index])
-     // return 0
+     p, err := strconv.ParseFloat(strings.Split(l, ",")[open_index], 64) 
+     if err {
+          log.Fatal(err)
+     }
+     return p
 }
 
 func CurrentPrice() float64 {
