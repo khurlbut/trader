@@ -39,7 +39,7 @@ func Close() {
 
 var i = 0
 func HasNextPrice() bool {
-     if i < 10 {
+     if i < 100 {
           i++
           scanner.Scan()
           checkScanner()
@@ -49,9 +49,11 @@ func HasNextPrice() bool {
 }
 
 func NextPrice() float64 {
-     fmt.Println(strings.Split(scanner.Text(), ",")[open_index])
+     line := scanner.Text()
      checkScanner()
-     return 0
+     return strings.Split(line, ",")[open_index]
+     // fmt.Println(strings.Split(scanner.Text(), ",")[open_index])
+     // return 0
 }
 
 func CurrentPrice() float64 {
