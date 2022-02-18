@@ -19,7 +19,7 @@ const SellScale = 0.40
 const tradingFeePercentage = 0.006
 
 var coinCount = 1.00
-var fiatVal = 0.00
+var fiatVal = 10000.00
 
 func PricingLoop() string {
      price_quotes.Init()
@@ -28,6 +28,9 @@ func PricingLoop() string {
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
+     coinCount = (0.5*fiatVal)/spotPrice
+     fiatVal = 0.5*fiatVal
+
      fmt.Printf("Initial: %s\n", walletVal(spotPrice))
 
      for price_quotes.HasNextPrice() {
