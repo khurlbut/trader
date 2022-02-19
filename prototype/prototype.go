@@ -58,8 +58,11 @@ func PricingLoop() string {
                     purse.AddFiat(tradingFee(fiatTransactionAmount))
                     purse.AddCoins(fiatTransactionAmount / spotPrice)
                }
-               lastTransctionPrice = spotPrice
-               fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
+
+               if action != nil {
+                    lastTransctionPrice = spotPrice
+                    fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
+               }
           }
      }
      return fmt.Sprintf("Final: %s\n", purse.String(spotPrice))
