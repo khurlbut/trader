@@ -48,7 +48,7 @@ func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) boo
      // fmt.Printf("fee: %f, target: %f, holdings: %f\n", fee, target, holdings)
      // os.Exit(0)
      
-     return (fee + math.Abs(adjustment) > holdings 
+     return (fee + math.Abs(adjustment)) > holdings 
 }
 
 func AddCash(cash float64) float64 {
