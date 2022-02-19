@@ -70,7 +70,7 @@ func tradingFee(amt float64) float64 {
 }
 
 func ReflectFilledBuyOrder(amount float64, spot float64) {
-     AddCash(cashAdjustmentRequired)
-     AddCash((tradingFee(cashAdjustmentRequired)))
-     AddCoins(cashAdjustmentRequired * -1 / spotPrice)     
+     AddCash(amount)
+     AddCash((tradingFee(amount)))
+     AddCoins(amount * -1 / spot)     
 }
