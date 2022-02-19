@@ -45,7 +45,7 @@ func PricingLoop() string {
                fiatTransactionAmount := math.Abs(purseFiatAmount - fiatPurseTarget)
 
                if isBuy(spotPrice, lastTransctionPrice) {
-                    if fiatPurseTarget >= purseFiatAmount {continue}
+                    if fiatPurseTarget > purseFiatAmount {continue}
 
                     action = "BUY"
 
@@ -53,7 +53,7 @@ func PricingLoop() string {
                     purseFiatAmount -= (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
                     purseCoins += (fiatTransactionAmount / spotPrice)
                } else if isSell(spotPrice, lastTransctionPrice){
-                    if fiatPurseTarget <= purseFiatAmount {continue}
+                    if fiatPurseTarget < purseFiatAmount {continue}
 
                     action = "SELL"
                
