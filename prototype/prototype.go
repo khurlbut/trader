@@ -8,6 +8,7 @@ package prototype
 */
 import
 (
+     "os"
      "fmt"
      "math"
      "github.com/khurlbut/trader/purse"
@@ -54,6 +55,7 @@ func PricingLoop() string {
                     purse.AddCash(cashAdjustmentRequired)
                     purse.AddCash(tradingFee(cashAdjustmentRequired))
                     purse.AddCoins(cashAdjustmentRequired * -1 / spotPrice)
+                    os.Exit(0)
                }
 
                if action != "" {
