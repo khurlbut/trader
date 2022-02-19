@@ -31,7 +31,7 @@ func Value(spot float64) float64 {
 
 func FiatRequiredToAlignWithTarget(spot float64) {
      target := Value(spot) * fiatTargetPercentage
-     return target - Fiat()
+     return (target - Fiat())
 }
 
 func AddFiat(f float64) float64 {
