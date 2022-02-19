@@ -2,6 +2,7 @@ package purse
 
 import (
      "fmt"
+     "os"
      "math"
 )
 
