@@ -16,7 +16,7 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const targetCashPercentage = 0.0
+const targetCashPercentage = 0.5
 
 const tradingFeePercentage = 0.006
 
@@ -41,7 +41,6 @@ func PricingLoop() string {
                var action string
 
                cashAdjustmentRequired := purse.CashRequiredToAlignWithTarget(spotPrice)
-               // if cashAdjustmentRequired == 0 {continue}
 
                if isBuy(spotPrice, lastTransctionPrice, cashAdjustmentRequired) {
                     action = "BUY"
