@@ -6,10 +6,10 @@ var coins float64
 var cash float64
 var targetCashPercentage float64
 
-func Init(c float64, d float64, tcp float64) {
-     coins = c
-     cash = d
-     targetCashPercentage = tcp
+func Init(coin float64, cash float64, target float64) {
+     coins = coin
+     cash = cash
+     targetCashPercentage = target
 }
 
 func Coins() float64 {
