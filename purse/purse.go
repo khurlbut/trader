@@ -2,7 +2,6 @@ package purse
 
 import (
      "fmt"
-     "os"
      "math"
 )
 
@@ -35,8 +34,8 @@ func ValueAt(spot float64) float64 {
 }
 
 func CashRequiredToAlignWithTarget(spot float64) float64 {
-     // target := ValueAt(spot) * targetCashPercentage
-     fmt.Printf("CashRequiredToAlignWithTarget: %f\n", target)
+     target := ValueAt(spot) * targetCashPercentage
+     // fmt.Printf("CashRequiredToAlignWithTarget: %f\n", target)
      holdings := CashHoldings() 
      adjustment := target - holdings
      fee := tradingFee(adjustment)
