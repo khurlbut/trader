@@ -18,7 +18,7 @@ const SellTrigger = 0.05
 
 var purseCoins = 1.00
 var purseFiatAmount = 10000.00
-const purseFiatTargetPercent = 0.5
+const purseFiatTargetPercent = 0.2
 
 const tradingFeePercentage = 0.006
 
