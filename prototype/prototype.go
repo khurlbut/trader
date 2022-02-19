@@ -15,7 +15,7 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const fiatPercentageTarget = 0.95
+const fiatPercentageTarget = 0.05
 const tradingFeePercentage = 0.006
 
 var coinCount = 1.00
