@@ -4,7 +4,6 @@ package prototype
 /* 
      Alternative price sources
      "github.com/khurlbut/trader/price_quotes"
-     "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 */
 import
@@ -17,22 +16,21 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const purseFiatTargetPercent = 0.0
+const targetCashPercentage = 0.0
 
 const tradingFeePercentage = 0.006
 
 // Initial State
-var initalFiatAmount = 10000.00
+var initalCashAmount = 10000.00
 
 func PricingLoop() string {
      price_quotes.Init()
      defer price_quotes.Close()
 
-
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     purse.Init((0.5*initalFiatAmount)/spotPrice, 0.5*initalFiatAmount, purseFiatTargetPercent)
+     purse.Init((0.5*initalCashAmount)/spotPrice, 0.5*initalCashAmount, targetCashPercentage)
 
      fmt.Printf("%s\n", purse.String(spotPrice))
 
@@ -42,21 +40,21 @@ func PricingLoop() string {
           if isActionSignaled(spotPrice, lastTransctionPrice) {
                var action string
 
-               fiatTransactionAmount := purse.CashRequiredToAlignWithTarget(spotPrice)
-               // if fiatTransactionAmount == 0 {continue}
+               cashAdjustmentRequired := purse.CashRequiredToAlignWithTarget(spotPrice)
+               // if cashAdjustmentRequired == 0 {continue}
 
-               if isBuy(spotPrice, lastTransctionPrice, fiatTransactionAmount) {
+               if isBuy(spotPrice, lastTransctionPrice, cashAdjustmentRequired) {
                     action = "BUY"
                     // Place buy order for fiatPurchaseAmount worth of crypto
-                    purse.AddCash(fiatTransactionAmount)
-                    purse.AddCash((tradingFee(fiatTransactionAmount)))
-                    purse.AddCoins(fiatTransactionAmount * -1 / spotPrice)
-               } else if isSell(spotPrice, lastTransctionPrice, fiatTransactionAmount) {
+                    purse.AddCash(cashAdjustmentRequired)
+                    purse.AddCash((tradingFee(cashAdjustmentRequired)))
+                    purse.AddCoins(cashAdjustmentRequired * -1 / spotPrice)
+               } else if isSell(spotPrice, lastTransctionPrice, cashAdjustmentRequired) {
                     action = "SELL"
                     // Place sell order for cryptoSellAmount of crypto
-                    purse.AddCash(fiatTransactionAmount)
-                    purse.AddCash(tradingFee(fiatTransactionAmount))
-                    purse.AddCoins(fiatTransactionAmount / spotPrice)
+                    purse.AddCash(cashAdjustmentRequired)
+                    purse.AddCash(tradingFee(cashAdjustmentRequired))
+                    purse.AddCoins(cashAdjustmentRequired / spotPrice)
                }
 
                if action != "" {
@@ -72,8 +70,8 @@ func transactionReport(action string, report string) string {
      return fmt.Sprintf("%s\t%s\n", action, report)
 }
 
-func isActionSignaled(spot float64, ltp float64) bool {
-     return isBuySignaled(spot, ltp) || isSellSignaled(spot, ltp)
+func isActionSignaled(spot float64, last float64) bool {
+     return isBuySignaled(spot, last) || isSellSignaled(spot, last)
 }
 
 func isBuy(spot float64, last float64, buyAmount float64) bool {

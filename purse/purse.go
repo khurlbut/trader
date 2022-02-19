@@ -44,5 +44,5 @@ func AddCoins(c float64) float64 {
 }
 
 func String(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tcash %f\tCoins: %f\t\tTotal Purse: %f", spot, Cash(), Coins(), Value(spot))
+     return fmt.Sprintf("Spot: %f\tCash %f\tCoins: %f\t\tTotal Purse: %f", spot, Cash(), Coins(), Value(spot))
 }
