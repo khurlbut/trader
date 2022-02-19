@@ -34,14 +34,14 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := Value(spot) * targetCashPercentage
      fee := tradingFee(target)
      holdings := CashHoldings 
-     if totalTransactionCost(fee, target, holdings) < 0 {
+     if feeCausesCostOverrun(fee, target, holdings) {
           return target - holdings + fee
      }
      return target - holdings
 }
 
 func totalTransactionCost(fee float64, target float64, holdings float64) float64 {
-     return fee + target + holdings 
+     return (fee + target + holdings) < 0 
 }
 
 func AddCash(cash float64) float64 {
