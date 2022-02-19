@@ -1,4 +1,4 @@
-package price_quotes
+package purse
 
 import "fmt"
 
