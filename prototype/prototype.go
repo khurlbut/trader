@@ -34,7 +34,7 @@ func PricingLoop() string {
      
      purse.Init((0.5*initalFiatAmount)/spotPrice, 0.5*initalFiatAmount, purseFiatTargetPercent)
 
-     fmt.Printf("Start: %s\n", purse.String(spotPrice))
+     fmt.Printf("\n%s\n", purse.String(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -65,7 +65,7 @@ func PricingLoop() string {
                }
           }
      }
-     return fmt.Sprintf("Final: %s\n", purse.String(spotPrice))
+     return fmt.Sprintf("%s\n", purse.String(spotPrice))
 }
 
 func transactionReport(action string, report string) string {
