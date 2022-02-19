@@ -35,6 +35,7 @@ func Value(spot float64) float64 {
 }
 
 func CashRequiredToAlignWithTarget(spot float64) float64 {
+     fmt.Println("CashRequiredToAlignWithTarget")
      target := Value(spot) * targetCashPercentage
      holdings := CashHoldings() 
      adjustment := target - holdings
