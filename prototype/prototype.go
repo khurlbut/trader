@@ -18,7 +18,7 @@ const SellTrigger = 0.05
 
 var purseCoins = 1.00
 var purseFiatAmount = 10000.00
-const purseFiatTargetPercent = 0.05
+const purseFiatTargetPercent = 0.5
 
 const tradingFeePercentage = 0.006
 
@@ -47,17 +47,14 @@ func PricingLoop() string {
                     if fiatPurseTarget >= purseFiatAmount {continue}
 
                     action = "BUY"
-                    fmt.Printf("\tfiatPurseTarget (buy): %f\n", fiatPurseTarget)
-                    fmt.Printf("\tfiatTransactionAmount (buy): %f\n", fiatTransactionAmount)
 
                     // Place buy order for fiatPurchaseAmount worth of crypto
                     purseFiatAmount -= (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
                     purseCoins += (fiatTransactionAmount / spotPrice)
                } else if isSell(spotPrice, lastTransctionPrice){
-                    if fiatPurseTarget <= purseFiatAmount {continue;}
+                    if fiatPurseTarget <= purseFiatAmount {continue}
 
                     action = "SELL"
-                    fmt.Printf("\tfiatPurseTarget (sell): %f\n", fiatPurseTarget)
                
                     // Place sell order for cryptoSellAmount of crypto
                     purseFiatAmount +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
