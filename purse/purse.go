@@ -3,7 +3,6 @@ package purse
 import (
      "fmt"
      "math"
-     "os"
 )
 
 var coins float64
