@@ -10,6 +10,7 @@ func Init(coin float64, cash float64, target float64, fee float64) {
      coins = coin
      cashHoldings = cash
      targetCashPercentage = target
+     tradingFee = fee
 }
 
 func Coins() float64 {
@@ -30,7 +31,12 @@ func Value(spot float64) float64 {
 
 func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := Value(spot) * targetCashPercentage
-     return target - CashHoldings()
+     fee := tradingFee(target)
+     holdings := CashHoldings 
+     if (fee + target + holdings) < 0 {
+          return target - holdings + fee
+     }
+     return target - holdings
 }
 
 func AddCash(cash float64) float64 {
@@ -45,4 +51,8 @@ func AddCoins(c float64) float64 {
 
 func String(spot float64) string {
      return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), Value(spot))
+}
+
+func tradingFee(amt float64) float64 {
+     return math.Abs(amt) * tradingFeePercentage * -1
 }
