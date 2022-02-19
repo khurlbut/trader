@@ -35,32 +35,21 @@ func ValueAt(spot float64) float64 {
 
 func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := ValueAt(spot) * targetCashPercentage
-     // fmt.Printf("CashRequiredToAlignWithTarget: %f\n", target)
      holdings := CashHoldings() 
      adjustment := target - holdings
      fee := tradingFee(adjustment)
      if feeCausesCostOverrun(fee, adjustment, holdings) {
-          // fmt.Printf("returning adjustment + fee: %f\n", adjustment + fee)
           return adjustment + fee
      }
-     // if feeCausesCoinOverrun(fee, adjustment, spot) {
-     //      fmt.Printf("returning adjustment - fee: %f\n", adjustment - fee)
-     //      return adjustment - fee
-     // }
      return adjustment
 }
 
 func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
-     // fmt.Printf("fee: %f, adjustment: %f, holdings: %f\n", fee, adjustment, holdings)
      if adjustment >= holdings {
           return false
      }
      return (fee + math.Abs(adjustment)) > holdings 
 }
-
-// func feeCausesCoinOverrun(fee float64, adjustment float64, spot float64) bool {
-//      return (fee + math.Abs(adjustment)) > CoinValue(spot)
-// }
 
 func AddCash(cash float64) float64 {
      cashHoldings = cashHoldings + cash
@@ -68,7 +57,6 @@ func AddCash(cash float64) float64 {
 }
 
 func AddCoins(c float64) float64 {
-     // fmt.Printf("AddCoins coins: %f c: %f\n", coins, c)
      coins = coins + c
      return coins
 }
@@ -79,4 +67,10 @@ func String(spot float64) string {
 
 func tradingFee(amt float64) float64 {
      return math.Abs(amt) * tradingFeePercentage
+}
+
+func ReflectFilledBuyOrder(amount float64, spot float64) {
+     AddCash(cashAdjustmentRequired)
+     AddCash((tradingFee(cashAdjustmentRequired)))
+     AddCoins(cashAdjustmentRequired * -1 / spotPrice)     
 }
