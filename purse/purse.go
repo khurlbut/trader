@@ -43,3 +43,7 @@ func AddCoins(c float64) float64 {
      coins = coins + c
      return coins
 }
+
+func String(spot float64) string (
+     return CoinValue(spot) + Fiat()
+)

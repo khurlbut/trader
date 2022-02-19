@@ -22,22 +22,20 @@ const purseFiatTargetPercent = 0.0
 const tradingFeePercentage = 0.006
 
 // Initial State
-var purseCoins = 1.00
 var purseFiatAmount = 10000.00
 
 func PricingLoop() string {
      price_quotes.Init()
      defer price_quotes.Close()
 
-     purse.Init(purseCoins, purseFiatAmount, purseFiatTargetPercent)
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     purseCoins = (0.5*purseFiatAmount)/spotPrice
      purseFiatAmount = 0.5*purseFiatAmount
+     purse.Init((0.5*purseFiatAmount)/spotPrice, 0.5*purseFiatAmount, purseFiatTargetPercent)
 
-     fmt.Printf("Initial: %s\n", purseValReport(spotPrice))
+     fmt.Printf("Initial: %s\n", purse.String(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -45,54 +43,61 @@ func PricingLoop() string {
           if isActionable(spotPrice, lastTransctionPrice) {
                var action string
 
-               fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
-               fiatTransactionAmount := math.Abs(purseFiatAmount - fiatPurseTarget)
+               // fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
+               // fiatTransactionAmount := math.Abs(purseFiatAmount - fiatPurseTarget)
+               fiatTransactionAmount := purse.FiatRequiredToAlignWithTarget(spotPrice)
 
                if isBuy(spotPrice, lastTransctionPrice) {
-                    if fiatPurseTarget > purseFiatAmount {continue}
+                    if fiatTransactionAmount >= 0 {continue}
 
                     action = "BUY"
 
                     // Place buy order for fiatPurchaseAmount worth of crypto
-                    purseFiatAmount -= (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
-                    purseCoins += (fiatTransactionAmount / spotPrice)
+                    purse.AddFiat(fiatTransactionAmount)
+                    purse.AddFiat((tradingFee(fiatTransactionAmount)))
+                    purse.AddCoins(fiatTransactionAmount * -1 / spotPrice)
+                    // purseFiatAmount += (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
+                    // purseCoins += (fiatTransactionAmount / spotPrice)
                } else if isSell(spotPrice, lastTransctionPrice){
-                    if fiatPurseTarget < purseFiatAmount {continue}
+                    if fiatPurseTarget <= 0 {continue}
 
                     action = "SELL"
                
                     // Place sell order for cryptoSellAmount of crypto
-                    purseFiatAmount +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
-                    purseCoins -= (fiatTransactionAmount / spotPrice)
+                    purse.AddFiat(fiatTransactionAmount)
+                    purse.AddFiat(tradingFee(fiatTransactionAmount))
+                    puser.AddCoins(fiatTransactionAmount / spotPrice)
+                    // purseFiatAmount +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
+                    // purseCoins -= (fiatTransactionAmount / spotPrice)
                }
                lastTransctionPrice = spotPrice
                fmt.Printf("\t" + transactionReport(action, spotPrice))
           }
      }
-     return fmt.Sprintf("Final: %s\n", purseValReport(spotPrice))
+     return fmt.Sprintf("Final: %s\n", purse.String(spotPrice))
 }
 
-func transactionReport(action string, spot float64) string {
-     return fmt.Sprintf("%s\tExecuted: %s\n", action, purseValReport(spot))
-}
+// func transactionReport(action string, spot float64) string {
+//      return fmt.Sprintf("%s\tExecuted: %s\n", action, purseValReport(spot))
+// }
 
-func targetFiatAmount(purse float64) float64 {
-     return purse * purseFiatTargetPercent
-}
+// func targetFiatAmount(purse float64) float64 {
+//      return purse * purseFiatTargetPercent
+// }
 
 func isActionable(spot float64, ltp float64) bool {
      return isBuy(spot, ltp) || isSell(spot, ltp)
 }
 
 func isBuy(spot float64, last float64) bool {
-     if purseFiatAmount > 0 && spot < last {
+     if spot < last {
           return delta(spot, last) >= BuyTrigger
      }
      return false
 }
 
 func isSell(spot float64, last float64) bool {
-     if purseCoins > 0 && spot > last {
+     if spot > last {
           return delta(spot, last) >= SellTrigger
      }
      return false
@@ -106,22 +111,22 @@ func delta(spot float64, last float64) float64 {
      return d / last
 }
 
-func purseVal(spot float64) float64 {
-     return coinVal(spot) + purseFiatAmount
-}
+// func purseVal(spot float64) float64 {
+//      return coinVal(spot) + purseFiatAmount
+// }
 
-func purseValReport(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tFiat %f\tCoin: %f\tTotal: %f", spot, purseFiatAmount, purseCoins, coinVal(spot) + purseFiatAmount)
-}
+// func purseValReport(spot float64) string {
+//      return fmt.Sprintf("Spot: %f\tFiat %f\tCoin: %f\tTotal: %f", spot, purseFiatAmount, purseCoins, coinVal(spot) + purseFiatAmount)
+// }
 
-func coinVal(fiatPrice float64) float64 {
-     return coinValInFiat(fiatPrice, purseCoins)
-}
+// func coinVal(fiatPrice float64) float64 {
+//      return coinValInFiat(fiatPrice, purseCoins)
+// }
 
-func coinValInFiat(fiatPrice float64, coinAmount float64) float64 {
-     return fiatPrice * coinAmount
-}
+// func coinValInFiat(fiatPrice float64, coinAmount float64) float64 {
+//      return fiatPrice * coinAmount
+// }
 
 func tradingFee(fiat float64) float64 {
-     return fiat * tradingFeePercentage
+     return fiat * math.Abs(tradingFeePercentage) * -1
 }
