@@ -15,12 +15,13 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-
-var purseCoins = 1.00
-var purseFiatAmount = 10000.00
-const purseFiatTargetPercent = 0.2
+const purseFiatTargetPercent = 1.0
 
 const tradingFeePercentage = 0.006
+
+// Initial State
+var purseCoins = 1.00
+var purseFiatAmount = 10000.00
 
 func PricingLoop() string {
      price_quotes.Init()
