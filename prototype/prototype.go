@@ -46,7 +46,7 @@ func PricingLoop() string {
                if fiatTransactionAmount == 0 {continue}
 
                // if isBuy(spotPrice, lastTransctionPrice) {
-               if fiatTransactionAmount < 0 {}
+               if fiatTransactionAmount < 0 {
                     action = "BUY"
                     // Place buy order for fiatPurchaseAmount worth of crypto
                     purse.AddFiat(fiatTransactionAmount)
@@ -63,7 +63,7 @@ func PricingLoop() string {
                fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
           }
      }
-     // return fmt.Sprintf("Final: %s\n", purse.String(spotPrice))
+     return fmt.Sprintf("Final: %s\n", purse.String(spotPrice))
 }
 
 func transactionReport(action string, report string) string {
