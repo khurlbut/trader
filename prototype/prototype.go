@@ -34,7 +34,7 @@ func PricingLoop() string {
      
      purse.Init((0.5*initalFiatAmount)/spotPrice, 0.5*initalFiatAmount, purseFiatTargetPercent)
 
-     fmt.Printf("Initial: %s\n", purse.String(spotPrice))
+     fmt.Printf("Start: %s\n", purse.String(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
