@@ -6,9 +6,9 @@ var coins float64
 var cash float64
 var targetCashPercentage float64
 
-func Init(coin float64, cash float64, target float64) {
+func Init(coin float64, csh float64, target float64) {
      coins = coin
-     cash = cash
+     cash = csh
      targetCashPercentage = target
 }
 
