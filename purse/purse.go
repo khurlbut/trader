@@ -45,6 +45,9 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      os.Exit(0)
           return adjustment + fee
      }
+     if feeCausesCoinOverrun(fee, adjustment, spot) {
+          return adjustment - fee
+     }
      os.Exit(0)
      return adjustment
 }
@@ -52,6 +55,10 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
 func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
      fmt.Printf("fee: %f, adjustment: %f, holdings: %f\n", fee, adjustment, holdings)
      return (fee + math.Abs(adjustment)) > holdings 
+}
+
+func feeCausesCoinOverrun(fee float64, adjustment float64, spot float64) {
+     return (fee + math.Abs(adjustment)) > CoinValue(spot)
 }
 
 func AddCash(cash float64) float64 {
