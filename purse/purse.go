@@ -1,6 +1,7 @@
 package purse
 
 import (
+     "os"
      "fmt"
      "math"
 )
@@ -68,6 +69,8 @@ func AddCash(cash float64) float64 {
 }
 
 func AddCoins(c float64) float64 {
+     fmt.Printf("AddCoins coins: %f c: %f", coins, c)
+     os.Exit(1)
      coins = coins + c
      return coins
 }
