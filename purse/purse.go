@@ -5,12 +5,13 @@ import "fmt"
 var coins float64
 var cashHoldings float64
 var targetCashPercentage float64
+var tradingFeePercentage float64
 
 func Init(coin float64, cash float64, target float64, fee float64) {
      coins = coin
      cashHoldings = cash
      targetCashPercentage = target
-     tradingFee = fee
+     tradingFeePercentage = fee
 }
 
 func Coins() float64 {
