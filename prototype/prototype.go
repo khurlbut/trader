@@ -42,32 +42,22 @@ func PricingLoop() string {
           if isActionable(spotPrice, lastTransctionPrice) {
                var action string
 
-               // fiatPurseTarget := targetFiatAmount(purseVal(spotPrice))
-               // fiatTransactionAmount := math.Abs(purseFiatAmount - fiatPurseTarget)
                fiatTransactionAmount := purse.FiatRequiredToAlignWithTarget(spotPrice)
+               if fiatTransactionAmount == 0 {continue}
 
-               if isBuy(spotPrice, lastTransctionPrice) {
-                    if fiatTransactionAmount >= 0 {continue}
-
+               // if isBuy(spotPrice, lastTransctionPrice) {
+               if fiatTransactionAmount < 0 {}
                     action = "BUY"
-
                     // Place buy order for fiatPurchaseAmount worth of crypto
                     purse.AddFiat(fiatTransactionAmount)
                     purse.AddFiat((tradingFee(fiatTransactionAmount)))
                     purse.AddCoins(fiatTransactionAmount * -1 / spotPrice)
-                    // purseFiatAmount += (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
-                    // purseCoins += (fiatTransactionAmount / spotPrice)
-               } else if isSell(spotPrice, lastTransctionPrice){
-                    if fiatTransactionAmount <= 0 {continue}
-
+               } else {
                     action = "SELL"
-               
                     // Place sell order for cryptoSellAmount of crypto
                     purse.AddFiat(fiatTransactionAmount)
                     purse.AddFiat(tradingFee(fiatTransactionAmount))
                     purse.AddCoins(fiatTransactionAmount / spotPrice)
-                    // purseFiatAmount +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
-                    // purseCoins -= (fiatTransactionAmount / spotPrice)
                }
                lastTransctionPrice = spotPrice
                fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
@@ -79,10 +69,6 @@ func PricingLoop() string {
 func transactionReport(action string, report string) string {
      return fmt.Sprintf("%s\t%s\n", action, report)
 }
-
-// func targetFiatAmount(purse float64) float64 {
-//      return purse * purseFiatTargetPercent
-// }
 
 func isActionable(spot float64, ltp float64) bool {
      return isBuy(spot, ltp) || isSell(spot, ltp)
@@ -109,22 +95,6 @@ func delta(spot float64, last float64) float64 {
      }
      return d / last
 }
-
-// func purseVal(spot float64) float64 {
-//      return coinVal(spot) + purseFiatAmount
-// }
-
-// func purseValReport(spot float64) string {
-//      return fmt.Sprintf("Spot: %f\tFiat %f\tCoin: %f\tTotal: %f", spot, purseFiatAmount, purseCoins, coinVal(spot) + purseFiatAmount)
-// }
-
-// func coinVal(fiatPrice float64) float64 {
-//      return coinValInFiat(fiatPrice, purseCoins)
-// }
-
-// func coinValInFiat(fiatPrice float64, coinAmount float64) float64 {
-//      return fiatPrice * coinAmount
-// }
 
 func tradingFee(fiat float64) float64 {
      return fiat * math.Abs(tradingFeePercentage) * -1
