@@ -99,7 +99,7 @@ func isSellSignaled(spot float64, last float64) bool {
      return false
 }
 
-func isSellAdvised(amt float64) {
+func isSellAdvised(amt float64) bool {
      return amt > 0
 }
 
