@@ -28,7 +28,7 @@ func Value(spot float64) float64 {
      return CashHoldings() + CoinValue(spot)
 }
 
-func CasRequiredToAlignWithTarget(spot float64) float64 {
+func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := Value(spot) * targetCashPercentage
      return target - CashHoldings()
 }
