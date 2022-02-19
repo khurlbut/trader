@@ -40,7 +40,7 @@ func PricingLoop() string {
           spotPrice = price_quotes.NextPrice()
           
           if isActionSignaled(spotPrice, lastTransctionPrice) {
-               var action string = nil
+               var action string
 
                fiatTransactionAmount := purse.FiatRequiredToAlignWithTarget(spotPrice)
                // if fiatTransactionAmount == 0 {continue}
@@ -59,7 +59,7 @@ func PricingLoop() string {
                     purse.AddCoins(fiatTransactionAmount / spotPrice)
                }
 
-               if action != nil {
+               if action != "" {
                     lastTransctionPrice = spotPrice
                     fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
                }
