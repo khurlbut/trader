@@ -44,6 +44,7 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
 }
 
 func feeCausesCostOverrun(fee float64, target float64, holdings float64) bool {
+     fmt.Printf("fee: %f, target: %f, holdings: %f", fee, target, holdings)
      return (fee + target + holdings) < 0 
 }
 
