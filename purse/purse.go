@@ -57,7 +57,7 @@ func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) boo
      return (fee + math.Abs(adjustment)) > holdings 
 }
 
-func feeCausesCoinOverrun(fee float64, adjustment float64, spot float64) {
+func feeCausesCoinOverrun(fee float64, adjustment float64, spot float64) bool {
      return (fee + math.Abs(adjustment)) > CoinValue(spot)
 }
 
