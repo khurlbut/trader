@@ -43,7 +43,7 @@ func PricingLoop() string {
                fiatTransactionAmount := math.Abs(fiatVal - fiatPurseTarget)
 
                if isBuy(spotPrice, lastTransctionPrice) {
-                    if fiatPurseTarget >= fiatVal (continue;}
+                    if fiatPurseTarget >= fiatVal {continue}
 
                     action = "BUY"
                     fmt.Printf("\tfiatPurseTarget (buy): %f\n", fiatPurseTarget)
