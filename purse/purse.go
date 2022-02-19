@@ -34,7 +34,7 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := Value(spot) * targetCashPercentage
      fee := tradingFee(target)
      holdings := CashHoldings 
-     if totalTransactionCost(fee + target + holdings) < 0 {
+     if totalTransactionCost(fee, target, holdings) < 0 {
           return target - holdings + fee
      }
      return target - holdings
