@@ -45,7 +45,7 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      // os.Exit(0)
           return adjustment + fee
      }
-     os.Exit(0)
+     // os.Exit(0)
      return adjustment
 }
 
