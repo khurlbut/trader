@@ -39,13 +39,13 @@ func PricingLoop() string {
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
           
-          if isActionable(spotPrice, lastTransctionPrice) {
+          if isActionSignaled(spotPrice, lastTransctionPrice) {
                var action string
 
                fiatTransactionAmount := purse.FiatRequiredToAlignWithTarget(spotPrice)
                if fiatTransactionAmount == 0 {continue}
 
-               // if isBuy(spotPrice, lastTransctionPrice) {
+               if isBuy(spotPrice, lastTransctionPrice, fiatTransactionAmount) {
                if fiatTransactionAmount < 0 {
                     action = "BUY"
                     // Place buy order for fiatPurchaseAmount worth of crypto
@@ -70,22 +70,38 @@ func transactionReport(action string, report string) string {
      return fmt.Sprintf("%s\t%s\n", action, report)
 }
 
-func isActionable(spot float64, ltp float64) bool {
-     return isBuy(spot, ltp) || isSell(spot, ltp)
+func isActionSignaled(spot float64, ltp float64) bool {
+     return isBuySignaled(spot, ltp) || isSellSignaled(spot, ltp)
 }
 
-func isBuy(spot float64, last float64) bool {
+func isBuy(spot float64, last float64, buyAmount float64) bool {
+     return isBuySignaled(spot, last) && isBuyAdvised(buyAmount)
+}
+
+func isBuySignaled(spot float64, last float64) bool {
      if spot < last {
           return delta(spot, last) >= BuyTrigger
      }
      return false
 }
 
-func isSell(spot float64, last float64) bool {
+func isBuyAdvised(amt float64) bool {
+     return amt < 0
+}
+
+func isSell(spot float64, last float64, sellAmount) bool {
+     return isSellSignaled(spot, last) && isSellAdvised(sellAmount)
+}
+
+func isSellSignaled(spot float64, last float64) bool {
      if spot > last {
           return delta(spot, last) >= SellTrigger
      }
      return false
+}
+
+func isSellAdvised(amt float64) {
+     return amt > 0
 }
 
 func delta(spot float64, last float64) float64 {
