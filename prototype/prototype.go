@@ -11,7 +11,8 @@ import
      "fmt"
      "math"
      "github.com/khurlbut/trader/purse"
-     "github.com/khurlbut/trader/price_quotes"
+     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
+
 )
 
 const BuyTrigger = 0.05

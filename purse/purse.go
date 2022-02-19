@@ -35,12 +35,12 @@ func ValueAt(spot float64) float64 {
 
 func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := ValueAt(spot) * targetCashPercentage
-     fmt.Printf("CashRequiredToAlignWithTarget: %f\n", target)
+     // fmt.Printf("CashRequiredToAlignWithTarget: %f\n", target)
      holdings := CashHoldings() 
      adjustment := target - holdings
      fee := tradingFee(adjustment)
      if feeCausesCostOverrun(fee, adjustment, holdings) {
-          fmt.Printf("returning adjustment + fee: %f\n", adjustment + fee)
+          // fmt.Printf("returning adjustment + fee: %f\n", adjustment + fee)
           return adjustment + fee
      }
      // if feeCausesCoinOverrun(fee, adjustment, spot) {
@@ -51,7 +51,7 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
 }
 
 func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
-     fmt.Printf("fee: %f, adjustment: %f, holdings: %f\n", fee, adjustment, holdings)
+     // fmt.Printf("fee: %f, adjustment: %f, holdings: %f\n", fee, adjustment, holdings)
      if adjustment >= holdings {
           return false
      }
@@ -68,7 +68,7 @@ func AddCash(cash float64) float64 {
 }
 
 func AddCoins(c float64) float64 {
-     fmt.Printf("AddCoins coins: %f c: %f\n", coins, c)
+     // fmt.Printf("AddCoins coins: %f c: %f\n", coins, c)
      coins = coins + c
      return coins
 }
