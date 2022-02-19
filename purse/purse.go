@@ -2,6 +2,7 @@ package purse
 
 import (
      "fmt"
+     "os"
      "math"
 )
 
@@ -45,6 +46,8 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
           return adjustment + fee
      }
      if feeCausesCoinOverrun(fee, adjustment, spot) {
+          fmt.Printf("returning adjustment - fee: %f\n", adjustment - fee)
+          os.Exit(0)
           return adjustment - fee
      }
      // os.Exit(0)
