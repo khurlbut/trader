@@ -9,7 +9,7 @@ var targetCashPercentage float64
 func Init(coin float64, cash float64, target float64, fee float64) {
      coins = coin
      cashHoldings = cash
-     targetcashHoldingsPercentage = target
+     targetCashPercentage = target
 }
 
 func Coins() float64 {
