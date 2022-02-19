@@ -30,12 +30,12 @@ func CoinValue(spot float64) float64 {
      return coins * spot
 }
 
-func Value(spot float64) float64 {
+func ValueAt(spot float64) float64 {
      return CashHoldings() + CoinValue(spot)
 }
 
 func CashRequiredToAlignWithTarget(spot float64) float64 {
-     target := Value(spot) * targetCashPercentage
+     target := ValueAt(spot) * targetCashPercentage
      fmt.Printf("CashRequiredToAlignWithTarget: %f\n", target)
      holdings := CashHoldings() 
      adjustment := target - holdings
