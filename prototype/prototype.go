@@ -15,7 +15,7 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const purseFiatTargetPercent = 1.0
+const purseFiatTargetPercent = 0.99
 
 const tradingFeePercentage = 0.006
 
