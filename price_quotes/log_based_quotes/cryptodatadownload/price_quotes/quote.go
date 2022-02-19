@@ -57,7 +57,7 @@ func scanToStartDate() {
           scan()
           d = readDate()
      }
-     fmt.Println("Start Time: " + d.String())
+     fmt.Println("\nStart Time: " + d.String())
 
 }
 

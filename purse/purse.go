@@ -7,7 +7,6 @@ var fiat float64
 var fiatTargetPercentage float64
 
 func Init(c float64, f float64, ftp float64) {
-     fmt.Println("purse.Init")
      coins = c
      fiat = f
      fiatTargetPercentage = ftp
