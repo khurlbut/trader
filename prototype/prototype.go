@@ -78,7 +78,7 @@ func PricingLoop() string {
 }
 
 func transactionReport(action string, report string) string {
-     return fmt.Sprintf("\t%s\n", action, report)
+     return fmt.Sprintf("%s\t%s\n", action, report)
 }
 
 // func targetFiatAmount(purse float64) float64 {
