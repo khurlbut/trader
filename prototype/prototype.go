@@ -11,13 +11,13 @@ import
      "fmt"
      "math"
      "github.com/khurlbut/trader/purse"
-     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
+     "github.com/khurlbut/trader/price_quotes"
 
 )
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const targetCashPercentage = 0.5
+const targetCashPercentage = 0.0
 
 const tradingFeePercentage = 0.006
 
