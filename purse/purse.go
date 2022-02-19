@@ -75,7 +75,7 @@ func ReflectBuyOrderFill(amount float64, spot float64) {
      AddCoins(amount * -1 / spot)     
 }
 
-func ReflectSellOrderFill(cashAdjustmentRequired float64, spotPrice float64) {}
+func ReflectSellOrderFill(cashAdjustmentRequired float64, spotPrice float64) {
      purse.AddCash(cashAdjustmentRequired)
      purse.AddCash(tradingFee(cashAdjustmentRequired))
      purse.AddCoins(cashAdjustmentRequired * -1 / spotPrice)
