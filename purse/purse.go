@@ -65,7 +65,7 @@ func AddCash(cash float64) float64 {
 }
 
 func AddCoins(c float64) float64 {
-     fmt.Printf("AddCoins coins: %f c: %f", coins, c)
+     fmt.Printf("AddCoins coins: %f c: %f\n", coins, c)
      coins = coins + c
      return coins
 }
