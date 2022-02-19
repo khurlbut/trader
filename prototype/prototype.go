@@ -13,7 +13,7 @@ import
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
-const BuyTrigger = 0.20
+const BuyTrigger = 0.15
 const SellTrigger = 0.05
 
 var purseCoins = 1.00
