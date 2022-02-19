@@ -3,20 +3,20 @@ package purse
 import "fmt"
 
 var coins float64
-var fiat float64
-var fiatTargetPercentage float64
+var cash float64
+var targetCashPercentage float64
 
-func Init(c float64, f float64, ftp float64) {
+func Init(c float64, d float64, tcp float64) {
      coins = c
-     fiat = f
-     fiatTargetPercentage = ftp
+     cash = d
+     targetCashPercentage = tcp
 }
 
 func Coins() float64 {
      return coins
 }
 
-func Fiat() float64 {
+func Cash() float64 {
      return fiat
 }
 
@@ -25,17 +25,17 @@ func CoinValue(spot float64) float64 {
 }
 
 func Value(spot float64) float64 {
-     return CoinValue(spot) + Fiat()
+     return Cash() + CoinValue(spot)
 }
 
-func FiatRequiredToAlignWithTarget(spot float64) float64 {
-     target := Value(spot) * fiatTargetPercentage
-     return target - Fiat()
+func CashRequiredToAlignWithTarget(spot float64) float64 {
+     target := Value(spot) * targetCashPercentage
+     return target - Cash()
 }
 
-func AddFiat(f float64) float64 {
-     fiat = fiat + f
-     return fiat
+func AddCash(d float64) float64 {
+     cash = cash + d
+     return cash
 }
 
 func AddCoins(c float64) float64 {
@@ -44,5 +44,5 @@ func AddCoins(c float64) float64 {
 }
 
 func String(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tFiat %f\t\tCoin: %f\t\tTotal Purse: %f", spot, Fiat(), Coins(), Value(spot))
+     return fmt.Sprintf("Spot: %f\tcash %f\tCoins: %f\t\tTotal Purse: %f", spot, Cash(), Coins(), Value(spot))
 }
