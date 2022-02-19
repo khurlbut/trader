@@ -88,7 +88,7 @@ func isBuyAdvised(amt float64) bool {
      return amt < 0
 }
 
-func isSell(spot float64, last float64, sellAmount) bool {
+func isSell(spot float64, last float64, sellAmount float64) bool {
      return isSellSignaled(spot, last) && isSellAdvised(sellAmount)
 }
 
