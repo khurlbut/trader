@@ -1,6 +1,9 @@
 package purse
 
-import "fmt"
+import (
+     "fmt"
+     "math"
+)
 
 var coins float64
 var cashHoldings float64
