@@ -40,7 +40,7 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      return target - holdings
 }
 
-func totalTransactionCost(fee float64, target float64, holdings float64) float64 {
+func feeCausesCostOverrun(fee float64, target float64, holdings float64) float64 {
      return (fee + target + holdings) < 0 
 }
 
