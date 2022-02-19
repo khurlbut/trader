@@ -46,10 +46,10 @@ func PricingLoop() string {
                if isBuy(spotPrice, lastTransctionPrice, cashAdjustmentRequired) {
                     action = "BUY"
                     // Place buy order for fiatPurchaseAmount worth of crypto
-                    purse.ReflectFilledBuyOrder(cashAdjustmentRequired)
-                    purse.AddCash(cashAdjustmentRequired)
-                    purse.AddCash((tradingFee(cashAdjustmentRequired)))
-                    purse.AddCoins(cashAdjustmentRequired * -1 / spotPrice)
+                    purse.ReflectFilledBuyOrder(cashAdjustmentRequired, spotPrice)
+                    // purse.AddCash(cashAdjustmentRequired)
+                    // purse.AddCash((tradingFee(cashAdjustmentRequired)))
+                    // purse.AddCoins(cashAdjustmentRequired * -1 / spotPrice)
                } else if isSell(spotPrice, lastTransctionPrice, cashAdjustmentRequired) {
                     action = "SELL"
                     // Place sell order for cryptoSellAmount of crypto
