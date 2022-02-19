@@ -4,9 +4,9 @@ import "fmt"
 
 var coins float64
 var cashHoldings float64
-var targetcashHoldingsPercentage float64
+var targetCashPercentage float64
 
-func Init(coin float64, cash float64, target float64, fee float54) {
+func Init(coin float64, cash float64, target float64, fee float64) {
      coins = coin
      cashHoldings = cash
      targetcashHoldingsPercentage = target
@@ -25,11 +25,11 @@ func CoinValue(spot float64) float64 {
 }
 
 func Value(spot float64) float64 {
-     return cashHoldings() + CoinValue(spot)
+     return CashHoldings() + CoinValue(spot)
 }
 
 func CasRequiredToAlignWithTarget(spot float64) float64 {
-     target := Value(spot) * targetcashPercentage
+     target := Value(spot) * targetCashPercentage
      return target - CashHoldings()
 }
 
