@@ -17,7 +17,7 @@ func Coins() float64 {
 }
 
 func Cash() float64 {
-     return fiat
+     return cash
 }
 
 func CoinValue(spot float64) float64 {
