@@ -75,8 +75,8 @@ func ReflectBuyOrderFill(amount float64, spot float64) {
      AddCoins(amount * -1 / spot)     
 }
 
-func ReflectSellOrderFill(cashAdjustmentRequired float64, spotPrice float64) {
-     AddCash(cashAdjustmentRequired)
-     AddCash(tradingFee(cashAdjustmentRequired))
-     AddCoins(cashAdjustmentRequired * -1 / spotPrice)
+func ReflectSellOrderFill(amount float64, spot float64) {
+     AddCash(amount)
+     AddCash(tradingFee(amount)*-1)
+     AddCoins(amount * -1 / spot)
 }

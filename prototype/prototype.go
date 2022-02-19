@@ -51,9 +51,6 @@ func PricingLoop() string {
                     action = "SELL"
                     // Place sell order for cryptoSellAmount of crypto
                     purse.ReflectSellOrderFill(cashAdjustmentRequired, spotPrice)
-                    // purse.AddCash(cashAdjustmentRequired)
-                    // purse.AddCash(tradingFee(cashAdjustmentRequired))
-                    // purse.AddCoins(cashAdjustmentRequired * -1 / spotPrice)
                }
 
                if action != "" {
