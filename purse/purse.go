@@ -44,6 +44,6 @@ func AddCoins(c float64) float64 {
      return coins
 }
 
-func String(spot float64) string (
+func String(spot float64) string {
      return CoinValue(spot) + Fiat()
-)
+}
