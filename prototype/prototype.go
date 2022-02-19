@@ -59,27 +59,27 @@ func PricingLoop() string {
                     // purseFiatAmount += (fiatTransactionAmount + tradingFee(fiatTransactionAmount))
                     // purseCoins += (fiatTransactionAmount / spotPrice)
                } else if isSell(spotPrice, lastTransctionPrice){
-                    if fiatPurseTarget <= 0 {continue}
+                    if fiatTransactionAmount <= 0 {continue}
 
                     action = "SELL"
                
                     // Place sell order for cryptoSellAmount of crypto
                     purse.AddFiat(fiatTransactionAmount)
                     purse.AddFiat(tradingFee(fiatTransactionAmount))
-                    puser.AddCoins(fiatTransactionAmount / spotPrice)
+                    purse.AddCoins(fiatTransactionAmount / spotPrice)
                     // purseFiatAmount +=  (fiatTransactionAmount - tradingFee(fiatTransactionAmount))
                     // purseCoins -= (fiatTransactionAmount / spotPrice)
                }
                lastTransctionPrice = spotPrice
-               fmt.Printf("\t" + transactionReport(action, spotPrice))
+               fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice))
           }
      }
      return fmt.Sprintf("Final: %s\n", purse.String(spotPrice))
 }
 
-// func transactionReport(action string, spot float64) string {
-//      return fmt.Sprintf("%s\tExecuted: %s\n", action, purseValReport(spot))
-// }
+func transactionReport(action string, report string) string {
+     return fmt.Sprintf("%s\tExecuted: %s\n", action, string)
+}
 
 // func targetFiatAmount(purse float64) float64 {
 //      return purse * purseFiatTargetPercent
