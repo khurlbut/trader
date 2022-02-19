@@ -4,12 +4,14 @@ package prototype
 /* 
      Alternative price sources
      "github.com/khurlbut/trader/price_quotes"
+     "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 */
 import
 (
      "fmt"
      "math"
+     "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
@@ -26,6 +28,8 @@ var purseFiatAmount = 10000.00
 func PricingLoop() string {
      price_quotes.Init()
      defer price_quotes.Close()
+
+     purse.Init(purseCoins, purseFiatAmount, purseFiatTargetPercent)
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
