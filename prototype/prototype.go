@@ -114,6 +114,6 @@ func delta(spot float64, last float64) float64 {
      return d / last
 }
 
-func tradingFee(fiat float64) float64 {
-     return fiat * math.Abs(tradingFeePercentage) * -1
+func tradingFee(amt float64) float64 {
+     return math.Abs(amt) * tradingFeePercentage * -1
 }
