@@ -28,7 +28,7 @@ func PricingLoop(p *purse.Purse) string {
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     p.FundPurse(initalCashAmount, spotPrice)
+     p.Fund(initalCashAmount, spotPrice)
 
      fmt.Printf("%s\n", p.String(spotPrice))
 

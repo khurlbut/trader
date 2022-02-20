@@ -29,25 +29,25 @@ func NewPurse(target float64, fee float64) *Purse {
      return &p
 }
 
-func (p *Purse) FundPurse(funds float64, spot float64) {
+func (p *Purse) Fund(funds float64, spot float64) {
      p.coins = (funds * (1 - p.targetCashPercentage)) / spot
      p.cash = funds * p.targetCashPercentage
 }
 
-func (p *Purse) Coins() float64 {
-     return p.coins
-}
+// func (p *Purse) Coins() float64 {
+//      return p.coins
+// }
 
-func (p *Purse) CashHoldings() float64 {
-     return p.cash
-}
+// func (p *Purse) CashHoldings() float64 {
+//      return p.cash
+// }
 
 func (p *Purse) CoinValue(spot float64) float64 {
      return p.coins * spot
 }
 
 func (p *Purse) ValueAt(spot float64) float64 {
-     return p.CashHoldings() + p.CoinValue(spot)
+     return p.cash + p.CoinValue(spot)
 }
 
 /*
@@ -101,13 +101,5 @@ func (p *Purse) tradingFee(amt float64) float64 {
 }
 
 func  (p *Purse) String(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, p.CashHoldings(), p.Coins(), p.ValueAt(spot))
-}
-
-func (p *Purse) Properties() string {
-     return fmt.Sprintf("Purse Properties:\nTarget Cash Percentage: %f\nTradingFeePercentage: %f\n", p.targetCashPercentage, p.tradingFeePercentage)
-}
-
-func (p *Purse) Holdings(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\n", spot, p.cash, p.coins)
+     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, p.cash, p.coins, p.ValueAt(spot))
 }
