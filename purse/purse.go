@@ -33,8 +33,8 @@ func Init(target float64, fee float64) {
 }
 
 func (p *Purse) FundPurse(funds float64, spot float64) {
-     p.coins = (p.funds * (1 - p.targetCashPercentage)) / spot
-     p.cash = p.funds * p.targetCashPercentage
+     p.coins = (funds * (1 - p.targetCashPercentage)) / spot
+     p.cash = funds * p.targetCashPercentage
 }
 func Fund(funds float64, spot float64) {
      coins = (funds * (1 - targetCashPercentage)) / spot
