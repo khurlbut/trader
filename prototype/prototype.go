@@ -21,24 +21,24 @@ const tradingFeePercentage = 0.006
 
 var initalCashAmount = 16000.00
 
-func PricingLoop() string {
+func PricingLoop(p *purse.Purse) string {
      price_quotes.Init()
      defer price_quotes.Close()
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     purse.Init(targetCashPercentage, tradingFeePercentage)
-     purse.Fund(initalCashAmount, spotPrice)
+     // purse.Init(targetCashPercentage, tradingFeePercentage)
+     p.FundPurse(initalCashAmount, spotPrice)
 
-     fmt.Printf("%s\n", purse.String(spotPrice))
+     fmt.Printf("%s\n", p.String(spotPrice))
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
           
           if isActionSignaled(spotPrice, lastTransctionPrice) {
                var action string
-               cashAdjustmentRequired := purse.CashRequiredToAlignWithTarget(spotPrice)
+               cashAdjustmentRequired := p.CashRequiredToAlignWithTarget(spotPrice)
 
                if isBuy(spotPrice, lastTransctionPrice, cashAdjustmentRequired) {
                     action = "BUY"
@@ -53,14 +53,14 @@ func PricingLoop() string {
                }
 
                if action != "" {
-                    purse.ReflectOrderFill(cashAdjustmentRequired, spotPrice)
+                    p.ReflectOrderFill(cashAdjustmentRequired, spotPrice)
                     lastTransctionPrice = spotPrice
 
-                    fmt.Printf("\t%s\t%s\n", action, purse.String(spotPrice))
+                    fmt.Printf("\t%s\t%s\n", action, p.String(spotPrice))
                }
           }
      }
-     return fmt.Sprintf("%s\n", purse.String(spotPrice))
+     return fmt.Sprintf("%s\n", p.String(spotPrice))
 }
 
 func isActionSignaled(spot float64, last float64) bool {
