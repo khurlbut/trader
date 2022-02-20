@@ -14,8 +14,8 @@ const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khu
 const open_index = 3
 const date_time_index = 1
 const date_time_layout = "2006-01-02 15:04:05"
-const start_time_str = "2020-11-25 05:21:00"
-const end_time_str = "2020-11-30 07:21:00"
+const start_time_str = "2020-11-21 07:21:00"
+const end_time_str = "2020-12-21 07:21:00"
 
 var file *os.File = nil
 var scanner *bufio.Scanner = nil
@@ -57,7 +57,7 @@ func scanToStartDate() {
           scan()
           d = readDate()
      }
-     fmt.Println("\nStart Time: " + d.String())
+     fmt.Println("Start Time: " + d.String())
 
 }
 
