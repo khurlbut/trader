@@ -57,7 +57,7 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
  */
 func ReflectOrderFill(amount float64, spot float64) {
      addCash(amount)
-     subCash((tradingFee(amount))
+     subCash(tradingFee(amount))
      subCoins(amount / spot)     
 }
 
