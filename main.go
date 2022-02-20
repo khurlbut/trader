@@ -8,6 +8,8 @@ import(
 
 func main() {
 	p := purse.NewPurse(123.456, 789.123)
-	fmt.Printf("p.Properties: %s\n", p.Properties(345.0))
-	fmt.Println(prototype.PricingLoop())
+	p.FundPurse(10000)
+	fmt.Printf("p.Properties: %s\n", p.Properties())
+	fmt.Printf("p.Holdings: %s\n", p.Holdings())
+	// fmt.Println(prototype.PricingLoop())
 }
