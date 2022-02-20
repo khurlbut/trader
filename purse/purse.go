@@ -10,11 +10,14 @@ var cashHoldings float64
 var targetCashPercentage float64
 var tradingFeePercentage float64
 
-func Init(coin float64, cash float64, target float64, fee float64) {
-     coins = coin
-     cashHoldings = cash
+func Init(target float64, fee float64) {
      targetCashPercentage = target
      tradingFeePercentage = fee
+}
+
+func Fund(funds float64, spot float64) {
+     coins = (0.5*funds)/spot
+     cashHoldings = 0.5*funds
 }
 
 func Coins() float64 {

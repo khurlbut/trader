@@ -30,7 +30,8 @@ func PricingLoop() string {
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     purse.Init((0.5*initalCashAmount)/spotPrice, 0.5*initalCashAmount, targetCashPercentage, tradingFeePercentage)
+     purse.Init(targetCashPercentage, tradingFeePercentage)
+     purse.Fund(initalCashAmount, spotPrice)
 
      fmt.Printf("%s\n", purse.String(spotPrice))
 
