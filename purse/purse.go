@@ -12,13 +12,17 @@ var tradingFeePercentage float64
 
 const minimum_transaction_amount = 10.00
 
+type Purse struct {
+
+}
+
 func Init(target float64, fee float64) {
      targetCashPercentage = target
      tradingFeePercentage = fee
 }
 
 func Fund(funds float64, spot float64) {
-     coins = (funds * (1 - targetCashPercentage)) / spot
+     coins = (funds * (1 - targetCashPercentage) / spot
      cash = funds * targetCashPercentage
 }
 
