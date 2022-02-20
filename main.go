@@ -9,6 +9,6 @@ import(
 func main() {
 	var p *purse.Purse
 	p = purse.NewPurse(123.456, 789.123)
-	fmt.printf("p.targetCashPercentage: %f" + p.targetCashPercentage)
+	fmt.Printf("p.targetCashPercentage: %f" + p.targetCashPercentage)
 	fmt.Println(prototype.PricingLoop())
 }
