@@ -36,38 +36,38 @@ func (p *Purse) FundPurse(funds float64, spot float64) {
      p.coins = (funds * (1 - p.targetCashPercentage)) / spot
      p.cash = funds * p.targetCashPercentage
 }
-func Fund(funds float64, spot float64) {
-     coins = (funds * (1 - targetCashPercentage)) / spot
-     cash = funds * targetCashPercentage
+// func Fund(funds float64, spot float64) {
+//      coins = (funds * (1 - targetCashPercentage)) / spot
+//      cash = funds * targetCashPercentage
+// }
+
+func (p *Purse) Coins() float64 {
+     return p.coins
 }
 
-func Coins() float64 {
-     return coins
+func (p *Purse) CashHoldings() float64 {
+     return p.cash
 }
 
-func CashHoldings() float64 {
-     return cash
+func (p *Purse) CoinValue(spot float64) float64 {
+     return p.coins * spot
 }
 
-func CoinValue(spot float64) float64 {
-     return coins * spot
-}
-
-func ValueAt(spot float64) float64 {
-     return CashHoldings() + CoinValue(spot)
+func (p *Purse) ValueAt(spot float64) float64 {
+     return p.CashHoldings() + p.CoinValue(spot)
 }
 
 /*
      The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
 */
-func CashRequiredToAlignWithTarget(spot float64) float64 {
-     cashTarget := ValueAt(spot) * targetCashPercentage
-     holdings := CashHoldings() 
+func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
+     cashTarget := p.ValueAt(spot) * p.targetCashPercentage
+     holdings := p.CashHoldings() 
      adjustment := cashTarget - holdings
-     if math.Abs(adjustment) < minimum_transaction_amount {
+     if math.Abs(adjustment) < p.minimum_transaction_amount {
           return 0
      }
-     fee := tradingFee(adjustment)
+     fee := p.tradingFee(adjustment)
      if feeCausesCostOverrun(fee, adjustment, holdings) {
           return adjustment + fee
      }
@@ -85,30 +85,30 @@ func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) boo
      The "amount" is either positive or negative reflecting a BUY or a SELL.
      A BUY will "add" a negative value to Cash, etc.
  */
-func ReflectOrderFill(amount float64, spot float64) {
-     addCash(amount)
-     subCash(tradingFee(amount))
-     subCoins(amount / spot)     
+func (p *Purse) ReflectOrderFill(amount float64, spot float64) {
+     p.addCash(amount)
+     p.subCash(tradingFee(amount))
+     p.subCoins(amount / spot)     
 }
 
-func addCash(c float64) {
-     cash = cash + c
+func (p *Purse) addCash(c float64) {
+     p.cash = p.cash + c
 }
 
-func subCash(c float64) {
-     cash = cash - c
+func (p *Purse) subCash(c float64) {
+     p.cash = p.cash - c
 }
 
-func subCoins(c float64) {
-     coins = coins - c
+func (p *Purse) subCoins(c float64) {
+     p.coins = p.coins - c
 }
 
-func tradingFee(amt float64) float64 {
-     return math.Abs(amt) * tradingFeePercentage
+func (p *Purse) tradingFee(amt float64) float64 {
+     return math.Abs(amt) * p.tradingFeePercentage
 }
 
-func String(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), ValueAt(spot))
+func  (p *Purse) String(spot float64) string {
+     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, p.CashHoldings(), p.Coins(), p.ValueAt(spot))
 }
 
 func (p *Purse) Properties() string {
