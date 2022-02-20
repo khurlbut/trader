@@ -34,17 +34,9 @@ func (p *Purse) Fund(funds float64, spot float64) {
      p.cash = funds * p.targetCashPercentage
 }
 
-// func (p *Purse) Coins() float64 {
-//      return p.coins
+// func (p *Purse) CoinValue(spot float64) float64 {
+//      return p.coins * spot
 // }
-
-// func (p *Purse) CashHoldings() float64 {
-//      return p.cash
-// }
-
-func (p *Purse) CoinValue(spot float64) float64 {
-     return p.coins * spot
-}
 
 func (p *Purse) ValueAt(spot float64) float64 {
      return p.cash + p.CoinValue(spot)
