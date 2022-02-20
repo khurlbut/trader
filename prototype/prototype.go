@@ -57,7 +57,7 @@ func PricingLoop() string {
                     purse.ReflectOrderFill(cashAdjustmentRequired, spotPrice)
                     lastTransctionPrice = spotPrice
 
-                    fmt.Println("\t%s\t%s\n", action, purse.String(spotPrice))
+                    fmt.Printf("\t%s\t%s\n", action, purse.String(spotPrice))
                     // fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
                }
           }
