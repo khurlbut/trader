@@ -6,7 +6,7 @@ import (
 )
 
 var coins float64
-var cashHoldings float64
+var cash float64
 var targetCashPercentage float64
 var tradingFeePercentage float64
 
@@ -18,7 +18,7 @@ func Init(target float64, fee float64) {
 func Fund(funds float64, spot float64) {
      half := 0.5 * funds
      coins = half / spot
-     cashHoldings = half
+     cash = half
 }
 
 func Coins() float64 {
@@ -26,7 +26,7 @@ func Coins() float64 {
 }
 
 func CashHoldings() float64 {
-     return cashHoldings
+     return cash
 }
 
 func CoinValue(spot float64) float64 {
@@ -41,14 +41,21 @@ func ValueAt(spot float64) float64 {
      The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
 */
 func CashRequiredToAlignWithTarget(spot float64) float64 {
-     target := ValueAt(spot) * targetCashPercentage
+     cashTarget := ValueAt(spot) * targetCashPercentage
      holdings := CashHoldings() 
-     adjustment := target - holdings
+     adjustment := cashTarget - holdings
      fee := tradingFee(adjustment)
      if feeCausesCostOverrun(fee, adjustment, holdings) {
           return adjustment + fee
      }
      return adjustment
+}
+
+func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
+     if adjustment >= holdings {
+          return false
+     }
+     return (fee + math.Abs(adjustment)) > holdings 
 }
 
 /*
@@ -61,21 +68,14 @@ func ReflectOrderFill(amount float64, spot float64) {
      subCoins(amount / spot)     
 }
 
-func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
-     if adjustment >= holdings {
-          return false
-     }
-     return (fee + math.Abs(adjustment)) > holdings 
+func addCash(c float64) float64 {
+     cash = cash + c
+     return cash
 }
 
-func addCash(cash float64) float64 {
-     cashHoldings = cashHoldings + cash
-     return cashHoldings
-}
-
-func subCash(cash float64) float64 {
-     cashHoldings = cashHoldings - cash
-     return cashHoldings
+func subCash(c float64) float64 {
+     cash = cash - c
+     return cash
 }
 
 func subCoins(c float64) float64 {
