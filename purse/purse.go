@@ -16,8 +16,9 @@ func Init(target float64, fee float64) {
 }
 
 func Fund(funds float64, spot float64) {
-     coins = (0.5*funds)/spot
-     cashHoldings = 0.5*funds
+     half = 0.5 * funds
+     coins = half / spot
+     cashHoldings = half
 }
 
 func Coins() float64 {

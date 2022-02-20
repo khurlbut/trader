@@ -20,7 +20,6 @@ const targetCashPercentage = 0.5
 
 const tradingFeePercentage = 0.006
 
-// Initial State
 var initalCashAmount = 10000.00
 
 func PricingLoop() string {
