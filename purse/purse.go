@@ -15,13 +15,13 @@ const minimum_transaction_amount = 10.00
 type Purse struct {
      coins     float64
      cash      float64
-     TargetCashPercentage     float64
+     targetCashPercentage     float64
      tradingFeePercentage     float64
 }
 
 func NewPurse(target float64, fee float64) *Purse {
      p := &Purse{
-          TargetCashPercentage: target,
+          targetCashPercentage: target,
           tradingFeePercentage: fee,
      }
      return p
@@ -105,4 +105,8 @@ func tradingFee(amt float64) float64 {
 
 func String(spot float64) string {
      return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), ValueAt(spot))
+}
+
+func (p *Purse) Properties(spot float64) string {
+     return fmt.Sprintf("Target Cash Percentage: %f", p.targetCashPercentage)
 }
