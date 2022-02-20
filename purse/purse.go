@@ -13,7 +13,18 @@ var tradingFeePercentage float64
 const minimum_transaction_amount = 10.00
 
 type Purse struct {
+     coins     float64
+     cash      float64
+     targetCashPercentage     float64
+     tradingFeePercentage     float64
+}
 
+func NewPurse(target float64, fee float64) *Purse {
+     p := &Purse{
+          targetCashPercentage: target
+          tradingFeePercentage: fee
+     }
+     return p
 }
 
 func Init(target float64, fee float64) {
