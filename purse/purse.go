@@ -15,7 +15,7 @@ const minimum_transaction_amount = 10.00
 type Purse struct {
      coins     float64
      cash      float64
-     targetCashPercentage     float64
+     TargetCashPercentage     float64
      tradingFeePercentage     float64
 }
 
