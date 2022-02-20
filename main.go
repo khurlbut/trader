@@ -7,7 +7,7 @@ import(
 )
 
 func main() {
-	var purse *purse.Purse
-	purse = NewPurse(123.456, 789.123)
+	var p *purse.Purse
+	p = purse->NewPurse(123.456, 789.123)
 	fmt.Println(prototype.PricingLoop())
 }
