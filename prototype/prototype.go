@@ -13,8 +13,8 @@ import
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
-const BuyTrigger = 0.05
-const SellTrigger = 0.05
+const BuyTrigger = 0.1
+const SellTrigger = 0.1:
 const targetCashPercentage = 0.20
 
 const tradingFeePercentage = 0.006
