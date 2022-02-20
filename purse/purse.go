@@ -37,6 +37,9 @@ func ValueAt(spot float64) float64 {
      return CashHoldings() + CoinValue(spot)
 }
 
+/*
+     The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
+*/
 func CashRequiredToAlignWithTarget(spot float64) float64 {
      target := ValueAt(spot) * targetCashPercentage
      holdings := CashHoldings() 
@@ -48,6 +51,16 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      return adjustment
 }
 
+/*
+     The "amount" is either positive or negative reflecting a BUY or a SELL.
+     A BUY will "add" a negative value to Cash, etc.
+ */
+func ReflectOrderFill(amount float64, spot float64) {
+     addCash(amount)
+     subCash((tradingFee(amount))
+     subCoins(amount / spot)     
+}
+
 func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
      if adjustment >= holdings {
           return false
@@ -55,13 +68,18 @@ func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) boo
      return (fee + math.Abs(adjustment)) > holdings 
 }
 
-func AddCash(cash float64) float64 {
+func addCash(cash float64) float64 {
      cashHoldings = cashHoldings + cash
      return cashHoldings
 }
 
-func AddCoins(c float64) float64 {
-     coins = coins + c
+func subCash(cash float64) float64 {
+     cashHoldings = cashHoldings - cash
+     return cashHoldings
+}
+
+func subCoins(c float64) float64 {
+     coins = coins - c
      return coins
 }
 
@@ -71,10 +89,4 @@ func String(spot float64) string {
 
 func tradingFee(amt float64) float64 {
      return math.Abs(amt) * tradingFeePercentage
-}
-
-func ReflectOrderFill(amount float64, spot float64) {
-     AddCash(amount)
-     AddCash((tradingFee(amount)*-1))
-     AddCoins(amount * -1 / spot)     
 }
