@@ -58,16 +58,11 @@ func PricingLoop() string {
                     lastTransctionPrice = spotPrice
 
                     fmt.Printf("\t%s\t%s\n", action, purse.String(spotPrice))
-                    // fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
                }
           }
      }
      return fmt.Sprintf("%s\n", purse.String(spotPrice))
 }
-
-// func transactionReport(action string, report string) string {
-//      return fmt.Sprintf("%s\t%s\n", action, report)
-// }
 
 func isActionSignaled(spot float64, last float64) bool {
      return isBuySignaled(spot, last) || isSellSignaled(spot, last)
