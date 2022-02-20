@@ -68,25 +68,22 @@ func ReflectOrderFill(amount float64, spot float64) {
      subCoins(amount / spot)     
 }
 
-func addCash(c float64) float64 {
+func addCash(c float64) {
      cash = cash + c
-     return cash
 }
 
-func subCash(c float64) float64 {
+func subCash(c float64) {
      cash = cash - c
-     return cash
 }
 
-func subCoins(c float64) float64 {
+func subCoins(c float64) {
      coins = coins - c
-     return coins
-}
-
-func String(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), ValueAt(spot))
 }
 
 func tradingFee(amt float64) float64 {
      return math.Abs(amt) * tradingFeePercentage
+}
+
+func String(spot float64) string {
+     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), ValueAt(spot))
 }
