@@ -57,16 +57,17 @@ func PricingLoop() string {
                     purse.ReflectOrderFill(cashAdjustmentRequired, spotPrice)
                     lastTransctionPrice = spotPrice
 
-                    fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
+                    fmt.Println("\t%s\t%s\n", action, purse.String(spotPrice))
+                    // fmt.Printf("\t" + transactionReport(action, purse.String(spotPrice)))
                }
           }
      }
      return fmt.Sprintf("%s\n", purse.String(spotPrice))
 }
 
-func transactionReport(action string, report string) string {
-     return fmt.Sprintf("%s\t%s\n", action, report)
-}
+// func transactionReport(action string, report string) string {
+//      return fmt.Sprintf("%s\t%s\n", action, report)
+// }
 
 func isActionSignaled(spot float64, last float64) bool {
      return isBuySignaled(spot, last) || isSellSignaled(spot, last)
@@ -109,7 +110,3 @@ func delta(spot float64, last float64) float64 {
      }
      return d / last
 }
-
-// func tradingFee(amt float64) float64 {
-//      return math.Abs(amt) * tradingFeePercentage * -1
-// }
