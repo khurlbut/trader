@@ -15,7 +15,7 @@ import
 
 const BuyTrigger = 0.05
 const SellTrigger = 0.05
-const targetCashPercentage = 0.0
+const targetCashPercentage = 0.05
 
 const tradingFeePercentage = 0.006
 
