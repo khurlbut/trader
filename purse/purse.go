@@ -57,7 +57,7 @@ func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
      cashTarget := p.ValueAt(spot) * p.targetCashPercentage
      holdings := p.CashHoldings() 
      adjustment := cashTarget - holdings
-     if math.Abs(adjustment) < p.minimum_transaction_amount {
+     if math.Abs(adjustment) < p.minimum_transaction_amt {
           return 0
      }
      fee := p.tradingFee(adjustment)
