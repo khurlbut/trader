@@ -19,7 +19,7 @@ const targetCashPercentage = 0.1
 
 const tradingFeePercentage = 0.006
 
-var initalCashAmount = 9000.00
+var initalCashAmount = 8800.00
 
 func PricingLoop() string {
      price_quotes.Init()
