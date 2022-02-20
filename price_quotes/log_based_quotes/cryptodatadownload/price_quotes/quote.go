@@ -15,7 +15,7 @@ const open_index = 3
 const date_time_index = 1
 const date_time_layout = "2006-01-02 15:04:05"
 const start_time_str = "2020-11-25 05:21:00"
-const end_time_str = "2020-12-30 07:21:00"
+const end_time_str = "2020-11-30 07:21:00"
 
 var file *os.File = nil
 var scanner *bufio.Scanner = nil
