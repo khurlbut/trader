@@ -19,7 +19,7 @@ const targetCashPercentage = 0.5
 
 const tradingFeePercentage = 0.006
 
-var initalCashAmount = 16000.00
+var initalCashAmount = 10000.00
 
 func PricingLoop(p *purse.Purse) string {
      price_quotes.Init()
@@ -28,7 +28,6 @@ func PricingLoop(p *purse.Purse) string {
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
      
-     // purse.Init(targetCashPercentage, tradingFeePercentage)
      p.FundPurse(initalCashAmount, spotPrice)
 
      fmt.Printf("%s\n", p.String(spotPrice))
