@@ -64,7 +64,7 @@ func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
      cashTarget := p.ValueAt(spot) * p.targetCashPercentage
      holdings := p.CashHoldings() 
      adjustment := cashTarget - holdings
-     if math.Abs(adjustment) < p.minimum_transaction_amount {
+     if math.Abs(adjustment) < minimum_transaction_amount {
           return 0
      }
      fee := p.tradingFee(adjustment)
@@ -87,7 +87,7 @@ func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) boo
  */
 func (p *Purse) ReflectOrderFill(amount float64, spot float64) {
      p.addCash(amount)
-     p.subCash(tradingFee(amount))
+     p.subCash(p.tradingFee(amount))
      p.subCoins(amount / spot)     
 }
 
