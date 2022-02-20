@@ -9,7 +9,6 @@ package prototype
 import
 (
      "fmt"
-     "math"
      "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes"
 
