@@ -10,6 +10,8 @@ var cash float64
 var targetCashPercentage float64
 var tradingFeePercentage float64
 
+const minimum_transaction_amount = 10.00
+
 func Init(target float64, fee float64) {
      targetCashPercentage = target
      tradingFeePercentage = fee
@@ -44,6 +46,9 @@ func CashRequiredToAlignWithTarget(spot float64) float64 {
      cashTarget := ValueAt(spot) * targetCashPercentage
      holdings := CashHoldings() 
      adjustment := cashTarget - holdings
+     if math.Abs(adjustment) < minimum_transaction_amount {
+          return 0
+     }
      fee := tradingFee(adjustment)
      if feeCausesCostOverrun(fee, adjustment, holdings) {
           return adjustment + fee
