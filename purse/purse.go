@@ -24,7 +24,7 @@ func NewPurse(target float64, fee float64) *Purse {
      p := Purse{
           targetCashPercentage: target,
           tradingFeePercentage: fee,
-          minimum_transaction_amt: 10.0
+          minimum_transaction_amt: 10.0,
      }
      return &p
 }
