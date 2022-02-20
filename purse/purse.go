@@ -12,9 +12,9 @@ var tradingFeePercentage float64
 
 const minimum_transaction_amount = 10.00
 
-type Purse struct {
+// type Purse struct {
 
-}
+// }
 
 func Init(target float64, fee float64) {
      targetCashPercentage = target
