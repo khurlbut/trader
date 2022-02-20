@@ -32,6 +32,10 @@ func Init(target float64, fee float64) {
      tradingFeePercentage = fee
 }
 
+func (p *Purse) FundPurse(funds float64, spot float64) {
+     p.coins = (funds * (1 - targetCashPercentage)) / spot
+     p.cash = funds * targetCashPercentage
+}
 func Fund(funds float64, spot float64) {
      coins = (funds * (1 - targetCashPercentage)) / spot
      cash = funds * targetCashPercentage
@@ -108,5 +112,5 @@ func String(spot float64) string {
 }
 
 func (p Purse) Properties(spot float64) string {
-     return fmt.Sprintf("Target Cash Percentage: %f\n", p.targetCashPercentage)
+     return fmt.Sprintf("Purse Properties:\nTarget Cash Percentage: %f\nTradingFeePercentage\n", p.targetCashPercentage, p.tradingFeePercentage)
 }
