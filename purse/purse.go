@@ -108,5 +108,5 @@ func String(spot float64) string {
 }
 
 func (p Purse) Properties(spot float64) string {
-     return fmt.Sprintf("Target Cash Percentage: %f", p.targetCashPercentage)
+     return fmt.Sprintf("Target Cash Percentage: %f\n", p.targetCashPercentage)
 }
