@@ -34,10 +34,6 @@ func (p *Purse) Fund(funds float64, spot float64) {
      p.cash = funds * p.targetCashPercentage
 }
 
-func (p *Purse) valueAt(spot float64) float64 {
-     return p.cash + (p.coins * spot)
-}
-
 /*
      The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
 */
@@ -55,6 +51,10 @@ func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
      }
 
      return adjustment
+}
+
+func (p *Purse) valueAt(spot float64) float64 {
+     return p.cash + (p.coins * spot)
 }
 
 func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) bool {
