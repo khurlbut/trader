@@ -69,14 +69,8 @@ func tradingFee(amt float64) float64 {
      return math.Abs(amt) * tradingFeePercentage
 }
 
-func ReflectBuyOrderFill(amount float64, spot float64) {
+func ReflectOrderFill(amount float64, spot float64) {
      AddCash(amount)
      AddCash((tradingFee(amount)*-1))
      AddCoins(amount * -1 / spot)     
-}
-
-func ReflectSellOrderFill(amount float64, spot float64) {
-     AddCash(amount)
-     AddCash(tradingFee(amount)*-1)
-     AddCoins(amount * -1 / spot)
 }
