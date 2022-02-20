@@ -116,5 +116,5 @@ func (p Purse) Properties() string {
 }
 
 func (p Purse) Holdings(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins:", spot, p.cash, p.coins)
+     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\n", spot, p.cash, p.coins)
 }
