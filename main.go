@@ -27,6 +27,7 @@ func NewDrive(initialCash float64, buyTrigger float64, SellTrigger float64) *Dri
 		SellTrigger:	0.02,
 		Purse:	purse.NewPurse(targetCashPercentage, tradingFeePercentage),
 	}
+	return &d
 }
 
 func main() {
