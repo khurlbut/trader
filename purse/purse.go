@@ -42,7 +42,7 @@ func (p *Purse) valueAt(spot float64) float64 {
      The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
 */
 func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
-     cashTarget := p.ValueAt(spot) * p.targetCashPercentage
+     cashTarget := p.valueAt(spot) * p.targetCashPercentage
      adjustment := cashTarget - p.cash
 
      if math.Abs(adjustment) < p.minimum_transaction_amt {
