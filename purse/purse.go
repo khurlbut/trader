@@ -22,7 +22,7 @@ type Purse struct {
 func NewPurse(target float64, fee float64) *Purse {
      p := &Purse{
           targetCashPercentage: target,
-          tradingFeePercentage: fee
+          tradingFeePercentage: fee,
      }
      return p
 }
