@@ -19,8 +19,8 @@ type Purse struct {
      tradingFeePercentage     float64
 }
 
-func NewPurse(target float64, fee float64) *Purse {
-     p := &Purse{
+func NewPurse(target float64, fee float64) Purse {
+     p := Purse{
           targetCashPercentage: target,
           tradingFeePercentage: fee,
      }
@@ -107,6 +107,6 @@ func String(spot float64) string {
      return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), ValueAt(spot))
 }
 
-func (p *Purse) Properties(spot float64) string {
+func (p Purse) Properties(spot float64) string {
      return fmt.Sprintf("Target Cash Percentage: %f", p.targetCashPercentage)
 }
