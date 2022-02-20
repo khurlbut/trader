@@ -15,11 +15,11 @@ import
 
 const BuyTrigger = 0.02
 const SellTrigger = 0.02
-const targetCashPercentage = 0.1
+const targetCashPercentage = 0.2
 
 const tradingFeePercentage = 0.006
 
-var initalCashAmount = 10000.00
+var initalCashAmount = 10800.00
 
 func PricingLoop() string {
      price_quotes.Init()
