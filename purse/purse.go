@@ -34,10 +34,6 @@ func (p *Purse) Fund(funds float64, spot float64) {
      p.cash = funds * p.targetCashPercentage
 }
 
-// func (p *Purse) CoinValue(spot float64) float64 {
-//      return p.coins * spot
-// }
-
 func (p *Purse) ValueAt(spot float64) float64 {
      return p.cash + (p.coins * spot)
 }
@@ -47,13 +43,13 @@ func (p *Purse) ValueAt(spot float64) float64 {
 */
 func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
      cashTarget := p.ValueAt(spot) * p.targetCashPercentage
-     holdings := p.cash 
-     adjustment := cashTarget - holdings
+     // holdings := p.cash 
+     adjustment := cashTarget - p.cash
      if math.Abs(adjustment) < p.minimum_transaction_amt {
           return 0
      }
      fee := p.tradingFee(adjustment)
-     if feeCausesCostOverrun(fee, adjustment, holdings) {
+     if feeCausesCostOverrun(fee, adjustment, p.cash) {
           return adjustment + fee
      }
      return adjustment
