@@ -17,12 +17,14 @@ type Purse struct {
      cash      float64
      targetCashPercentage     float64
      tradingFeePercentage     float64
+     minimum_transaction_amt  float64
 }
 
 func NewPurse(target float64, fee float64) *Purse {
      p := Purse{
           targetCashPercentage: target,
           tradingFeePercentage: fee,
+          minimum_transaction_amt: 10.0
      }
      return &p
 }
@@ -55,7 +57,7 @@ func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
      cashTarget := p.ValueAt(spot) * p.targetCashPercentage
      holdings := p.CashHoldings() 
      adjustment := cashTarget - holdings
-     if math.Abs(adjustment) < minimum_transaction_amount {
+     if math.Abs(adjustment) < p.minimum_transaction_amount {
           return 0
      }
      fee := p.tradingFee(adjustment)
