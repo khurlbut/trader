@@ -111,7 +111,7 @@ func String(spot float64) string {
      return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, CashHoldings(), Coins(), ValueAt(spot))
 }
 
-func (p Purse) Properties()) string {
+func (p Purse) Properties() string {
      return fmt.Sprintf("Purse Properties:\nTarget Cash Percentage: %f\nTradingFeePercentage: %f\n", p.targetCashPercentage, p.tradingFeePercentage)
 }
 
