@@ -1,3 +1,3 @@
-module github.com/khurlbut/trader/drive
+module github.com/khurlbut/trader/campaign
 
 go 1.17
