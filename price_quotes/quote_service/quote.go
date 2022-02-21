@@ -12,5 +12,5 @@ typedef Quote struct {
 
 func NewQuote() *Quote {
 	q := Quote{}
-	return q
+	return &q
 }
