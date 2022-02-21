@@ -9,7 +9,7 @@ package prototype
 import
 (
      "fmt"
-     "github.com/khurlbut/trader/drive"
+     "github.com/khurlbut/trader/campaign"
      "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
      "github.com/khurlbut/trader/cash_percentage_adjuster"
@@ -20,7 +20,7 @@ var sellTrigger float64
 
 // var initalCashAmount = 10000.00
 
-func PricingLoop(d *drive.Drive) string {
+func PricingLoop(c *campaign.Campaign) string {
      price_quotes.Init()
      defer price_quotes.Close()
 
@@ -29,9 +29,9 @@ func PricingLoop(d *drive.Drive) string {
 
      cpa := cash_percentage_adjuster.NewCashAdjuster()
 
-     var p *purse.Purse = d.Purse 
+     var p *purse.Purse = c.Purse 
      p.SetTargetCashPercentage(cpa.CashPercentageTarget(spotPrice))
-     p.Fund(d.InitialCash, spotPrice)
+     p.Fund(c.InitialCash, spotPrice)
 
      buyTrigger = d.BuyTrigger
      sellTrigger = d.SellTrigger

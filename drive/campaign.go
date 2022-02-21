@@ -1,11 +1,11 @@
-package drive
+package campaign
 
 import(
 	"github.com/khurlbut/trader/purse"
   "github.com/magiconair/properties"
 )
 
-type Drive struct {
+type Campaign struct {
 	InitialCash float64
 	BuyTrigger 	float64
 	SellTrigger float64
@@ -14,7 +14,7 @@ type Drive struct {
 
 const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/drive.properties"
 
-func NewDrive() *Drive {
+func NewCampaign() *Drive {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
   targetCashPercentage := props.GetFloat64("targetCashPercentage", 0.50)
@@ -24,11 +24,11 @@ func NewDrive() *Drive {
   sellTrigger := props.GetFloat64("sellTrigger", 0.02)
 
 	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
-	d := Drive{
+	c := Campaign{
 		InitialCash: 	initialCash,
 		BuyTrigger:		buyTrigger,
 		SellTrigger:	sellTrigger,
 		Purse:				p,
 	}
-	return &d
+	return &c
 }
