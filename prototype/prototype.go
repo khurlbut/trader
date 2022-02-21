@@ -5,11 +5,11 @@ package prototype
      Alternative price sources
      "github.com/khurlbut/trader/price_quotes"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
+     "github.com/khurlbut/trader/campaign"
 */
 import
 (
      "fmt"
-     "github.com/khurlbut/trader/campaign"
      "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
      "github.com/khurlbut/trader/cash_percentage_adjuster"
