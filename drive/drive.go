@@ -1,7 +1,6 @@
 package drive
 
 import(
-	"fmt"
 	"github.com/khurlbut/trader/purse"
 )
 
