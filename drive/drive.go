@@ -20,7 +20,7 @@ type Drive struct {
 func NewDrive() *Drive {
 
   props := properties.MustLoadFile("${TRADER_HOME}/drive.properties", properties.UTF8)
-  fmt.Printf("\nprops.targetCashPercentage: %f\n", props.GetFloat64("targetCashPercentage"))
+  fmt.Printf("\nprops.targetCashPercentage: %f\n", props.GetFloat64("targetCashPercentage", 0.50))
 	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
 	d := Drive{
 		InitialCash: 	10000.00,
