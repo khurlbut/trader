@@ -1,13 +1,16 @@
 package quote_service
 
 import (
-	"testing";
+	"fmt"
+	"time"
 )
 
-func TestSayHello(t *testing.T) {
-	actual := ""
-	expected := "Hello, world."
-    if expected != actual {
-		t.Errorf("Error occured while testing sayhello: '%s' != '%s'", expected, actual);
-    }
+typedef Quote struct {
+	spotPrice	float64
+	timeStamp time.Time
+}
+
+func NewQuote() *Quote {
+	q := Quote{}
+	return q
 }
