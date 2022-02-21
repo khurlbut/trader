@@ -19,7 +19,7 @@ func NewCashAdjuster() *CashPercentageTable {
   spotPriceLow := props.GetFloat64("spotPriceLow", 17000.00)
   spotPriceHigh := props.GetFloat64("spotPriceHigh", 25000.00)
   cashPercentageLow := props.GetFloat64("cashPercentageLow", 0.00)
-  cashPercentageHigh := props.GetFloat64("cashPercentageHigh", 20.00)
+  cashPercentageHigh := props.GetFloat64("cashPercentageHigh", 0.20)
 
 	c := CashPercentageTable{
 		spotPriceLow: 	spotPriceLow,
