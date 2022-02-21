@@ -6,13 +6,14 @@ package prototype
      "github.com/khurlbut/trader/price_quotes"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
      "github.com/khurlbut/trader/campaign"
+
+     "github.com/khurlbut/trader/purse"
+     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
+     "github.com/khurlbut/trader/cash_percentage_adjuster"
 */
 import
 (
      "fmt"
-     "github.com/khurlbut/trader/purse"
-     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
-     "github.com/khurlbut/trader/cash_percentage_adjuster"
 )
 
 var buyTrigger float64
@@ -20,8 +21,8 @@ var sellTrigger float64
 
 // var initalCashAmount = 10000.00
 
-// func PricingLoop(c *campaign.Campaign) string {
 func PricingLoop(c *campaign.Campaign) string {
+// func PricingLoop(c *campaign.Campaign) string {
      // price_quotes.Init()
      // defer price_quotes.Close()
 
