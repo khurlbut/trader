@@ -5,7 +5,7 @@ import (
 )
 
 func TestSayHello(t *testing.T) {
-	actual := BuildHello()
+	actual := ""
 	expected := "Hello, world."
     if expected != actual {
 		t.Errorf("Error occured while testing sayhello: '%s' != '%s'", expected, actual);
