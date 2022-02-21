@@ -69,6 +69,7 @@ func PricingLoop(c *campaign.Campaign) string {
      //      }
      // }
      // return fmt.Sprintf("%s\n", p.String(spotPrice))
+     return ""
 }
 
 func isActionSignaled(spot float64, last float64) bool {
