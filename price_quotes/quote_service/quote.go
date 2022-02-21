@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-typedef Quote struct {
+type Quote struct {
 	spotPrice	float64
 	timeStamp time.Time
 }
