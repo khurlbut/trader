@@ -19,7 +19,7 @@ type Drive struct {
 // func NewDrive(initialCash float64, buyTrigger float64, SellTrigger float64) *Drive {
 func NewDrive() *Drive {
 
-  props := properties.MustLoadFile("${TRADER_HOME}/drive.properties", properties.UTF8)
+  props := properties.MustLoadFile(${TRADER_HOME}"/drive.properties", properties.UTF8)
   fmt.Printf("\nprops.targetCashPercentage: %f\n", props.GetFloat64("targetCashPercentage", 0.50))
 	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
 	d := Drive{
