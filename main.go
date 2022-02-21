@@ -21,11 +21,12 @@ type Drive struct {
 }
 
 func NewDrive(initialCash float64, buyTrigger float64, SellTrigger float64) *Drive {
+	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
 	d := Drive{
 		InitialCash: 	10000,00,
 		BuyTrigger:		0.02,
 		SellTrigger:	0.02,
-		Purse:	purse.NewPurse(targetCashPercentage, tradingFeePercentage),
+		Purse:				p,
 	}
 	return &d
 }
