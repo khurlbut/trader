@@ -4,7 +4,6 @@ import(
 	"fmt"
 	"github.com/khurlbut/trader/drive"
 	"github.com/khurlbut/trader/prototype"
-	"github.com/khurlbut/trader/purse"
 )
 
 // const targetCashPercentage = 0.5
@@ -30,6 +29,6 @@ import(
 
 func main() {
 	// p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
-	d := NewDrive()
+	d := drive.NewDrive()
 	fmt.Println(prototype.PricingLoop(d))
 }
