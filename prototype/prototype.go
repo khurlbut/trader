@@ -7,13 +7,13 @@ package prototype
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
      "github.com/khurlbut/trader/campaign"
 
+     "fmt"
      "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
      "github.com/khurlbut/trader/cash_percentage_adjuster"
 */
 import
 (
-     "fmt"
 )
 
 var buyTrigger float64
