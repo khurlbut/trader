@@ -13,18 +13,18 @@ import
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
-const BuyTrigger = 0.02
-const SellTrigger = 0.02
+// const BuyTrigger = 0.02
+// const SellTrigger = 0.02
 
-var initalCashAmount = 10000.00
+// var initalCashAmount = 10000.00
 
-func PricingLoop(p *purse.Purse) string {
+func PricingLoop(d *main.Drive) string {
      price_quotes.Init()
      defer price_quotes.Close()
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
-     
+     p = d.p 
      p.Fund(initalCashAmount, spotPrice)
 
      fmt.Printf("%s\n", p.String(spotPrice))

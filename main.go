@@ -9,10 +9,6 @@ import(
 const targetCashPercentage = 0.5
 const tradingFeePercentage = 0.006
 
-// const BuyTrigger = 0.02
-// const SellTrigger = 0.02
-
-// var initalCashAmount = 10000.00
 type Drive struct {
 	InitialCash float64
 	BuyTrigger 	float64
