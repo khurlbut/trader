@@ -9,6 +9,7 @@ package prototype
 import
 (
      "fmt"
+     "github.com/khurlbut/trader"
      "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
