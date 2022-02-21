@@ -9,7 +9,7 @@ package prototype
 import
 (
      "fmt"
-     "github.com/khurlbut/trader/main"
+     "github.com/khurlbut/trader/drive"
      "github.com/khurlbut/trader/purse"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
@@ -19,7 +19,7 @@ import
 
 // var initalCashAmount = 10000.00
 
-func PricingLoop(d *Drive) string {
+func PricingLoop(d *drive.Drive) string {
      price_quotes.Init()
      defer price_quotes.Close()
 
