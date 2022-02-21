@@ -14,8 +14,8 @@ import
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
-// const BuyTrigger = 0.02
-// const SellTrigger = 0.02
+var buyTrigger float64
+var sellTrigger float64
 
 // var initalCashAmount = 10000.00
 
@@ -25,8 +25,12 @@ func PricingLoop(d *drive.Drive) string {
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
+
      var p *purse.Purse = d.Purse 
-     p.Fund(initalCashAmount, spotPrice)
+     p.Fund(d.InitalCashAmount, spotPrice)
+
+     buyTrigger = d.BuyTrigger
+     sellTrigger = d.SellTrigger
 
      fmt.Printf("%s\n", p.String(spotPrice))
 
@@ -70,7 +74,7 @@ func isBuy(spot float64, last float64, buyAmount float64) bool {
 
 func isBuySignaled(spot float64, last float64) bool {
      if spot < last {
-          return delta(spot, last) >= BuyTrigger
+          return delta(spot, last) >= buyTrigger
      }
      return false
 }
@@ -85,7 +89,7 @@ func isSell(spot float64, last float64, sellAmount float64) bool {
 
 func isSellSignaled(spot float64, last float64) bool {
      if spot > last {
-          return delta(spot, last) >= SellTrigger
+          return delta(spot, last) >= sellTrigger
      }
      return false
 }
