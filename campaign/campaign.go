@@ -12,9 +12,9 @@ type Campaign struct {
 	Purse *purse.Purse
 }
 
-const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/drive.properties"
+const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
 
-func NewCampaign() *Drive {
+func NewCampaign() *Campaign {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
   targetCashPercentage := props.GetFloat64("targetCashPercentage", 0.50)

@@ -11,7 +11,7 @@ type CashPercentageTable struct {
 	cashPercentageHigh	float64
 }
 
-const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/drive.properties"
+const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
 
 func NewCashAdjuster() *CashPercentageTable {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)

@@ -7,6 +7,6 @@ import(
 )
 
 func main() {
-	c := drive.NewCampaign()
+	c := campaign.NewCampaign()
 	fmt.Println(prototype.PricingLoop(c))
 }
