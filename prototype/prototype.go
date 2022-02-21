@@ -27,7 +27,7 @@ func PricingLoop(d *drive.Drive) string {
      spotPrice := lastTransctionPrice
 
      var p *purse.Purse = d.Purse 
-     p.Fund(d.InitalCashAmount, spotPrice)
+     p.Fund(d.InitalCash, spotPrice)
 
      buyTrigger = d.BuyTrigger
      sellTrigger = d.SellTrigger
