@@ -25,7 +25,7 @@ func PricingLoop(d *drive.Drive) string {
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
-     var p *purse.Purse = d.p 
+     var p *purse.Purse = d.Purse 
      p.Fund(initalCashAmount, spotPrice)
 
      fmt.Printf("%s\n", p.String(spotPrice))
