@@ -20,6 +20,7 @@ var sellTrigger float64
 
 // var initalCashAmount = 10000.00
 
+// func PricingLoop(c *campaign.Campaign) string {
 func PricingLoop(c *campaign.Campaign) string {
      price_quotes.Init()
      defer price_quotes.Close()
