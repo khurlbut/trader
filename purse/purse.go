@@ -34,6 +34,11 @@ func (p *Purse) Fund(funds float64, spot float64) {
      p.cash = funds * p.targetCashPercentage
 }
 
+func (p *Purse) SetTargetCashPercentage(target float64) float64 {
+     p.targetCashPercentage = target
+     return p.targetCashPercentage
+}
+
 /*
      The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
 */

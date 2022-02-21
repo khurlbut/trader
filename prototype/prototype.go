@@ -27,7 +27,10 @@ func PricingLoop(d *drive.Drive) string {
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
 
+     cpa := cash_percentage_adjuster.NewCashAdjuster()
+
      var p *purse.Purse = d.Purse 
+     p.SetTargetCashPercentage(cpa.CashPercentageTarget(spotPrice))
      p.Fund(d.InitialCash, spotPrice)
 
      buyTrigger = d.BuyTrigger
@@ -35,10 +38,9 @@ func PricingLoop(d *drive.Drive) string {
 
      fmt.Printf("%s\n", p.String(spotPrice))
 
-     cpa := cash_percentage_adjuster.NewCashAdjuster()
-
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
+          p.SetTargetCashPercentage(cpa.CashPercentageTarget(spotPrice))
           
           if isActionSignaled(spotPrice, lastTransctionPrice) {
                var action string
