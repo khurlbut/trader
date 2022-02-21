@@ -11,6 +11,7 @@ import
      "fmt"
      "github.com/khurlbut/trader/drive"
      "github.com/khurlbut/trader/purse"
+     "github.com/khurlbut/trader/cash_percentage_adjuster"
      "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
 )
 
@@ -33,6 +34,8 @@ func PricingLoop(d *drive.Drive) string {
      sellTrigger = d.SellTrigger
 
      fmt.Printf("%s\n", p.String(spotPrice))
+
+     cpa := cash_percentage_adjuster.NewCashAdjuster()
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -58,6 +61,7 @@ func PricingLoop(d *drive.Drive) string {
                     lastTransctionPrice = spotPrice
 
                     fmt.Printf("\t%s\t%s\n", action, p.String(spotPrice))
+                    fmt.Printf("\tNew Cash Target: %f", cpa.CashPercentageTarget(spotPrice))
                }
           }
      }

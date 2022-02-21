@@ -1,5 +1,6 @@
 alias b='./build.sh'
 alias r='make run'
+alias f='make fast'
 
 gvm use go1.17
 
