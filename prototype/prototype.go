@@ -18,13 +18,13 @@ import
 
 // var initalCashAmount = 10000.00
 
-func PricingLoop(d *main.Drive) string {
+func PricingLoop(d *Drive) string {
      price_quotes.Init()
      defer price_quotes.Close()
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
-     p = d.p 
+     var p *purse.Purse = d.p 
      p.Fund(initalCashAmount, spotPrice)
 
      fmt.Printf("%s\n", p.String(spotPrice))
