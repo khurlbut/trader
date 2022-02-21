@@ -1,6 +1,7 @@
 package drive
 
 import(
+  "fmt"
 	"github.com/khurlbut/trader/purse"
   "github.com/magiconair/properties"
 )
@@ -19,7 +20,7 @@ type Drive struct {
 func NewDrive() *Drive {
 
   props := properties.MustLoadFile("${TRADER_HOME}/drive.properties", properties.UTF8)
-
+  fmt.Printf("\nprops.targetCashPercentage: %f\n", props.GetFloat64(targetCashPercentage))
 	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
 	d := Drive{
 		InitialCash: 	10000.00,
