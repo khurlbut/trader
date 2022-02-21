@@ -24,7 +24,7 @@ func NewCashAdjuster() *CashPercentageTable {
 	c := CashPercentageTable{
 		spotPriceLow: 	spotPriceLow,
 		spotPriceHigh:	spotPriceHigh,
-		cashPercentageLow:	cashPercentageHigh,	
+		cashPercentageLow:	cashPercentageLow,	
 		cashPercentageHigh:	cashPercentageHigh,
 	}
 	return &c
