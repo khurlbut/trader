@@ -16,10 +16,10 @@ const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.c
 func NewCashAdjuster() *CashPercentageTable {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
-  spotPriceLow := props.GetFloat64("spotPriceLow", 17000.00)
-  spotPriceHigh := props.GetFloat64("spotPriceHigh", 25000.00)
+  spotPriceLow := props.GetFloat64("spotPriceLow", 0.00)
+  spotPriceHigh := props.GetFloat64("spotPriceHigh", 0.00)
   cashPercentageLow := props.GetFloat64("cashPercentageLow", 0.00)
-  cashPercentageHigh := props.GetFloat64("cashPercentageHigh", 0.20)
+  cashPercentageHigh := props.GetFloat64("cashPercentageHigh", 0.00)
 
 	c := CashPercentageTable{
 		spotPriceLow: 	spotPriceLow,
