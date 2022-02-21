@@ -1,9 +1,8 @@
 package cash_percentage_adjuster
 
-// import(
-// 	"github.com/khurlbut/trader/purse"
-//   "github.com/magiconair/properties"
-// )
+import(
+  "github.com/magiconair/properties"
+)
 
 type CashPercentageTable struct {
 	spotPriceLow float64
