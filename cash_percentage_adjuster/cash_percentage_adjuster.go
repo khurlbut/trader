@@ -32,7 +32,7 @@ func NewCashAdjuster() *CashPercentageTable {
 
 func (c *CashPercentageTable) CashPercentageTarget(spot float64) float64 {
 	spotInRange := findPercentInRange(spot, c.spotPriceLow, c.spotPriceHigh)
-	return findPercentInRange(spotInRange, c.cashPercentageLow, c.cashPercentageHigh)
+	return spotInRange * (c.cashPercentageHigh - c.cashPercentageLow) + c.cashPercentageLow
 }
 
 func findPercentInRange(value float64, low float64, high float64) float64 {
