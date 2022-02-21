@@ -6,7 +6,7 @@ import(
   "github.com/magiconair/properties"
 )
 
-const targetCashPercentage = 0.5
+// const targetCashPercentage = 0.5
 const tradingFeePercentage = 0.006
 
 type Drive struct {
@@ -20,7 +20,12 @@ type Drive struct {
 func NewDrive() *Drive {
 
   props := properties.MustLoadFile("/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/drive.properties", properties.UTF8)
-  fmt.Printf("\nprops.targetCashPercentage: %f\n", props.GetFloat64("targetCashPercentage", 0.50))
+  targetCashPercentage := props.GetFloat64("targetCashPercentage", 0.50)
+  tradingFeePercentage := props.GetFloat64("tradingFeePercentage", 0.006)
+  initialCash := props.GetFloat64("initialCash", 10000.00)
+  buyTrigger := props.GetFloat64("buyTrigger", 0.02)
+  sellTrigger := props.GetFloat64("sellTrigger", 0.02)
+
 	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
 	d := Drive{
 		InitialCash: 	10000.00,
