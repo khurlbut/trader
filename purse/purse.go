@@ -96,5 +96,5 @@ func (p *Purse) tradingFee(amt float64) float64 {
 }
 
 func  (p *Purse) String(spot float64) string {
-     return fmt.Sprintf("Spot: %f\tCashHoldings %f\tCoins: %f\t\tTotal Purse: %f", spot, p.cash, p.coins, p.valueAt(spot))
+     return fmt.Sprintf("Spot: %f\tCash: %f\tCoins: %f\t\tTotal Purse: %f", spot, p.cash, p.coins, p.valueAt(spot))
 }
