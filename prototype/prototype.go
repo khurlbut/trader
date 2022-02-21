@@ -35,7 +35,7 @@ func PricingLoop(d *drive.Drive) string {
 
      fmt.Printf("%s\n", p.String(spotPrice))
 
-     // cpa := cash_percentage_adjuster.NewCashAdjuster()
+     cpa := cash_percentage_adjuster.NewCashAdjuster()
 
      for price_quotes.HasNextPrice() {
           spotPrice = price_quotes.NextPrice()
@@ -61,7 +61,7 @@ func PricingLoop(d *drive.Drive) string {
                     lastTransctionPrice = spotPrice
 
                     fmt.Printf("\t%s\t%s\n", action, p.String(spotPrice))
-                    // fmt.Printf("\tNew Cash Target: %f", cpa.CashPercentageTarget(spotPrice))
+                    fmt.Printf("\tNew Cash Target: %f", cpa.CashPercentageTarget(spotPrice))
                }
           }
      }
