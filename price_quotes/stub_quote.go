@@ -6,7 +6,7 @@ var spotPriceIndex = 0
 
 type StubQuoteService struct {}
 
-func NewStubQuoteService() *QuoteService {
+func NewStubQuoteService() *StubQuoteService {
 	return &StubQuoteService{}
 }
 
