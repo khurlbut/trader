@@ -53,7 +53,7 @@ var start_time time.Time
 var end_time time.Time
 
 func (qs *CommaSeparatedValueQuoteService) Open() {
-     fmt.Println("Open 1")
+     fmt.Printf("Open 1 %s", qs.datafile)
      f, err := os.Open(qs.datafile)
      if err != nil {
           log.Fatal(err)
