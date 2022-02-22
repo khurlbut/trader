@@ -60,7 +60,7 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
      qs.scanToStartDate()
 }
 
-func exitOnError(Error err) {
+func exitOnError(err Error) {
      if err != nil {
           log.Fatal(err)
      }
