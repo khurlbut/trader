@@ -1,19 +1,13 @@
 package prototype
 
 
-/* 
-     Alternative price sources
-     "github.com/khurlbut/trader/price_quotes"
-     "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
-*/
-
 import
 (
      "fmt"
      "github.com/khurlbut/trader/campaign"
-     "github.com/khurlbut/trader/purse"
-     "github.com/khurlbut/trader/price_quotes"
      "github.com/khurlbut/trader/cash_percentage_adjuster"
+     "github.com/khurlbut/trader/price_quotes"
+     "github.com/khurlbut/trader/purse"
 )
 
 var buyTrigger float64
@@ -21,8 +15,8 @@ var sellTrigger float64
 
 func PricingLoop(c *campaign.Campaign) string {
      var qs price_quotes.QuoteService = nil
-     qs = price_quotes.NewStubQuoteService()
-     // qs = price_quotes.NewCryptoDataDownloadQuoteService()
+     // qs = price_quotes.NewStubQuoteService()
+     qs = price_quotes.NewCryptoDataDownloadQuoteService()
 
      qs.Open()
      defer qs.Close()
