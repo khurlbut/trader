@@ -11,7 +11,6 @@ import (
      "github.com/magiconair/properties"
 )
 
-
 type CommaSeparatedValueQuoteService struct {
      file *os.File 
      scanner *bufio.Scanner
