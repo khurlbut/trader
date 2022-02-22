@@ -24,7 +24,7 @@ var sellTrigger float64
 // var initalCashAmount = 10000.00
 
 func PricingLoop(c *campaign.Campaign) string {
-     var qs *QuoteService = nil
+     var qs *price_quotes.QuoteService = nil
      qs = price_quotes.NewStubQuoteService()
      fmt.Println(qs)
 
