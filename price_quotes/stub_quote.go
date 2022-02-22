@@ -10,15 +10,11 @@ func NewStubQuoteService() *StubQuoteService {
 	return &StubQuoteService{}
 }
 
-func Open() {
+func (QuoteService) Open() {
      fmt.Println("price_quotes.Init")
 }
 
-func Init() {
-     fmt.Println("price_quotes.Init")
-}
-
-func Close() {
+func (QuoteService) Close() {
      fmt.Println("price_quotes.Close")
 }
 

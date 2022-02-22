@@ -27,8 +27,10 @@ func PricingLoop(c *campaign.Campaign) string {
      qs := price_quotes.NewStubQuoteService()
      fmt.Println(qs)
 
-     price_quotes.Open()
-     defer price_quotes.Close()
+     // price_quotes.Open()
+     // defer price_quotes.Close()
+     qs.Open()
+     defer qs.Close()
 
      lastTransctionPrice := price_quotes.CurrentPrice()
      spotPrice := lastTransctionPrice
