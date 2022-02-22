@@ -94,7 +94,7 @@ func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
 
 func (qs *CommaSeparatedValueQuoteService) NextPrice() float64 {
      p := qs.readPrice()
-     qs.Scan()
+     qs.scan()
      return p
 }
 
@@ -127,7 +127,7 @@ func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
 
 func (qs *CommaSeparatedValueQuoteService) readDate() time.Time {
      fmt.Println("readDate 1")
-     qs.scanner.scan()
+     qs.scan()
      fmt.Println("readDate 2")
      t, err := time.Parse(qs.dateTimeLayout, qs.readLineArray()[qs.dateTimeIndex])
      if err != nil {
