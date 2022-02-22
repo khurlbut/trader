@@ -11,48 +11,73 @@ import (
 )
 
 
-type CryptoDataDownloadQuoteService struct {}
-
-func NewCryptoDataDownloadQuoteService() *CryptoDataDownloadQuoteService {
-	return &CryptoDataDownloadQuoteService{}
+type CommaSeparatedValueQuoteService struct {
+     file *os.File = nil,
+     scanner *.bufio.Scanner = nil,
+     datafile string
+     spotPriceIndex int
+     dateTimeIndex int
+     dateTimeLayout string
+     startTimeStr string
+     endTimeStr string
+     startTime time.Time
+     endTime time.Time
 }
 
-const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
-const open_index = 3
-const date_time_index = 1
-const date_time_layout = "2006-01-02 15:04:05"
-const start_time_str = "2020-11-21 07:21:00"
-const end_time_str = "2020-12-21 07:21:00"
+func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedValueQuoteService {
+     propertiesPath = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/"
+     
+     props := properties.MustLoadFile(propertiesPath + propertiesFile, properties.UTF8)
+
+	return &CommaSeparatedValueQuoteService{
+          datafile = props.datafile,
+          spotPriceIndex = props.spot_price_index,
+          dateTimeIndex = props.date_time_index,
+          dateTimeLayout = props.date_time_layout,
+          startTimeStr = props.start_time,
+          endTimeStr = props.end_time,
+     }
+}
+
+// const spot_price_index = 3
+// const date_time_index = 1
+// const date_time_layout = "2006-01-02 15:04:05"
+
+// const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
+// const start_time_str = "2020-11-21 07:21:00"
+// const end_time_str = "2020-12-21 07:21:00"
 
 var file *os.File = nil
 var scanner *bufio.Scanner = nil
 var start_time time.Time
 var end_time time.Time
 
-func (CryptoDataDownloadQuoteService) Open() {
-     f, err := os.Open(datafile)
+func (qs *CommaSeparatedValueQuoteService) Open() {
+     f, err := os.Open(qs.datafile)
      if err != nil {
           log.Fatal(err)
      }
-     file = f
+     qs.file = f
 
-     start_time, err = time.Parse(date_time_layout, start_time_str) 
+     st, err := time.Parse(qs.dateTimeLayout, qs.startTimeStr) 
      if err != nil {
           log.Fatal(err)
      }
+     qs.startTime = st
 
-     end_time, err = time.Parse(date_time_layout, end_time_str) 
+     et, err := time.Parse(qs.dateTimeLayout, qs.endTime) 
      if err != nil {
           log.Fatal(err)
      }
+     qs.endTime = et
      
-     scanner = bufio.NewScanner(file)
-     checkScanner()
-     scanToStartDate()
+     qs.scanner = bufio.NewScanner(file)
+     qs.checkScanner()
+     qs.scanToStartDate()
 }
 
-func (CryptoDataDownloadQuoteService) HasNextPrice() bool {
-     d := readDate()
+func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
+     d := qs.readDate()
      if d.Before(end_time) {
           return true
      }
@@ -60,63 +85,63 @@ func (CryptoDataDownloadQuoteService) HasNextPrice() bool {
      return false
 }
 
-func (CryptoDataDownloadQuoteService) NextPrice() float64 {
-     p := readPrice()
-     scan()
+func (qs *CommaSeparatedValueQuoteService) NextPrice() float64 {
+     p := qs.readPrice()
+     qs.scan()
      return p
 }
 
-func (CryptoDataDownloadQuoteService) CurrentPrice() float64 {
-     return readPrice()
+func (qs *CommaSeparatedValueQuoteService) CurrentPrice() float64 {
+     return qs.readPrice()
 }
 
-func (CryptoDataDownloadQuoteService) Close() {
-     file.Close()
+func (qs *CommaSeparatedValueQuoteService) Close() {
+     qs.file.Close()
 }
 
-func scanToStartDate() {
-     d := readDate()
+func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
+     d := qs.readDate()
 
      for d.Before(start_time) {
-          d = readDate()
+          d = qs.readDate()
      }
      fmt.Println("Start Time: " + d.String())
 }
 
-func readPrice() float64 {
-     p, err := strconv.ParseFloat(readLineArray()[open_index], 64) 
+func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
+     p, err := strconv.ParseFloat(readLineArray()[qs.spotPriceIndex], 64) 
      if err != nil {
           log.Fatal(err)
      }
      return p
 }
 
-func readDate() time.Time {
-     scan()
-     t, err := time.Parse(date_time_layout, readLineArray()[date_time_index])
+func (qs *CommaSeparatedValueQuoteService) readDate() time.Time {
+     qs.scan()
+     t, err := time.Parse(date_time_layout, qs.readLineArray()[date_time_index])
      if err != nil {
           log.Fatal(err)
      }
      return t
 }
 
-func readLineArray() []string {
-     return strings.Split(readLine(), ",")
+func (qs *CommaSeparatedValueQuoteService) readLineArray() []string {
+     return strings.Split(qs.readLine(), ",")
 }
 
-func readLine() string {
-     l := scanner.Text()
-     checkScanner()
+func (qs *CommaSeparatedValueQuoteService) readLine() string {
+     l := qs.scanner.Text()
+     qs.checkScanner()
      return l
 }
 
-func scan() {
-     scanner.Scan()
-     checkScanner()
+func (qs *CommaSeparatedValueQuoteService) scan() {
+     qs.scanner.Scan()
+     qs.checkScanner()
 }
 
-func checkScanner() {
-     if err := scanner.Err(); err != nil {
+func (qs *CommaSeparatedValueQuoteService) checkScanner() {
+     if err := qs.scanner.Err(); err != nil {
           log.Fatal(err)
      }
 }

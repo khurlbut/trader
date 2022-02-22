@@ -21,12 +21,13 @@ func NewCampaign() *Campaign {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
 	quoteService := props.GetString("quoteService", "StubQuoteService")
+	quoteServicePropsFile := props.GetString("quoteServicePropsFile", "")
 
 	var qs price_quotes.QuoteService = nil
 	if quoteService == "StubQuoteService" {
 		qs = price_quotes.NewStubQuoteService()
 	} else if quoteService == "CryptoDataDownloadQuoteService" {
-		qs = price_quotes.NewCryptoDataDownloadQuoteService()
+		qs = price_quotes.NewCryptoDataDownloadQuoteService(quoteServicePropsFile)
 	} else {
 		log.Fatal("Invalid Quote Service: " + quoteService)
 	}
