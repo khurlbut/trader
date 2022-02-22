@@ -48,8 +48,27 @@ func (CryptoDataDownloadQuoteService) Open() {
      
      scanner = bufio.NewScanner(file)
      checkScanner()
-
      scanToStartDate()
+}
+
+func (CryptoDataDownloadQuoteService) HasNextPrice() bool {
+     scan()
+     d := readDate()
+     if d.Before(end_time) {
+          return true
+     }
+     fmt.Println("End Time: " + d.String())
+     return false
+}
+
+func (CryptoDataDownloadQuoteService) NextPrice() float64 {
+     p := readPrice()
+     scan()
+     return p
+}
+
+func (CryptoDataDownloadQuoteService) CurrentPrice() float64 {
+     return readPrice()
 }
 
 func (CryptoDataDownloadQuoteService) Close() {
@@ -65,7 +84,6 @@ func scanToStartDate() {
           d = readDate()
      }
      fmt.Println("Start Time: " + d.String())
-
 }
 
 func readPrice() float64 {
@@ -103,24 +121,4 @@ func checkScanner() {
      if err := scanner.Err(); err != nil {
           log.Fatal(err)
      }
-}
-
-func (CryptoDataDownloadQuoteService) HasNextPrice() bool {
-     scan()
-     d := readDate()
-     if d.Before(end_time) {
-          return true
-     }
-     fmt.Println("End Time: " + d.String())
-     return false
-}
-
-func (CryptoDataDownloadQuoteService) NextPrice() float64 {
-     p := readPrice()
-     scan()
-     return p
-}
-
-func (CryptoDataDownloadQuoteService) CurrentPrice() float64 {
-     return readPrice()
 }
