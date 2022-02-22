@@ -23,7 +23,8 @@ var sellTrigger float64
 
 func PricingLoop(c *campaign.Campaign) string {
      var qs price_quotes.QuoteService = nil
-     qs = price_quotes.NewStubQuoteService()
+     // qs = price_quotes.NewStubQuoteService()
+     qs = price_quotes.NewCryptoDataDownloadQuoteService()
 
      qs.Open()
      defer qs.Close()
