@@ -31,11 +31,11 @@ func NewCampaign() *Campaign {
 		log.Fatal("Invalid Quote Service: " + quoteService)
 	}
 
-  targetCashPercentage := props.GetFloat64("targetCashPercentage", 0.50)
-  tradingFeePercentage := props.GetFloat64("tradingFeePercentage", 0.006)
-  initialCash := props.GetFloat64("initialCash", 10000.00)
-  buyTrigger := props.GetFloat64("buyTrigger", 0.02)
-  sellTrigger := props.GetFloat64("sellTrigger", 0.02)
+  targetCashPercentage := props.GetFloat64("targetCashPercentage", 0.00)
+  tradingFeePercentage := props.GetFloat64("tradingFeePercentage", 0.000)
+  initialCash := props.GetFloat64("initialCash", 0.00)
+  buyTrigger := props.GetFloat64("buyTrigger", 0.00)
+  sellTrigger := props.GetFloat64("sellTrigger", 0.00)
 
 	p := purse.NewPurse(targetCashPercentage, tradingFeePercentage)
 	c := Campaign{
