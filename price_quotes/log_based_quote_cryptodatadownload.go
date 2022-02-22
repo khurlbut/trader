@@ -27,8 +27,10 @@ type CommaSeparatedValueQuoteService struct {
 
 func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedValueQuoteService {
      propertiesPath := "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/price_quotes/"
+     propsFile := propertiesPath + propertiesFile
      
-     props := properties.MustLoadFile(propertiesPath + propertiesFile, properties.UTF8)
+     fmt.printf("propsFile: %s\n", propsFile)
+     props := properties.MustLoadFile(propsFile, properties.UTF8)
 
 	return &CommaSeparatedValueQuoteService{
           datafile: props.GetString("datafile", ""),
