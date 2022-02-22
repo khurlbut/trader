@@ -29,8 +29,8 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
      propertiesPath := "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/price_quotes/"
      propsFile := propertiesPath + propertiesFile
      
-     fmt.Printf("props.GetString(datafile, \"\"): %s\n", props.GetString("datafile", ""))
      props := properties.MustLoadFile(propsFile, properties.UTF8)
+     fmt.Printf("props.GetString(datafile, \"\"): %s\n", props.GetString("datafile", ""))
 
 	return &CommaSeparatedValueQuoteService{
           datafile: props.GetString("datafile", ""),
