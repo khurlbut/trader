@@ -40,7 +40,8 @@ func (p *Purse) SetTargetCashPercentage(target float64) float64 {
 }
 
 /*
-     The "adjustment" value is either positive or negative reflecting a BUY or a SELL.
+     The "adjustment" value is either positive or negative reflecting a SELL or a BUY, respectively.
+     A BUY will "add" a negative value to Cash.
 */
 func (p *Purse) CashRequiredToAlignWithTarget(spot float64) float64 {
      cashTarget := p.valueAt(spot) * p.targetCashPercentage
@@ -70,8 +71,8 @@ func feeCausesCostOverrun(fee float64, adjustment float64, holdings float64) boo
 }
 
 /*
-     The "amount" is either positive or negative reflecting a BUY or a SELL.
-     A BUY will "add" a negative value to Cash, etc.
+     The "amount" is either positive or negative reflecting a SELL or a BUY, respectively.
+     A BUY will "add" a negative value to Cash.
  */
 func (p *Purse) ReflectOrderFill(amount float64, spot float64) {
      p.addCash(amount)
