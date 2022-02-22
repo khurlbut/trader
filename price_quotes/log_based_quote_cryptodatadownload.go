@@ -53,25 +53,28 @@ var start_time time.Time
 var end_time time.Time
 
 func (qs *CommaSeparatedValueQuoteService) Open() {
-     fmt.Println("Open")
+     fmt.Println("Open 1")
      f, err := os.Open(qs.datafile)
      if err != nil {
           log.Fatal(err)
      }
      qs.file = f
 
+     fmt.Println("Open 2")
      st, err := time.Parse(qs.dateTimeLayout, qs.startTimeStr) 
      if err != nil {
           log.Fatal(err)
      }
      qs.startTime = st
 
+     fmt.Println("Open 3")
      et, err := time.Parse(qs.dateTimeLayout, qs.endTimeStr) 
      if err != nil {
           log.Fatal(err)
      }
      qs.endTime = et
      
+     fmt.Println("Open 4")
      qs.scanner = bufio.NewScanner(file)
      qs.checkScanner()
      qs.scanToStartDate()
