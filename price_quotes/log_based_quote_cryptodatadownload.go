@@ -47,10 +47,10 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
 // const start_time_str = "2020-11-21 07:21:00"
 // const end_time_str = "2020-12-21 07:21:00"
 
-var file *os.File = nil
-var scanner *bufio.Scanner = nil
-var start_time time.Time
-var end_time time.Time
+// var file *os.File = nil
+// var scanner *bufio.Scanner = nil
+// var start_time time.Time
+// var end_time time.Time
 
 func (qs *CommaSeparatedValueQuoteService) Open() {
      fmt.Printf("Open 1 %s\n", qs.datafile)
@@ -75,7 +75,7 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
      qs.endTime = et
      
      fmt.Println("Open 4")
-     qs.scanner = bufio.NewScanner(file)
+     qs.scanner = bufio.NewScanner(qs.file)
      fmt.Println("Open 4.1")
      qs.checkScanner()
      fmt.Println("Open 4.2")
