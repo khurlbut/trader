@@ -27,7 +27,7 @@ func NewCampaign() *Campaign {
 	if quoteService == "StubQuoteService" {
 		qs = price_quotes.NewStubQuoteService()
 	} else if quoteService == "CryptoDataDownloadQuoteService" {
-		qs = price_quotes.NewCryptoDataDownloadQuoteService(quoteServicePropsFile)
+		qs = price_quotes.NewCommaSeparatedValueQuoteService(quoteServicePropsFile)
 	} else {
 		log.Fatal("Invalid Quote Service: " + quoteService)
 	}
