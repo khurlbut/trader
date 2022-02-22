@@ -10,6 +10,7 @@ type FixedCashPercentageTable struct {}
 // const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
 
 func NewFixedCashAdjuster() *FixedCashPercentageTable {
+	log.Fatal("Not Implemented")
   // props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 	return nil
 }
