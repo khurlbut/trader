@@ -52,7 +52,6 @@ func (CryptoDataDownloadQuoteService) Open() {
 }
 
 func (CryptoDataDownloadQuoteService) HasNextPrice() bool {
-     scan()
      d := readDate()
      if d.Before(end_time) {
           return true
@@ -76,11 +75,9 @@ func (CryptoDataDownloadQuoteService) Close() {
 }
 
 func scanToStartDate() {
-     scan()
-
      d := readDate()
+
      for d.Before(start_time) {
-          scan()
           d = readDate()
      }
      fmt.Println("Start Time: " + d.String())
@@ -95,6 +92,7 @@ func readPrice() float64 {
 }
 
 func readDate() time.Time {
+     scan()
      t, err := time.Parse(date_time_layout, readLineArray()[date_time_index])
      if err != nil {
           log.Fatal(err)
