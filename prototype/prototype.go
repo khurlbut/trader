@@ -18,10 +18,8 @@ import
      "github.com/khurlbut/trader/cash_percentage_adjuster"
 )
 
-// var buyTrigger float64
-// var sellTrigger float64
-
-// var initalCashAmount = 10000.00
+var buyTrigger float64
+var sellTrigger float64
 
 func PricingLoop(c *campaign.Campaign) string {
      var qs price_quotes.QuoteService = nil
