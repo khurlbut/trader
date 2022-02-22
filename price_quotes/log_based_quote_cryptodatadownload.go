@@ -76,13 +76,14 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
      
      fmt.Println("Open 4")
      qs.scanner = bufio.NewScanner(file)
+     fmt.Println("Open 4.1")
      qs.checkScanner()
+     fmt.Println("Open 4.2")
      qs.scanToStartDate()
      fmt.Println("Open 5")
 }
 
 func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
-     fmt.Println("HasNextPrice 1")
      d := qs.readDate()
      if d.Before(end_time) {
           return true
