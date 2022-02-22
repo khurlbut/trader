@@ -47,8 +47,8 @@ func PricingLoop(c *campaign.Campaign) string {
 
      fmt.Printf("%s\n", p.String(spotPrice))
 
-     for price_quotes.HasNextPrice() {
-          spotPrice = price_quotes.NextPrice()
+     for qs.HasNextPrice() {
+          spotPrice = qs.NextPrice()
           p.SetTargetCashPercentage(cpa.CashPercentageTarget(spotPrice))
           
           if isActionSignaled(spotPrice, lastTransctionPrice) {
