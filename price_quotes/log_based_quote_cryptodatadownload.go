@@ -12,8 +12,8 @@ import (
 
 
 type CommaSeparatedValueQuoteService struct {
-     file *os.File = nil,
-     scanner *.bufio.Scanner = nil,
+     file *os.File 
+     scanner *.bufio.Scanner
      datafile string
      spotPriceIndex int
      dateTimeIndex int
