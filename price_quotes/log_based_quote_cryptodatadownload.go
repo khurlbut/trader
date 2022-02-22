@@ -85,7 +85,7 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
 
 func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
      d := qs.readDate()
-     if d.Before(end_time) {
+     if d.Before(qs.endTime) {
           return true
      }
      fmt.Println("End Time: " + d.String())
@@ -111,7 +111,7 @@ func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
      d := qs.readDate()
 
      fmt.Println("scatToStartDate 2")
-     for d.Before(start_time) {
+     for d.Before(qs.startTime) {
           d = qs.readDate()
      }
      fmt.Println("Start Time: " + d.String())
