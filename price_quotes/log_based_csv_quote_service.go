@@ -39,10 +39,12 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
 }
 
 func (qs *CommaSeparatedValueQuoteService) Open() {
-     qs.file, err = os.Open(qs.datafile)
-     if err != nil {
-          log.Fatal(err)
-     }
+     qs.file, err := os.Open(qs.datafile)
+     exitOnError(err)
+     // if err != nil {
+     //      log.Fatal(err)
+     // }
+     qs.file = f
 
      st, err := time.Parse(qs.dateTimeLayout, qs.startTimeStr) 
      if err != nil {
@@ -51,15 +53,19 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
      qs.startTime = st
 
      et, err := time.Parse(qs.dateTimeLayout, qs.endTimeStr) 
-     if err != nil {
-          log.Fatal(err)
-     }
      qs.endTime = et
      
      qs.scanner = bufio.NewScanner(qs.file)
      qs.checkScanner()
      qs.scanToStartDate()
 }
+
+func exitOnError(Error err) {
+     if err != nil {
+          log.Fatal(err)
+     }
+}
+
 
 func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
      d := qs.readDate()
@@ -120,13 +126,13 @@ func (qs *CommaSeparatedValueQuoteService) readLine() string {
      return l
 }
 
-func (qs *CommaSeparatedValueQuoteService) scan() {
-     qs.scanner.Scan()
-     qs.checkScanner()
-}
-
 func (qs *CommaSeparatedValueQuoteService) checkScanner() {
      if err := qs.scanner.Err(); err != nil {
           log.Fatal(err)
      }
+}
+
+func (qs *CommaSeparatedValueQuoteService) scan() {
+     qs.scanner.Scan()
+     qs.checkScanner()
 }
