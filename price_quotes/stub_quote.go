@@ -4,6 +4,12 @@ import "fmt"
 
 var spotPriceIndex = 0
 
+type QuoteService struct {}
+
+func NewStubQuoteService() *QuoteService {
+	return &QuoteService{}
+}
+
 func Open() {
      fmt.Println("price_quotes.Init")
 }

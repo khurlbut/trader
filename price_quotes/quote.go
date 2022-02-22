@@ -1,16 +1,11 @@
 package price_quotes
 
 import (
-  "github.com/khurlbut/trader/price_quotes/stub/price_quotes"
 )
 
 type QuoteService interface {
 	Open()
 	Close()
-}
-
-func NewStubQuoteService() *QuoteService {
-	return &QuoteService{}
 }
 
 // type Quote struct {
