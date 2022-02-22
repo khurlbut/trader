@@ -32,8 +32,8 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
 
 	return &CommaSeparatedValueQuoteService{
           datafile: props.GetString("datafile", ""),
-          spotPriceIndex: props.GetInt("spot_price_index"),
-          dateTimeIndex: props.GetInt("date_time_index"),
+          spotPriceIndex: props.GetInt("spot_price_index", -1),
+          dateTimeIndex: props.GetInt("date_time_index", -1),
           dateTimeLayout: props.GetString("date_time_layout", ""),
           startTimeStr: props.GetString("start_time", ""),
           endTimeStr: props.GetString("end_time", ""),
