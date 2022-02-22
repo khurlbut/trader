@@ -153,8 +153,9 @@ func (qs *CommaSeparatedValueQuoteService) scan() {
 }
 
 func (qs *CommaSeparatedValueQuoteService) checkScanner() {
-     fmt.Println("checkScanner")
+     fmt.Println("checkScanner 1")
      if err := qs.scanner.Err(); err != nil {
+          fmt.Println("checkScanner 2")
           log.Fatal(err)
      }
 }
