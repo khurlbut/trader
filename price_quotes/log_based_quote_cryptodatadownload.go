@@ -31,6 +31,11 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
      
      props := properties.MustLoadFile(propsFile, properties.UTF8)
      fmt.Printf("props.GetString(datafile, \"\"): %s\n", props.GetString("datafile", ""))
+     path, err := os.Getwd()
+if err != nil {
+    log.Println(err)
+}
+fmt.Println(path) 
 
 	return &CommaSeparatedValueQuoteService{
           datafile: props.GetString("datafile", ""),
