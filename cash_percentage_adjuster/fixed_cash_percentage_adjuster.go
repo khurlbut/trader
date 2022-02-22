@@ -2,7 +2,7 @@ package cash_percentage_adjuster
 
 import(
 	"log"
-  "github.com/magiconair/properties"
+  // "github.com/magiconair/properties"
 )
 
 type FixedCashPercentageTable struct {}
