@@ -4,7 +4,7 @@ import "fmt"
 
 var spotPriceIndex = 0
 
-type QuoteService struct {}
+type StubQuoteService struct {}
 
 func NewStubQuoteService() *QuoteService {
 	return &QuoteService{}
