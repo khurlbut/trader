@@ -26,8 +26,7 @@ type CommaSeparatedValueQuoteService struct {
 }
 
 func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedValueQuoteService {
-     propertiesPath := "price_quotes/"
-     props := properties.MustLoadFile(propertiesPath + propertiesFile, properties.UTF8)
+     props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
 	return &CommaSeparatedValueQuoteService{
           datafile: props.GetString("datafile", ""),
