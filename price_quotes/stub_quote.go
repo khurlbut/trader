@@ -11,7 +11,7 @@ func NewStubQuoteService() *StubQuoteService {
 }
 
 func (StubQuoteService) Open() {
-     fmt.Println("price_quotes.Init")
+     fmt.Println("price_quotes.Open")
 }
 
 func (StubQuoteService) Close() {
