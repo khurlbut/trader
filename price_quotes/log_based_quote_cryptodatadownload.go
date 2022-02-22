@@ -30,12 +30,12 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
      props := properties.MustLoadFile(propertiesPath + propertiesFile, properties.UTF8)
 
 	return &CommaSeparatedValueQuoteService{
-          datafile = props.datafile,
-          spotPriceIndex = props.spot_price_index,
-          dateTimeIndex = props.date_time_index,
-          dateTimeLayout = props.date_time_layout,
-          startTimeStr = props.start_time,
-          endTimeStr = props.end_time,
+          datafile: props.datafile,
+          spotPriceIndex: props.spot_price_index,
+          dateTimeIndex: props.date_time_index,
+          dateTimeLayout: props.date_time_layout,
+          startTimeStr: props.start_time,
+          endTimeStr: props.end_time,
      }
 }
 
