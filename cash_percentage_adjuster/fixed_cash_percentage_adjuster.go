@@ -7,10 +7,10 @@ import(
 
 type FixedCashPercentageTable struct {}
 
-const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
+const propertiesFile2 = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
 
 func NewFixedCashAdjuster() *FixedCashPercentageTable {
-  props := properties.MustLoadFile(propertiesFile, properties.UTF8)
+  props := properties.MustLoadFile(propertiesFile2, properties.UTF8)
 	return nil
 }
 
