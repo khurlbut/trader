@@ -7,7 +7,7 @@ var spotPriceIndex = 0
 type StubQuoteService struct {}
 
 func NewStubQuoteService() *QuoteService {
-	return &QuoteService{}
+	return &NewQuoteService{}
 }
 
 func Open() {
