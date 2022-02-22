@@ -110,7 +110,7 @@ func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
 }
 
 func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
-     p, err := strconv.ParseFloat(readLineArray()[qs.spotPriceIndex], 64) 
+     p, err := strconv.ParseFloat(qs.readLineArray()[qs.spotPriceIndex], 64) 
      if err != nil {
           log.Fatal(err)
      }
@@ -119,7 +119,7 @@ func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
 
 func (qs *CommaSeparatedValueQuoteService) readDate() time.Time {
      qs.scan()
-     t, err := time.Parse(date_time_layout, qs.readLineArray()[date_time_index])
+     t, err := time.Parse(qs.dateTimeLayout, qs.readLineArray()[qs.dateTimeIndex])
      if err != nil {
           log.Fatal(err)
      }
