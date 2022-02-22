@@ -6,6 +6,8 @@ import (
 type QuoteService interface {
 	Open()
 	Close()
+	HasNextPrice() bool
+	NextPrice() float64
 }
 
 // type Quote struct {

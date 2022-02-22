@@ -33,7 +33,7 @@ func PricingLoop(c *campaign.Campaign) string {
      qs.Open()
      defer qs.Close()
 
-     lastTransctionPrice := price_quotes.CurrentPrice()
+     lastTransctionPrice := qs.CurrentPrice()
      spotPrice := lastTransctionPrice
 
      cpa := cash_percentage_adjuster.NewCashAdjuster()
