@@ -1,6 +1,6 @@
 package price_quotes
 
-import "fmt"
+// import "fmt"
 
 // var spotPriceIndex = 0
 // var prices = []float64{5.0, 8.0, 4.0, 2.0, 6.0, 7.0}
