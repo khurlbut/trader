@@ -14,7 +14,7 @@ func NewFixedCashAdjuster() *FixedCashPercentageTable {
 	return nil
 }
 
-func (c *SlidingCashPercentageTable) CashPercentageTarget(spot float64) float64 {
+func (c *FixedCashPercentageTable) CashPercentageTarget(spot float64) float64 {
 	log.Fatal("Not Implemented")
 	return -1.0
 }
