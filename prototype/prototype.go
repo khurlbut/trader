@@ -12,8 +12,8 @@ import
      "fmt"
      "github.com/khurlbut/trader/campaign"
      "github.com/khurlbut/trader/purse"
-     "github.com/khurlbut/trader/price_quotes/quote_service"
-     "github.com/khurlbut/trader/price_quotes/stub/price_quotes"
+     "github.com/khurlbut/trader/price_quotes/price_quotes"
+     // "github.com/khurlbut/trader/price_quotes/stub/price_quotes"
      // "github.com/khurlbut/trader/price_quotes/log_based_quotes/cryptodatadownload/price_quotes"
      "github.com/khurlbut/trader/cash_percentage_adjuster"
 )
@@ -24,10 +24,10 @@ var sellTrigger float64
 // var initalCashAmount = 10000.00
 
 func PricingLoop(c *campaign.Campaign) string {
-     qs := quote_service.NewQuoteService()
+     qs := price_quotes.NewStubQuoteService()
      fmt.Println(qs)
 
-     price_quotes.Init()
+     price_quotes.Open()
      defer price_quotes.Close()
 
      lastTransctionPrice := price_quotes.CurrentPrice()
