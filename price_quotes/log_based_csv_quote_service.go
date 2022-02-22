@@ -57,13 +57,6 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
      qs.scanToStartDate()
 }
 
-func exitOnError(err error) {
-     if err != nil {
-          log.Fatal(err)
-     }
-}
-
-
 func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
      d := qs.readDate()
      if d.Before(qs.endTime) {
@@ -98,18 +91,14 @@ func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
 
 func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
      p, err := strconv.ParseFloat(qs.readLineArray()[qs.spotPriceIndex], 64) 
-     if err != nil {
-          log.Fatal(err)
-     }
+     exitOnError(err)
      return p
 }
 
 func (qs *CommaSeparatedValueQuoteService) readDate() time.Time {
      qs.scan()
      t, err := time.Parse(qs.dateTimeLayout, qs.readLineArray()[qs.dateTimeIndex])
-     if err != nil {
-          log.Fatal(err)
-     }
+     exitOnError(err)
      return t
 }
 
@@ -132,4 +121,10 @@ func (qs *CommaSeparatedValueQuoteService) checkScanner() {
 func (qs *CommaSeparatedValueQuoteService) scan() {
      qs.scanner.Scan()
      qs.checkScanner()
+}
+
+func exitOnError(err error) {
+     if err != nil {
+          log.Fatal(err)
+     }
 }
