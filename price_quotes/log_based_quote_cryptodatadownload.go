@@ -127,7 +127,7 @@ func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
 
 func (qs *CommaSeparatedValueQuoteService) readDate() time.Time {
      fmt.Println("readDate 1")
-     qs.scan()
+     qs.scanner.scan()
      fmt.Println("readDate 2")
      t, err := time.Parse(qs.dateTimeLayout, qs.readLineArray()[qs.dateTimeIndex])
      if err != nil {
