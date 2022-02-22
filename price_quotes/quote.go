@@ -8,6 +8,7 @@ type QuoteService interface {
 	Close()
 	HasNextPrice() bool
 	NextPrice() float64
+	CurrentPrice() float64
 }
 
 // type Quote struct {
