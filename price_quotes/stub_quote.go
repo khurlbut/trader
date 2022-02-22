@@ -15,8 +15,8 @@ type StubQuoteService struct {
 
 func NewStubQuoteService() *StubQuoteService {
 	return &StubQuoteService{
-          spotPriceIndex: 0
-          prices: []float64{7500.0, 5000.00} 
+          spotPriceIndex: 0,
+          prices: []float64{7500.0, 5000.00} ,
      }
 }
 
