@@ -39,7 +39,7 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
 }
 
 func (qs *CommaSeparatedValueQuoteService) Open() {
-     qs.file, err := os.Open(qs.datafile)
+     qs.file, err = os.Open(qs.datafile)
      if err != nil {
           log.Fatal(err)
      }
