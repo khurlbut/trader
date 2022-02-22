@@ -27,7 +27,7 @@ func NewCampaign() *Campaign {
 	} else if quoteService == "CryptoDataDownloadQuoteService" {
 		qs = price_quotes.NewCryptoDataDownloadQuoteService()
 	} else {
-		Fatal.log("Invalid Quote Service: " + quoteService)
+		log.Fatal("Invalid Quote Service: " + quoteService)
 	}
 
   targetCashPercentage := props.GetFloat64("targetCashPercentage", 0.50)
