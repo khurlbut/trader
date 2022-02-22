@@ -107,8 +107,10 @@ func (qs *CommaSeparatedValueQuoteService) Close() {
 }
 
 func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
+     fmt.Println("scatToStartDate 1")
      d := qs.readDate()
 
+     fmt.Println("scatToStartDate 2")
      for d.Before(start_time) {
           d = qs.readDate()
      }
