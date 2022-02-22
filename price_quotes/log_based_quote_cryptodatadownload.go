@@ -39,48 +39,28 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
      }
 }
 
-// const spot_price_index = 3
-// const date_time_index = 1
-// const date_time_layout = "2006-01-02 15:04:05"
-
-// const datafile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/data/cryptodatadownload/Binance_BTCUSDT_minute.csv"
-// const start_time_str = "2020-11-21 07:21:00"
-// const end_time_str = "2020-12-21 07:21:00"
-
-// var file *os.File = nil
-// var scanner *bufio.Scanner = nil
-// var start_time time.Time
-// var end_time time.Time
-
 func (qs *CommaSeparatedValueQuoteService) Open() {
-     fmt.Printf("Open 1 %s\n", qs.datafile)
      f, err := os.Open(qs.datafile)
      if err != nil {
           log.Fatal(err)
      }
      qs.file = f
 
-     fmt.Println("Open 2")
      st, err := time.Parse(qs.dateTimeLayout, qs.startTimeStr) 
      if err != nil {
           log.Fatal(err)
      }
      qs.startTime = st
 
-     fmt.Println("Open 3")
      et, err := time.Parse(qs.dateTimeLayout, qs.endTimeStr) 
      if err != nil {
           log.Fatal(err)
      }
      qs.endTime = et
      
-     fmt.Println("Open 4")
      qs.scanner = bufio.NewScanner(qs.file)
-     fmt.Println("Open 4.1")
      qs.checkScanner()
-     fmt.Println("Open 4.2")
      qs.scanToStartDate()
-     fmt.Println("Open 5")
 }
 
 func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
@@ -107,10 +87,8 @@ func (qs *CommaSeparatedValueQuoteService) Close() {
 }
 
 func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
-     fmt.Println("scatToStartDate 1")
      d := qs.readDate()
 
-     fmt.Println("scatToStartDate 2")
      for d.Before(qs.startTime) {
           d = qs.readDate()
      }
@@ -126,14 +104,11 @@ func (qs *CommaSeparatedValueQuoteService) readPrice() float64 {
 }
 
 func (qs *CommaSeparatedValueQuoteService) readDate() time.Time {
-     fmt.Println("readDate 1")
      qs.scan()
-     fmt.Println("readDate 2")
      t, err := time.Parse(qs.dateTimeLayout, qs.readLineArray()[qs.dateTimeIndex])
      if err != nil {
           log.Fatal(err)
      }
-     fmt.Println("readDate 3")
      return t
 }
 
@@ -148,17 +123,12 @@ func (qs *CommaSeparatedValueQuoteService) readLine() string {
 }
 
 func (qs *CommaSeparatedValueQuoteService) scan() {
-     fmt.Println("scan 1")
      qs.scanner.Scan()
-     fmt.Println("scan 2")
      qs.checkScanner()
-     fmt.Println("scan 3")
 }
 
 func (qs *CommaSeparatedValueQuoteService) checkScanner() {
-     fmt.Println("checkScanner 1")
      if err := qs.scanner.Err(); err != nil {
-          fmt.Println("checkScanner 2")
           log.Fatal(err)
      }
 }
