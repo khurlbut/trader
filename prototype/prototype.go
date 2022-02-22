@@ -1,6 +1,5 @@
 package prototype
 
-
 import
 (
      "fmt"
@@ -22,7 +21,8 @@ func PricingLoop(c *campaign.Campaign) string {
      lastTransctionPrice := qs.CurrentPrice()
      spotPrice := lastTransctionPrice
 
-     cpa := cash_percentage_adjuster.NewCashAdjuster()
+     var cpa cash_percentage_adjuster.CashPercentageAdjuster
+     cpa = cash_percentage_adjuster.NewSlidingCashAdjuster()
 
      var p *purse.Purse = c.Purse 
      p.SetTargetCashPercentage(cpa.CashPercentageTarget(spotPrice))

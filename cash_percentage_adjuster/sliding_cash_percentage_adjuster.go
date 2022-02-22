@@ -4,7 +4,7 @@ import(
   "github.com/magiconair/properties"
 )
 
-type CashPercentageTable struct {
+type SlidingCashPercentageTable struct {
 	spotPriceLow float64
 	spotPriceHigh 	float64
 	cashPercentageLow float64
@@ -13,7 +13,7 @@ type CashPercentageTable struct {
 
 const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
 
-func NewCashAdjuster() *CashPercentageTable {
+func NewSlidingCashAdjuster() *SlidingCashPercentageTable {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
   spotPriceLow := props.GetFloat64("spotPriceLow", 0.00)
@@ -21,7 +21,7 @@ func NewCashAdjuster() *CashPercentageTable {
   cashPercentageLow := props.GetFloat64("cashPercentageLow", 0.00)
   cashPercentageHigh := props.GetFloat64("cashPercentageHigh", 0.00)
 
-	c := CashPercentageTable{
+	c := SlidingCashPercentageTable{
 		spotPriceLow: 	spotPriceLow,
 		spotPriceHigh:	spotPriceHigh,
 		cashPercentageLow:	cashPercentageLow,	
@@ -30,7 +30,7 @@ func NewCashAdjuster() *CashPercentageTable {
 	return &c
 }
 
-func (c *CashPercentageTable) CashPercentageTarget(spot float64) float64 {
+func (c *SlidingCashPercentageTable) CashPercentageTarget(spot float64) float64 {
 	if spot <= c.spotPriceLow {
 		return c.cashPercentageLow
 	}
