@@ -148,8 +148,11 @@ func (qs *CommaSeparatedValueQuoteService) readLine() string {
 }
 
 func (qs *CommaSeparatedValueQuoteService) scan() {
+     fmt.Println("scan 1")
      qs.scanner.Scan()
+     fmt.Println("scan 2")
      qs.checkScanner()
+     fmt.Println("scan 3")
 }
 
 func (qs *CommaSeparatedValueQuoteService) checkScanner() {
