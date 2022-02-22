@@ -41,22 +41,19 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
 func (qs *CommaSeparatedValueQuoteService) Open() {
      f, err := os.Open(qs.datafile)
      exitOnError(err)
-     // if err != nil {
-     //      log.Fatal(err)
-     // }
      qs.file = f
 
      st, err := time.Parse(qs.dateTimeLayout, qs.startTimeStr) 
-     if err != nil {
-          log.Fatal(err)
-     }
+     exitOnError(err)
      qs.startTime = st
 
      et, err := time.Parse(qs.dateTimeLayout, qs.endTimeStr) 
+     exitOnError(err)
      qs.endTime = et
      
      qs.scanner = bufio.NewScanner(qs.file)
      qs.checkScanner()
+
      qs.scanToStartDate()
 }
 
