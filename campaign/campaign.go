@@ -1,6 +1,7 @@
 package campaign
 
 import(
+	"log"
 	"github.com/khurlbut/trader/price_quotes"
 	"github.com/khurlbut/trader/purse"
   "github.com/magiconair/properties"
