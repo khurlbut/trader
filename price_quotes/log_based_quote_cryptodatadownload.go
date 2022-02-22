@@ -94,7 +94,7 @@ func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
 
 func (qs *CommaSeparatedValueQuoteService) NextPrice() float64 {
      p := qs.readPrice()
-     qs.scan()
+     qs.Scan()
      return p
 }
 
