@@ -66,7 +66,7 @@ func (qs *CommaSeparatedValueQuoteService) Open() {
      }
      qs.startTime = st
 
-     et, err := time.Parse(qs.dateTimeLayout, qs.endTime) 
+     et, err := time.Parse(qs.dateTimeLayout, qs.endTimeStr) 
      if err != nil {
           log.Fatal(err)
      }
