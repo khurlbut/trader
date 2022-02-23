@@ -128,8 +128,11 @@ func (qs *CommaSeparatedValueQuoteService) scan() {
 }
 
 func (qs *StringBasedQuoteService) Pause() {
-     time.Sleep(time.ParseDuration(qs.pause))
-
+     s, err := time.ParseDuration(qs.pause)
+     if err != nil {
+          log.Fatal(err)
+     }
+     time.Sleep(s)
 }
 func exitOnError(err error) {
      if err != nil {

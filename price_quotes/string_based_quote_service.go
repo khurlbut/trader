@@ -63,5 +63,9 @@ func (qs *StringBasedQuoteService) CurrentPrice() float64 {
 }
 
 func (qs *StringBasedQuoteService) Pause() {
-     time.Sleep(time.ParseDuration(qs.pause))
+     s, err := time.ParseDuration(qs.pause)
+     if err != nil {
+          log.Fatal(err)
+     }
+     time.Sleep(s)
 }
