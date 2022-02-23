@@ -16,7 +16,7 @@ type BinanceQuoteService struct {
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
-     return BinanceQuoteService{
+     return &BinanceQuoteService{
           pause = props.GetString("pause", "60s") 
      }
 }
