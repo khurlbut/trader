@@ -34,7 +34,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 	return &StringBasedQuoteService{
           spotPriceIndex: 0,
           prices: priceArr,
-          pause: props.getInt("pause", 0),
+          pause: props.GetInt("pause", 0),
      }
 }
 
@@ -63,5 +63,5 @@ func (qs *StringBasedQuoteService) CurrentPrice() float64 {
 }
 
 func (qs *StringBasedQuoteService) Pause() {
-     time.Sleep(qs.pause, time.Millisecond)
+     time.Sleep(qs.pause)
 }
