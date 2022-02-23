@@ -1,6 +1,7 @@
 package price_quotes
 
 import (
+     "fmt"
      "strings"
      "strconv"
      "github.com/magiconair/properties"
@@ -14,10 +15,13 @@ type StringBasedQuoteService struct {
 func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
      priceStr := props.GetString("prices", "")
+     fmt.Printf("priceStr: %s\n", priceStr)
 
      prices := strings.Split(priceStr, ",")
+     fmt.Printf("prices: %t\n", prices)
      arr := make([]float64, len(prices))
      for i := range arr {
+          fmt.Printf("arr[i]: %f prices[i] %s\n", arr[i], prices[i])
           arr[i], _ = strconv.ParseFloat(prices[i], 32)
      }
 
