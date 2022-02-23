@@ -34,7 +34,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 	return &StringBasedQuoteService{
           spotPriceIndex: 0,
           prices: priceArr,
-          pause: props.getInt("pause", 0)
+          pause: props.getInt("pause", 0),
      }
 }
 

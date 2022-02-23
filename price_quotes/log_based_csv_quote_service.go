@@ -36,7 +36,7 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
           dateTimeLayout: props.GetString("date_time_layout", ""),
           startTimeStr: props.GetString("start_time", ""),
           endTimeStr: props.GetString("end_time", ""),
-          pause: props.GetInt("pause", 0)
+          pause: props.GetInt("pause", 0),
      }
 }
 
