@@ -36,8 +36,8 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 }
 
 func (qs *StringBasedQuoteService) Open() {
-     if HasNextPrice() {
-          qs.currentPrice = NextPrice()
+     if qs.HasNextPrice() {
+          qs.currentPrice = qs.NextPrice()
      }
 }
 
