@@ -13,7 +13,7 @@ type StringBasedQuoteService struct {
      spotPriceIndex int
      prices []float64
      currentPrice float64
-     pause int
+     pause string
 }
 
 func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {
@@ -34,7 +34,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 	return &StringBasedQuoteService{
           spotPriceIndex: 0,
           prices: priceArr,
-          pause: props.GetInt("pause", 0),
+          pause: props.GetString("pause", "0s"),
      }
 }
 
@@ -63,5 +63,5 @@ func (qs *StringBasedQuoteService) CurrentPrice() float64 {
 }
 
 func (qs *StringBasedQuoteService) Pause() {
-     time.Sleep(qs.pause * time.Second)
+     time.Sleep(time.ParseDuration(qs.pause))
 }
