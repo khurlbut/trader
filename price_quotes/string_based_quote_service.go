@@ -11,6 +11,7 @@ import (
 type StringBasedQuoteService struct {
      spotPriceIndex int
      prices []float64
+     currentPrice float64
 }
 
 func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {
@@ -35,6 +36,9 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 }
 
 func (qs *StringBasedQuoteService) Open() {
+     if HasNextPrice() {
+          qs.currentPrice = NextPrice()
+     }
 }
 
 func (qs *StringBasedQuoteService) Close() {
@@ -46,10 +50,11 @@ func (qs *StringBasedQuoteService) HasNextPrice() bool {
 
 func (qs *StringBasedQuoteService) NextPrice() float64 {
      p := qs.prices[qs.spotPriceIndex]
+     qs.currentPrice = p
      qs.spotPriceIndex++
      return p
 }
 
 func (qs *StringBasedQuoteService) CurrentPrice() float64 {
-     return qs.prices[qs.spotPriceIndex]
+     return qs.currentPrice
 }
