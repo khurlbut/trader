@@ -66,7 +66,7 @@ func (qs *StringBasedQuoteService) AnyOtherName() {
      // return qs.currentPrice
 }
 
-func (qs *StringBasedQuoteService) Sleep() {
+func (qs *StringBasedQuoteService) SleepOver() {
      s, err := time.ParseDuration(qs.pause)
      if err != nil {
           log.Fatal(err)
