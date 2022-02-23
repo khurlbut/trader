@@ -62,8 +62,8 @@ func (qs *StringBasedQuoteService) CurrentPrice() float64 {
      return qs.currentPrice
 }
 
-func (qs *StringBasedQuoteService) AnyOtherName() float64 {
-     return qs.currentPrice
+func (qs *StringBasedQuoteService) AnyOtherName() {
+     // return qs.currentPrice
 }
 
 func (qs *StringBasedQuoteService) Sleep() {
