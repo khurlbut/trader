@@ -23,7 +23,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
      arr := make([]float64, len(prices))
      for i := range arr {
           fmt.Printf("arr[i]: %f prices[i] %s\n", arr[i], prices[i])
-          arr[i], err = strconv.ParseFloat(prices[i], 32)
+          arr[i], err := strconv.ParseFloat(prices[i], 32)
           if err != nil {
                log.Fatal(err)
           }
