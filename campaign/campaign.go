@@ -24,9 +24,9 @@ func NewCampaign() *Campaign {
 	quoteServicePropsFile := props.GetString("quoteServicePropsFile", "")
 
 	var qs price_quotes.QuoteService = nil
-	if quoteService == "StubQuoteService" {
+	if quoteService == "StringBasedQuoteService" {
 		qs = price_quotes.NewStringBasedQuoteService(quoteServicePropsFile)
-	} else if quoteService == "CryptoDataDownloadQuoteService" {
+	} else if quoteService == "CommaSeparatedValueQuoteService" {
 		qs = price_quotes.NewCommaSeparatedValueQuoteService(quoteServicePropsFile)
 	} else {
 		log.Fatal("Invalid Quote Service: " + quoteService)
