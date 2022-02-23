@@ -23,6 +23,7 @@ type CommaSeparatedValueQuoteService struct {
      startTime time.Time
      endTime time.Time
      currentPrice float64
+     pause int
 }
 
 func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedValueQuoteService {
@@ -35,6 +36,7 @@ func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedVal
           dateTimeLayout: props.GetString("date_time_layout", ""),
           startTimeStr: props.GetString("start_time", ""),
           endTimeStr: props.GetString("end_time", ""),
+          pause: props.GetInt("pause", 0)
      }
 }
 
@@ -125,6 +127,10 @@ func (qs *CommaSeparatedValueQuoteService) scan() {
      qs.checkScanner()
 }
 
+func (qs *StringBasedQuoteService) Pause() {
+     time.Sleep(qs.pause, time.Millisecond)
+
+}
 func exitOnError(err error) {
      if err != nil {
           log.Fatal(err)

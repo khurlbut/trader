@@ -5,6 +5,7 @@ import (
      "log"
      "strings"
      "strconv"
+     "time"
      "github.com/magiconair/properties"
 )
 
@@ -12,6 +13,7 @@ type StringBasedQuoteService struct {
      spotPriceIndex int
      prices []float64
      currentPrice float64
+     pause int
 }
 
 func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {
@@ -32,6 +34,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 	return &StringBasedQuoteService{
           spotPriceIndex: 0,
           prices: priceArr,
+          pause: props.getInt("pause", 0)
      }
 }
 
@@ -57,4 +60,8 @@ func (qs *StringBasedQuoteService) NextPrice() float64 {
 
 func (qs *StringBasedQuoteService) CurrentPrice() float64 {
      return qs.currentPrice
+}
+
+func (qs *StringBasedQuoteService) Pause() {
+     time.Sleep(qs.pause, time.Millisecond)
 }
