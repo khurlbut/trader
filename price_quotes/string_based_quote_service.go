@@ -10,7 +10,7 @@ type StringBasedQuoteService struct {
      prices []float64
 }
 
-func NewStringBasedQuoteService(propertiesFIle string) *StringBasedQuoteService {
+func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
      pricesStr := props.GetString("prices", "")
 
