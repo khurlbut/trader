@@ -21,7 +21,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
      prices := strings.Split(priceStr, ",")
      priceArr := make([]float64, len(prices))
      for i := range prices {
-          price, err := strconv.ParseFloat(strings.Trim(prices[i]), 32)
+          price, err := strconv.ParseFloat(strings.TrimSpace(prices[i]), 32)
           if err != nil {
                log.Fatal(err)
           }
