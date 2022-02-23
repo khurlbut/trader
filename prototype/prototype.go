@@ -61,8 +61,8 @@ func PricingLoop(c *campaign.Campaign) string {
                     fmt.Printf("\tNew Cash Target: %f\n", cpa.CashPercentageTarget(spotPrice))
                }
           }
+          qs.Pause()
      }
-     qs.Pause()
      return fmt.Sprintf("%s\n", p.String(spotPrice))
 }
 

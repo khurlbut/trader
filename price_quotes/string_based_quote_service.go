@@ -63,7 +63,6 @@ func (qs *StringBasedQuoteService) CurrentPrice() float64 {
 }
 
 func (qs *StringBasedQuoteService) Pause() {
-     fmt.Println("Pause!")
      s, err := time.ParseDuration(qs.pause)
      if err != nil {
           log.Fatal(err)
