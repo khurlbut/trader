@@ -17,7 +17,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
      return &BinanceQuoteService{
-          pause: props.GetString("pause", "60s") 
+          pause: props.GetString("pause", "60s"), 
      }
 }
 
