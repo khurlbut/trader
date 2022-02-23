@@ -12,7 +12,7 @@ type StringBasedQuoteService struct {
 
 func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
-     pricesStr := props.GetString("prices", "")
+     priceStr := props.GetString("prices", "")
 
      prices := strings.Split(priceStr, ",")
      arr := make([]float64, len(prices))
