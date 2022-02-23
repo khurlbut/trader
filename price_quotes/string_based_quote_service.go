@@ -31,7 +31,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
 
 	return &StringBasedQuoteService{
           spotPriceIndex: 0,
-          prices: arr,
+          prices: priceArr,
      }
 }
 
