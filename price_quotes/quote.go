@@ -9,5 +9,5 @@ type QuoteService interface {
 	HasNextPrice() bool
 	NextPrice() float64
 	CurrentPrice() float64
-	Pause()
+	Sleep()
 }

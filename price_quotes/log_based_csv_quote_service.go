@@ -127,7 +127,7 @@ func (qs *CommaSeparatedValueQuoteService) scan() {
      qs.checkScanner()
 }
 
-func (qs *StringBasedQuoteService) Pause() {
+func (qs *StringBasedQuoteService) Sleep() {
      s, err := time.ParseDuration(qs.pause)
      if err != nil {
           log.Fatal(err)
