@@ -62,6 +62,7 @@ func PricingLoop(c *campaign.Campaign) string {
                }
           }
      }
+     qs.Pause()
      return fmt.Sprintf("%s\n", p.String(spotPrice))
 }
 
