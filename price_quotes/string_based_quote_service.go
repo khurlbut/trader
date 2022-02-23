@@ -1,6 +1,7 @@
 package price_quotes
 
 import (
+     "strings"
      "strconv"
      "github.com/magiconair/properties"
 )
