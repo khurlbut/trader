@@ -13,7 +13,7 @@ type StringBasedQuoteService struct {
      spotPriceIndex int
      prices []float64
      currentPrice float64
-     pause int
+     pause long
 }
 
 func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService {

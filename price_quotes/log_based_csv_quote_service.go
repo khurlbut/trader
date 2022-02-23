@@ -23,7 +23,7 @@ type CommaSeparatedValueQuoteService struct {
      startTime time.Time
      endTime time.Time
      currentPrice float64
-     pause int
+     pause long
 }
 
 func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedValueQuoteService {
