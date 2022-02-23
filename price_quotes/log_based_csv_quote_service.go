@@ -22,6 +22,7 @@ type CommaSeparatedValueQuoteService struct {
      endTimeStr string
      startTime time.Time
      endTime time.Time
+     currentPrice float64
 }
 
 func NewCommaSeparatedValueQuoteService(propertiesFile string)*CommaSeparatedValueQuoteService {
@@ -67,6 +68,7 @@ func (qs *CommaSeparatedValueQuoteService) HasNextPrice() bool {
 
 func (qs *CommaSeparatedValueQuoteService) NextPrice() float64 {
      p := qs.readPrice()
+     qs.currentPrice = p
      qs.scan()
      return p
 }
@@ -85,6 +87,7 @@ func (qs *CommaSeparatedValueQuoteService) scanToStartDate() {
      for d.Before(qs.startTime) {
           d = qs.readDate()
      }
+     qs.currentPrice = qs.readPrice()
      fmt.Println("Start Time: " + d.String())
 }
 
