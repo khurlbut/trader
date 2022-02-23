@@ -26,7 +26,7 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
                log.Fatal(err)
           }
           priceArr[i] = price
-          fmt.Printf("arr[i]: %f prices[i] %s\n", priceArr[], prices[i])
+          fmt.Printf("arr[i]: %f prices[i] %s\n", priceArr[i], prices[i])
      }
 
 	return &StringBasedQuoteService{
