@@ -19,14 +19,14 @@ func NewStringBasedQuoteService(propertiesFile string) *StringBasedQuoteService 
      fmt.Printf("priceStr: %s\n", priceStr)
 
      prices := strings.Split(priceStr, ",")
-     fmt.Printf("prices: %t\n", prices)
-     arr := make([]float64, len(prices))
-     for i := range arr {
+     priceArr := make([]float64, len(prices))
+     for i := range prices {
           fmt.Printf("arr[i]: %f prices[i] %s\n", arr[i], prices[i])
-          arr[i], err := strconv.ParseFloat(prices[i], 32)
+          price, err := strconv.ParseFloat(prices[i], 32)
           if err != nil {
                log.Fatal(err)
           }
+          priceArr[i] = price
      }
 
 	return &StringBasedQuoteService{
