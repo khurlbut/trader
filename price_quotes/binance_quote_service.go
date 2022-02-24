@@ -38,9 +38,9 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
 
      return &BinanceQuoteService{
-          baseQuotePair: props.GetString("base_quote_pair", "")
-          pingEndPoint: props.GetString("url_ping", "") 
-          priceEndPoint: props.GetString("url_price", "")
+          baseQuotePair: props.GetString("base_quote_pair", ""),
+          pingEndPoint: props.GetString("url_ping", ""), 
+          priceEndPoint: props.GetString("url_price", ""),
           pause: props.GetString("pause", "60s"), 
      }
 }
