@@ -35,7 +35,6 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 }
 
 func (qs *BinanceQuoteService) Open() {
-     // var r = []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
      qs.currentPrice = qs.readPrice(qs.httpGetPriceQuote())
 }
 
@@ -63,7 +62,15 @@ func (qs *BinanceQuoteService) Pause() {
 }
 
 func (qs *BinanceQuoteService) httpGetPriceQuote() []byte {
-     return []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
+     // resp, err := http.Get("http://example.com/")
+     resp, err := http.Get(qs.priceEndPoint)
+     if err != nil {
+          // handle error
+     }
+     defer resp.Body.Close()
+     body, err := io.ReadAll(resp.Body)
+     // return []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
+     return io.ReadAll(resp.Body)
 }
 
 func (qs *BinanceQuoteService) readPrice(bytes []byte) float64 {
