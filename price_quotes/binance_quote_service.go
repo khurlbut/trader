@@ -78,7 +78,7 @@ func (qs *BinanceQuoteService) Close() {
 }
 
 func (qs *BinanceQuoteService) HasNextPrice() bool {
-     return true
+     return false
 }
 
 func (qs *BinanceQuoteService) NextPrice() float64 {
