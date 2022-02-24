@@ -49,7 +49,11 @@ func (qs *BinanceQuoteService) Close() {
 }
 
 func (qs *BinanceQuoteService) HasNextPrice() bool {
-     return true
+     props := properties.MustLoadFile(propertiesFile, properties.UTF8)
+     qs.props = props
+     qs.pause = props.GetString("pause" "60s")
+     qs.quit = props.getBool("quit", false)
+     return qs.quit
 }
 
 func (qs *BinanceQuoteService) NextPrice() float64 {
