@@ -47,14 +47,16 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 
 func (qs *BinanceQuoteService) Open() {
      var r = []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
-     qs.currentPrice = qs.readPrice(r)
+     // qs.currentPrice = qs.readPrice(r)
+     qs.currentPrice = qs.readPrice()
 
      // fmt.Printf("quote: %+v\n", quote)
      // fmt.Printf("symbol: %s\n", quote.Symbol)
      fmt.Printf("price: %f\n", qs.currentPrice)
 }
 
-func (qs *BinanaceQuoteService) readPrice(bytes []bytes) float64 {
+// func (qs *BinanaceQuoteService) readPrice(bytes []bytes) float64 {
+func (qs *BinanaceQuoteService) readPrice() float64 {
      // q := unmarshal(bytes)
      // if q.Symbol != qs.baseQuotePair {
      //      log.Fatal("Pair mismatch!")
