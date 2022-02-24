@@ -52,10 +52,14 @@ func (qs *BinanceQuoteService) Open() {
      if quote.Symbol != qs.baseQuotePair {
           log.Fatal("Pair mismatch!")
      }
+     qs.currentPrice, err := strconv.ParseFloat(strings.TrimSpace(quote.Price, 32)
+     if err != nil {
+          log.Fatal(err)
+     }
 
      fmt.Printf("quote: %+v\n", quote)
-     fmt.Printf("symbol: %+v\n", quote.Symbol)
-     fmt.Printf("price: %+v\n", quote.Price)
+     fmt.Printf("symbol: %s\n", quote.Symbol)
+     fmt.Printf("price: %f\n", qs.currentPrice)
 }
 
 func unmarshal(bytes []byte) *quote {
