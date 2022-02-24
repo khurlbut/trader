@@ -18,6 +18,7 @@ type BinanceQuoteService struct {
      priceEndPoint string
      currentPrice float64
      pause string
+     quit bool
 }
 
 type quote struct {
@@ -33,6 +34,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
           pingEndPoint: props.GetString("url_ping", ""), 
           priceEndPoint: buildPriceURL(props),
           pause: props.GetString("pause", "60s"), 
+          quit: props.GetBool("quit", false)
      }
 }
 
