@@ -19,7 +19,7 @@ type BinanceQuoteService struct {
      currentPrice float64
      pause string
      quit bool
-     props properties.Properties
+     props *properties.Properties
 }
 
 type quote struct {
@@ -37,7 +37,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
           quit: props.GetBool("quit", false),
           props: props,
      }
-     quoteService.props = quoteService.buildPriceURL()
+     quoteService.props = quoteservice.buildPriceURL()
      return quoteService
 }
 
