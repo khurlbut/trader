@@ -54,7 +54,7 @@ func (qs *BinanceQuoteService) Open() {
      fmt.Printf("price: %f\n", qs.currentPrice)
 }
 
-func (qs *BinanceQuoteService) readPrice(bytes []bytes) float64 {
+func (qs *BinanceQuoteService) readPrice(bytes []byte) float64 {
      q := unmarshal(bytes)
      if q.Symbol != qs.baseQuotePair {
           log.Fatal("Pair mismatch!")
