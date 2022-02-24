@@ -3,6 +3,7 @@ package price_quotes
 import (
      "fmt"
      "log"
+     "encoding/json"
      // "strings"
      // "strconv"
      "time"
@@ -10,31 +11,47 @@ import (
 )
 
 type BinanceQuoteService struct {
+     baseQuotePair string
+     pingEndPoint string
+     priceEndPoint string
+     currentPrice float64
      pause string
+}
+
+type quote struct {
+     symbol string
+     price float64
 }
 
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
-     pingURL := props.GetString("url_ping", "")
+     baseQuotePair := props.GetString("base_quote_pair", "")
      priceURL := props.GetString("url_price", "")
      queryPrefix := props.GetString("price_query_prefix", "")
-     baseQuotePair := props.GetString("base_quote_pair", "")
 
-     fmt.Printf("pingURL: %s\n", pingURL)
+     fmt.Printf("baseQuotePair: %s\n", baseQuotePair)
      fmt.Printf("priceURL: %s\n", priceURL)
      fmt.Printf("queryPrefix: %s\n", queryPrefix)
-     fmt.Printf("baseQuotePair: %s\n", baseQuotePair)
 
      priceEndPoint := priceURL + queryPrefix + baseQuotePair
      fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
 
      return &BinanceQuoteService{
+          baseQuotePair: props.GetString("base_quote_pair", "")
+          pingEndPoint: props.GetString("url_ping", "") 
+          priceEndPoint: props.GetString("url_price", "")
           pause: props.GetString("pause", "60s"), 
      }
 }
 
 func (qs *BinanceQuoteService) Open() {
+     q := "{\"symbol\":\"BTCUSDT\",\"price\":\"37223.53000000\"}"
+     err := json.Unmarshal(q, &quote)
+     if err != nil {
+          log.Fatal(err)
+     }
+     fmt.Printf("price: %f\n", quote.price)
 }
 
 func (qs *BinanceQuoteService) Close() {
