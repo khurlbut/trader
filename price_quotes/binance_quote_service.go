@@ -26,23 +26,22 @@ type quote struct {
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
-     baseQuotePair := props.GetString("base_quote_pair", "")
-     priceURL := props.GetString("url_price", "")
-     queryPrefix := props.GetString("price_query_prefix", "")
-
-     fmt.Printf("baseQuotePair: %s\n", baseQuotePair)
-     fmt.Printf("priceURL: %s\n", priceURL)
-     fmt.Printf("queryPrefix: %s\n", queryPrefix)
-
-     priceEndPoint := priceURL + queryPrefix + baseQuotePair
-     fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
-
      return &BinanceQuoteService{
           baseQuotePair: props.GetString("base_quote_pair", ""),
           pingEndPoint: props.GetString("url_ping", ""), 
-          priceEndPoint: props.GetString("url_price", ""),
+          priceEndPoint: buildPriceURL(props),
           pause: props.GetString("pause", "60s"), 
      }
+}
+
+func buildPriceURL(props properties) string {
+     baseQuotePair := props.GetString("base_quote_pair", "")
+     priceURL := props.GetString("url_price", "")
+     queryPrefix := props.GetString("price_query_prefix", "")
+     priceEndPoint := priceURL + queryPrefix + baseQuotePair
+     fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
+
+     return priceEndPoint
 }
 
 func (qs *BinanceQuoteService) Open() {
