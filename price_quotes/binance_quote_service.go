@@ -37,7 +37,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
           quit: props.GetBool("quit", false),
           props: props,
      }
-     quoteService.props = quoteService.buildPriceURL()
+     quoteService.priceEndPoint = quoteService.buildPriceURL()
      return quoteService
 }
 
