@@ -34,19 +34,36 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      }
 }
 
-func buildPriceURL(props *properties.Properties) string {
-     baseQuotePair := props.GetString("base_quote_pair", "")
-     priceURL := props.GetString("url_price", "")
-     queryPrefix := props.GetString("price_query_prefix", "")
-     priceEndPoint := priceURL + queryPrefix + baseQuotePair
-     fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
-
-     return priceEndPoint
-}
-
 func (qs *BinanceQuoteService) Open() {
      var r = []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
      qs.currentPrice = qs.readPrice(r)
+}
+
+func (qs *BinanceQuoteService) Close() {
+}
+
+func (qs *BinanceQuoteService) HasNextPrice() bool {
+     return false
+}
+
+func (qs *BinanceQuoteService) NextPrice() float64 {
+     return qs.currentPrice
+}
+
+func (qs *BinanceQuoteService) CurrentPrice() float64 {
+     return qs.currentPrice
+}
+
+func (qs *BinanceQuoteService) Pause() {
+     s, err := time.ParseDuration(qs.pause)
+     if err != nil {
+          log.Fatal(err)
+     }
+     time.Sleep(s)
+}
+
+func (qs *BinanceQuoteService) httpGet(url string) []byte {
+     return nil
 }
 
 func (qs *BinanceQuoteService) readPrice(bytes []byte) float64 {
@@ -74,25 +91,12 @@ func parseFloat(s string) float64 {
      return p
 }
 
-func (qs *BinanceQuoteService) Close() {
-}
+func buildPriceURL(props *properties.Properties) string {
+     baseQuotePair := props.GetString("base_quote_pair", "")
+     priceURL := props.GetString("url_price", "")
+     queryPrefix := props.GetString("price_query_prefix", "")
+     priceEndPoint := priceURL + queryPrefix + baseQuotePair
+     fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
 
-func (qs *BinanceQuoteService) HasNextPrice() bool {
-     return false
-}
-
-func (qs *BinanceQuoteService) NextPrice() float64 {
-     return qs.currentPrice
-}
-
-func (qs *BinanceQuoteService) CurrentPrice() float64 {
-     return qs.currentPrice
-}
-
-func (qs *BinanceQuoteService) Pause() {
-     s, err := time.ParseDuration(qs.pause)
-     if err != nil {
-          log.Fatal(err)
-     }
-     time.Sleep(s)
+     return priceEndPoint
 }
