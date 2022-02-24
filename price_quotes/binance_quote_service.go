@@ -20,7 +20,7 @@ type BinanceQuoteService struct {
 
 type quote struct {
      symbol string
-     price float64
+     price string
 }
 
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
@@ -52,7 +52,8 @@ func (qs *BinanceQuoteService) Open() {
      if err != nil {
           log.Fatal(err)
      }
-     fmt.Printf("quote: %f\n", q.price)
+     fmt.Printf("symbol: %f\n", q.symbol)
+     fmt.Printf("price: %f\n", q.price)
 }
 
 func (qs *BinanceQuoteService) Close() {
