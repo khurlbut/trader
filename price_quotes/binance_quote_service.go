@@ -52,7 +52,7 @@ func (qs *BinanceQuoteService) Open() {
      if quote.Symbol != qs.baseQuotePair {
           log.Fatal("Pair mismatch!")
      }
-     price, err := strconv.ParseFloat(strings.TrimSpace(quote.Price, 32))
+     price, err := strconv.ParseFloat(strings.TrimSpace(quote.Price), 32)
      if err != nil {
           log.Fatal(err)
      }
