@@ -19,7 +19,7 @@ type BinanceQuoteService struct {
      currentPrice float64
      pause string
      quit bool
-     props properties.properties
+     props properties.Properties
 }
 
 type quote struct {
