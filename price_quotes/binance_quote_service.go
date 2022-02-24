@@ -55,14 +55,13 @@ func (qs *BinanceQuoteService) Open() {
      fmt.Printf("price: %+v\n", quote.Price)
 }
 
-func unmarshal(res []byte) *quote {
-     var quote = &quote{}
-
-     err := json.Unmarshal(r, quote)
+func unmarshal(bytes []byte) *quote {
+     var q = &quote{}
+     err := json.Unmarshal(bytes, q)
      if err != nil {
           log.Fatal(err)
      }
-     return quote
+     return q
 }
 
 func (qs *BinanceQuoteService) Close() {
