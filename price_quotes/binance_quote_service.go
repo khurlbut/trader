@@ -93,7 +93,7 @@ func (qs *BinanceQuoteService) buildPriceURL() string {
      baseQuotePair := qs.props.GetString("base_quote_pair", "")
      priceURL := qs.props.GetString("url_price", "")
      queryPrefix := qs.props.GetString("price_query_prefix", "")
-     priceEndPoint := qs.priceURL + queryPrefix + baseQuotePair
+     priceEndPoint := priceURL + queryPrefix + baseQuotePair
      fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
 
      return priceEndPoint
