@@ -47,8 +47,11 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 
 func (qs *BinanceQuoteService) Open() {
      var r = []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
-
      quote := unmarshal(r)
+
+     if quote.Symbol != qs.baseQuotePair {
+          log.Fatal("Pair mismatch!")
+     }
 
      fmt.Printf("quote: %+v\n", quote)
      fmt.Printf("symbol: %+v\n", quote.Symbol)
