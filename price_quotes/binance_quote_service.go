@@ -19,8 +19,8 @@ type BinanceQuoteService struct {
 }
 
 type quote struct {
-     symbol string
-     price string
+     Symbol string
+     Price string
 }
 
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
@@ -46,29 +46,29 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 }
 
 func (qs *BinanceQuoteService) Open() {
-     // var r = []byte(`[{"symbol":"BTCUSDT","price":"37223.53000000"}]`)
-     // var quotes []quote
-     // err := json.Unmarshal(r, &quotes)
-     // if err != nil {
-     //      log.Fatal(err)
-     // }
-     // fmt.Printf("quotes: %+v\n", quotes)
-     // fmt.Printf("symbol: %s\n", q.symbol)
-     // fmt.Printf("symbol: %s\n", q.symbol)
-     var jsonBlob = []byte(`[
-          {"Name": "Platypus", "Order": "Monotremata"},
-          {"Name": "Quoll",    "Order": "Dasyuromorphia"}
-     ]`)
-     type Animal struct {
-          Name  string
-          Order string
-     }
-     var animals []Animal
-     err := json.Unmarshal(jsonBlob, &animals)
+     var r = []byte(`[{"symbol":"BTCUSDT","price":"37223.53000000"}]`)
+     var quotes []quote
+     err := json.Unmarshal(r, &quotes)
      if err != nil {
-          fmt.Println("error:", err)
+          log.Fatal(err)
      }
-     fmt.Printf("%+v", animals)
+     fmt.Printf("quotes: %+v\n", quotes)
+     // fmt.Printf("symbol: %s\n", q.symbol)
+     // fmt.Printf("symbol: %s\n", q.symbol)
+     // var jsonBlob = []byte(`[
+     //      {"Name": "Platypus", "Order": "Monotremata"},
+     //      {"Name": "Quoll",    "Order": "Dasyuromorphia"}
+     // ]`)
+     // type Animal struct {
+     //      Name  string
+     //      Order string
+     // }
+     // var animals []Animal
+     // err := json.Unmarshal(jsonBlob, &animals)
+     // if err != nil {
+     //      fmt.Println("error:", err)
+     // }
+     // fmt.Printf("%+v", animals)
 }
 
 func (qs *BinanceQuoteService) Close() {
