@@ -82,11 +82,11 @@ func (qs *BinanceQuoteService) HasNextPrice() bool {
 }
 
 func (qs *BinanceQuoteService) NextPrice() float64 {
-     return -1.0
+     return qs.currentPrice
 }
 
 func (qs *BinanceQuoteService) CurrentPrice() float64 {
-     return -1.0
+     return qs.currentPrice
 }
 
 func (qs *BinanceQuoteService) Pause() {
