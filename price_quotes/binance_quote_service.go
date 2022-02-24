@@ -52,7 +52,7 @@ func (qs *BinanceQuoteService) Open() {
      if err != nil {
           log.Fatal(err)
      }
-     fmt.Printf("quote: %+v\n", q)
+     fmt.Printf("quote: %+v\n", *q)
 }
 
 func (qs *BinanceQuoteService) Close() {
