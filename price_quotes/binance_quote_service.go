@@ -34,7 +34,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      }
 }
 
-func buildPriceURL(props properties) string {
+func buildPriceURL(props properties.Properties) string {
      baseQuotePair := props.GetString("base_quote_pair", "")
      priceURL := props.GetString("url_price", "")
      queryPrefix := props.GetString("price_query_prefix", "")
