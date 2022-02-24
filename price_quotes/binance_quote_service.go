@@ -18,7 +18,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 
      pingURL := props.GetString("url_ping", "")
      priceURL := props.GetString("url_price", "")
-     queryPrefix := props.GetStrin("price_query_prefix", "")
+     queryPrefix := props.GetString("price_query_prefix", "")
      baseQuotePair := props.GetString("base_quote_pair", "")
 
      fmt.Printf("pingURL: %s\n", pingURL)
