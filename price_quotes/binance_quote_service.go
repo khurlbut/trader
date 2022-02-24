@@ -55,11 +55,12 @@ func (qs *BinanceQuoteService) Open() {
 }
 
 func (qs *BinanaceQuoteService) readPrice(bytes []bytes) float64 {
-     q := unmarshal(bytes)
-     if q.Symbol != qs.baseQuotePair {
-          log.Fatal("Pair mismatch!")
-     }
-     return parseFloat(q.Price)
+     // q := unmarshal(bytes)
+     // if q.Symbol != qs.baseQuotePair {
+     //      log.Fatal("Pair mismatch!")
+     // }
+     // return parseFloat(q.Price)
+     return 0.0
 }
 
 func unmarshal(bytes []byte) *quote {
