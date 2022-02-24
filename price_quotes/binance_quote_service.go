@@ -53,8 +53,8 @@ func (qs *BinanceQuoteService) Open() {
           log.Fatal(err)
      }
      fmt.Printf("quote: %+v\n", quote)
-     fmt.Printf("symbol: %+v\n", quote.symbol)
-     fmt.Printf("price: %+v\n", quote.price)
+     fmt.Printf("symbol: %+v\n", quote.Symbol)
+     fmt.Printf("price: %+v\n", quote.Price)
 
      // var r = []byte(`[{"symbol":"BTCUSDT","price":"37223.53000000"}]`)
      // var quotes []quote
