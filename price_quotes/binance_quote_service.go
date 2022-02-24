@@ -16,6 +16,12 @@ type BinanceQuoteService struct {
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
+     ping_url := props.GetString("url_ping", "")
+     price_url := props.GetString("url_price", "")
+
+     fmt.Printf("ping_url: %s\n", ping_url)
+     fmt.Printf("price_url: %s\n", price_url)
+
      return &BinanceQuoteService{
           pause: props.GetString("pause", "60s"), 
      }
