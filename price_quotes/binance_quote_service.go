@@ -47,7 +47,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 
 func (qs *BinanceQuoteService) Open() {
      var r = []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
-     qs.currentPrice = readPrice(r)
+     qs.currentPrice = qs.readPrice(r)
 
      // fmt.Printf("quote: %+v\n", quote)
      // fmt.Printf("symbol: %s\n", quote.Symbol)
