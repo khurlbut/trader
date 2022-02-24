@@ -14,11 +14,12 @@ import (
 
 type BinanceQuoteService struct {
      baseQuotePair string
-     pingEndPoint string
+     // pingEndPoint string
      priceEndPoint string
      currentPrice float64
      pause string
      quit bool
+     props properties.properties
 }
 
 type quote struct {
@@ -29,13 +30,15 @@ type quote struct {
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
-     return &BinanceQuoteService{
+     quoteServie := &BinanceQuoteService{
           baseQuotePair: props.GetString("base_quote_pair", ""),
-          pingEndPoint: props.GetString("url_ping", ""), 
-          priceEndPoint: buildPriceURL(props),
+          // pingEndPoint: props.GetString("url_ping", ""), 
           pause: props.GetString("pause", "60s"), 
           quit: props.GetBool("quit", false),
+          props: props,
      }
+     quote_service.props = quote_service.buildPriceURL()
+     return quoteService
 }
 
 func (qs *BinanceQuoteService) Open() {
@@ -86,6 +89,16 @@ func (qs *BinanceQuoteService) readPrice(bytes []byte) float64 {
      return parseFloat(q.Price)
 }
 
+func (qs *BinanceQuoteService) buildPriceURL() string {
+     baseQuotePair := qs.props.GetString("base_quote_pair", "")
+     priceURL := qs.props.GetString("url_price", "")
+     queryPrefix := qs.props.GetString("price_query_prefix", "")
+     priceEndPoint := qs.priceURL + queryPrefix + baseQuotePair
+     fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
+
+     return priceEndPoint
+}
+
 func unmarshal(bytes []byte) *quote {
      var q = &quote{}
      err := json.Unmarshal(bytes, q)
@@ -101,14 +114,4 @@ func parseFloat(s string) float64 {
           log.Fatal(err)
      }
      return p
-}
-
-func buildPriceURL(props *properties.Properties) string {
-     baseQuotePair := props.GetString("base_quote_pair", "")
-     priceURL := props.GetString("url_price", "")
-     queryPrefix := props.GetString("price_query_prefix", "")
-     priceEndPoint := priceURL + queryPrefix + baseQuotePair
-     fmt.Printf("priceEndPoint: %s\n", priceEndPoint)
-
-     return priceEndPoint
 }
