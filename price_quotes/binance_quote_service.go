@@ -34,7 +34,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
           pingEndPoint: props.GetString("url_ping", ""), 
           priceEndPoint: buildPriceURL(props),
           pause: props.GetString("pause", "60s"), 
-          quit: props.GetBool("quit", false)
+          quit: props.GetBool("quit", false),
      }
 }
 
