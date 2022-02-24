@@ -30,14 +30,14 @@ type quote struct {
 func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
-     quoteServie := &BinanceQuoteService{
+     quoteService := &BinanceQuoteService{
           baseQuotePair: props.GetString("base_quote_pair", ""),
           // pingEndPoint: props.GetString("url_ping", ""), 
           pause: props.GetString("pause", "60s"), 
           quit: props.GetBool("quit", false),
           props: props,
      }
-     quote_service.props = quote_service.buildPriceURL()
+     quoteService.props = quoteService.buildPriceURL()
      return quoteService
 }
 
