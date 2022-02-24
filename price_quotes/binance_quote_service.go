@@ -2,7 +2,7 @@ package price_quotes
 
 import (
      "fmt"
-     "http"
+     "net/http"
      "io"
      "log"
      "encoding/json"
