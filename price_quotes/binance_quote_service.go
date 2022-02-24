@@ -55,7 +55,7 @@ func (qs *BinanceQuoteService) HasNextPrice() bool {
      qs.props = props
      qs.pause = props.GetString("pause", "60s")
      qs.quit = props.GetBool("quit", false)
-     return qs.quit
+     return !qs.quit
 }
 
 func (qs *BinanceQuoteService) NextPrice() float64 {
