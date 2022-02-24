@@ -44,11 +44,11 @@ func (qs *BinanceQuoteService) Close() {
 }
 
 func (qs *BinanceQuoteService) HasNextPrice() bool {
-     return false
+     return true
 }
 
 func (qs *BinanceQuoteService) NextPrice() float64 {
-     return qs.currentPrice
+     return qs.readPrice(qs.httpGetPriceQuote())
 }
 
 func (qs *BinanceQuoteService) CurrentPrice() float64 {
@@ -64,7 +64,6 @@ func (qs *BinanceQuoteService) Pause() {
 }
 
 func (qs *BinanceQuoteService) httpGetPriceQuote() []byte {
-     // resp, err := http.Get("http://example.com/")
      resp, err := http.Get(qs.priceEndPoint)
      if err != nil {
           log.Fatal(err)
@@ -74,7 +73,6 @@ func (qs *BinanceQuoteService) httpGetPriceQuote() []byte {
      if err != nil {
           log.Fatal(err)
      }
-     // return []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
      return (body)
 }
 
