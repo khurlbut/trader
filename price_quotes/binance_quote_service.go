@@ -51,7 +51,7 @@ func (qs *BinanceQuoteService) Open() {
      if err != nil {
           log.Fatal(err)
      }
-     fmt.Printf("price: %f\n", quote.price)
+     fmt.Printf("price: %f\n", *quote.price)
 }
 
 func (qs *BinanceQuoteService) Close() {
