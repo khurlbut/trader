@@ -55,6 +55,20 @@ func (qs *BinanceQuoteService) Open() {
      fmt.Printf("quotes: %+v\n", quotes)
      // fmt.Printf("symbol: %s\n", q.symbol)
      // fmt.Printf("symbol: %s\n", q.symbol)
+     var jsonBlob = []byte(`[
+          {"Name": "Platypus", "Order": "Monotremata"},
+          {"Name": "Quoll",    "Order": "Dasyuromorphia"}
+     ]`)
+     type Animal struct {
+          Name  string
+          Order string
+     }
+     var animals []Animal
+     err := json.Unmarshal(jsonBlob, &animals)
+     if err != nil {
+          fmt.Println("error:", err)
+     }
+     fmt.Printf("%+v", animals)
 }
 
 func (qs *BinanceQuoteService) Close() {
