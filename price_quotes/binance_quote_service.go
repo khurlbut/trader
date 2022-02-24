@@ -19,6 +19,7 @@ type BinanceQuoteService struct {
      currentPrice float64
      pause string
      quit bool
+     propertiesFile string
      props *properties.Properties
 }
 
@@ -35,6 +36,7 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
           // pingEndPoint: props.GetString("url_ping", ""), 
           pause: props.GetString("pause", "60s"), 
           quit: props.GetBool("quit", false),
+          propertiesFile: propertiesFile,
           props: props,
      }
      quoteService.priceEndPoint = quoteService.buildPriceURL()
@@ -49,7 +51,7 @@ func (qs *BinanceQuoteService) Close() {
 }
 
 func (qs *BinanceQuoteService) HasNextPrice() bool {
-     props := properties.MustLoadFile(propertiesFile, properties.UTF8)
+     props := properties.MustLoadFile(qs.props.propertiesFile, properties.UTF8)
      qs.props = props
      qs.pause = props.GetString("pause", "60s")
      qs.quit = props.getBool("quit", false)
