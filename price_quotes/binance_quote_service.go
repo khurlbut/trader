@@ -2,6 +2,8 @@ package price_quotes
 
 import (
      "fmt"
+     "http"
+     "io"
      "log"
      "encoding/json"
      "strings"
