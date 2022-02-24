@@ -54,7 +54,7 @@ func (qs *BinanceQuoteService) HasNextPrice() bool {
      props := properties.MustLoadFile(qs.props.propertiesFile, properties.UTF8)
      qs.props = props
      qs.pause = props.GetString("pause", "60s")
-     qs.quit = props.getBool("quit", false)
+     qs.quit = props.GetBool("quit", false)
      return qs.quit
 }
 
