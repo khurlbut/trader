@@ -55,15 +55,6 @@ func (qs *BinanceQuoteService) Open() {
      fmt.Printf("quote: %+v\n", quote)
      fmt.Printf("symbol: %+v\n", quote.Symbol)
      fmt.Printf("price: %+v\n", quote.Price)
-
-     // var r = []byte(`[{"symbol":"BTCUSDT","price":"37223.53000000"}]`)
-     // var quotes []quote
-     // err := json.Unmarshal(r, &quotes)
-     // if err != nil {
-     //      log.Fatal(err)
-     // }
-     // fmt.Printf("quotes: %+v\n", quotes)
-
 }
 
 func (qs *BinanceQuoteService) Close() {
