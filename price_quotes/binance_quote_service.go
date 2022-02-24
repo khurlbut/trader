@@ -67,12 +67,15 @@ func (qs *BinanceQuoteService) httpGetPriceQuote() []byte {
      // resp, err := http.Get("http://example.com/")
      resp, err := http.Get(qs.priceEndPoint)
      if err != nil {
-          // handle error
+          log.Fatal(err)
      }
      defer resp.Body.Close()
      body, err := io.ReadAll(resp.Body)
+     if err !- nil {
+          log.Fatal(err)
+     }
      // return []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
-     return io.ReadAll(resp.Body)
+     return (body)
 }
 
 func (qs *BinanceQuoteService) readPrice(bytes []byte) float64 {
