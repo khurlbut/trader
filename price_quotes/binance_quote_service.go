@@ -46,12 +46,13 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 }
 
 func (qs *BinanceQuoteService) Open() {
-     q := []byte("{\"symbol\":\"BTCUSDT\",\"price\":\"37223.53000000\"}")
-     err := json.Unmarshal(q, &quote{})
+     r := []byte("{\"symbol\":\"BTCUSDT\",\"price\":\"37223.53000000\"}")
+     q := quote{}
+     err := json.Unmarshal(r, q)
      if err != nil {
           log.Fatal(err)
      }
-     fmt.Printf("quote: %+v\n", quote)
+     fmt.Printf("quote: %+v\n", q)
 }
 
 func (qs *BinanceQuoteService) Close() {
