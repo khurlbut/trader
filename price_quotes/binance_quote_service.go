@@ -47,20 +47,19 @@ func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
 
 func (qs *BinanceQuoteService) Open() {
      var r = []byte(`{"symbol":"BTCUSDT","price":"37223.53000000"}`)
-     quote := unmarshal(r)
+     qs.currentPrice = readPrice(r)
 
-     if quote.Symbol != qs.baseQuotePair {
+     // fmt.Printf("quote: %+v\n", quote)
+     // fmt.Printf("symbol: %s\n", quote.Symbol)
+     fmt.Printf("price: %f\n", qs.currentPrice)
+}
+
+func (qs *BinanaceQuoteService) readPrice(bytes []bytes) float64 {
+     q := unmarshal(bytes)
+     if q.Symbol != qs.baseQuotePair {
           log.Fatal("Pair mismatch!")
      }
-     price, err := strconv.ParseFloat(strings.TrimSpace(quote.Price), 32)
-     if err != nil {
-          log.Fatal(err)
-     }
-     qs.currentPrice = price
-
-     fmt.Printf("quote: %+v\n", quote)
-     fmt.Printf("symbol: %s\n", quote.Symbol)
-     fmt.Printf("price: %f\n", qs.currentPrice)
+     return parseFloat(q.Price)
 }
 
 func unmarshal(bytes []byte) *quote {
@@ -72,11 +71,18 @@ func unmarshal(bytes []byte) *quote {
      return q
 }
 
+func parseFloat(s string) float64 {
+     p, err := strconv.ParseFloat(strings.TrimSpace(s), 32)
+     if err != nil {
+          log.Fatal(err)
+     }
+     return p
+}
+
 func (qs *BinanceQuoteService) Close() {
 }
 
 func (qs *BinanceQuoteService) HasNextPrice() bool {
-     fmt.Println("hasNextPrice")
      return true
 }
 
