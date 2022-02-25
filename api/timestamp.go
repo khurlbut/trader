@@ -8,6 +8,8 @@ import (
 func Timestamp()  {
     m := time.Now().UnixMilli()
     fmt.Printf("Type of m: %T", m)
+    fmt.Printf("Val of m: %s", string(m))
+
 
     return 
     // out, err := exec.Command("date", "+v%s000").Output()
