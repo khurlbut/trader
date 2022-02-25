@@ -32,7 +32,7 @@ func NewBinanceQuoteService(baseQuotePair string, propertiesFile string) *Binanc
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
      quoteService := &BinanceQuoteService{
-          baseQuotePair: baseQuotePair),
+          baseQuotePair: baseQuotePair,
           // pingEndPoint: props.GetString("url_ping", ""), 
           pause: props.GetString("pause", "60s"), 
           quit: props.GetBool("quit", false),
