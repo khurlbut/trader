@@ -30,7 +30,7 @@ type quote struct {
 
 func NewBinanceQuoteService(baseQuotePair string, propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
-     fmt.println(baseQuotePair)
+     fmt.Println(baseQuotePair)
 
      quoteService := &BinanceQuoteService{
           baseQuotePair: baseQuotePair,
