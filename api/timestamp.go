@@ -8,7 +8,7 @@ import (
 
 func Timestamp() {
 
-    out, err := exec.Command("date").Output()
+    out, err := exec.Command("date +v%s000").Output()
     fmt.Printf("out = %T\n", out)
 
     if err != nil {
