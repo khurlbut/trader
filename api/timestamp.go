@@ -7,7 +7,7 @@ import (
 
 func Timestamp()  {
     m := time.Now().UnixMilli()
-    fmt.Println("Type of m: %T", m)
+    fmt.Printf("Type of m: %T", m)
 
     return 
     // out, err := exec.Command("date", "+v%s000").Output()
