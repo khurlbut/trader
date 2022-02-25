@@ -20,12 +20,13 @@ const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.c
 func NewCampaign() *Campaign {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
+	baseQuotePair := props.GetString("base_quote_pair", "")
 	quoteService := props.GetString("quoteService", "StubQuoteService")
 	quoteServicePropsFile := props.GetString("quoteServicePropsFile", "")
 
 	var qs price_quotes.QuoteService = nil
 	if quoteService == "BinanceQuoteService" {
-		qs = price_quotes.NewBinanceQuoteService(quoteServicePropsFile)
+		qs = price_quotes.NewBinanceQuoteService(baseQuotePair, quoteServicePropsFile)
 	} else if quoteService == "StringBasedQuoteService" {
 		qs = price_quotes.NewStringBasedQuoteService(quoteServicePropsFile)
 	} else if quoteService == "CommaSeparatedValueQuoteService" {
