@@ -9,7 +9,7 @@ import (
 func Timestamp()  {
     m := time.Now().UnixMilli()
     fmt.Printf("Type of m: %T\n", m)
-    fmt.Printf("Val of m: %s\n", strconv.Itoa(m))
+    fmt.Printf("Val of m: %s\n", strconv.FormatInt(m, 10))
 
 
     return 
