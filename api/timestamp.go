@@ -3,12 +3,13 @@ package api
 import (
     "fmt"
     "time"
+    "strconv"
 )
 
 func Timestamp()  {
     m := time.Now().UnixMilli()
-    fmt.Printf("Type of m: %T", m)
-    fmt.Printf("Val of m: %s", string(m))
+    fmt.Printf("Type of m: %T\n", m)
+    fmt.Printf("Val of m: %s\n", strconv.Itoa(m))
 
 
     return 
