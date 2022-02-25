@@ -7,6 +7,5 @@ import (
 )
 
 func Timestamp() string {
-    m := time.Now().Unix()
-    return fmt.Sprintf("%s000", strconv.FormatInt(m, 10))
+    return fmt.Sprintf("%s000", strconv.FormatInt(time.Now().Unix(), 10))
 }
