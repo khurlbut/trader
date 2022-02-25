@@ -8,10 +8,10 @@ import (
 
 func Timestamp()  {
     // m := time.Now().UnixMilli()
-    m := time.Now().Second()
+    m := time.Now().Unix()
     fmt.Printf("Type of m: %T\n", m)
-    // fmt.Printf("Val of m: %s\n", strconv.FormatInt(m, 10))
-    fmt.Printf("Val of m: %s\n", strconv.Itoa(m))
+    fmt.Printf("Val of m: %s\n", strconv.FormatInt(m, 10))
+    // fmt.Printf("Val of m: %s\n", strconv.Itoa(m))
 
 
     return 
