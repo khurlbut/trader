@@ -6,11 +6,14 @@ import(
 	"github.com/khurlbut/trader/api"
 	"github.com/khurlbut/trader/campaign"
 	"github.com/khurlbut/trader/prototype"
-	// "github.com/magiconair/properties"
+	"github.com/magiconair/properties"
 )
 
 func main() {
-	// props := properties.MustLoadFile("api/binance.properties", properties.UTF8)
+	props := properties.MustLoadFile("api/binance.properties", properties.UTF8)
+	api_key := props.GetString("api_key", "")
+	secret_key := props.GetString("secret_key", "")
+	fmt.Printf("api_key: %s\nsecret_key: %s\n", api_key, secret_key)
 	// api.Ls()
 	ts := api.Timestamp()
 	// fmt.Println(ts)
