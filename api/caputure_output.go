@@ -6,7 +6,7 @@ import (
     "os/exec"
 )
 
-func ls() {
+func Ls() {
 
     out, err := exec.Command("ls", "-l").Output()
 

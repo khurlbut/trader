@@ -9,7 +9,7 @@ import(
 )
 
 func main() {
-	api.ls()
+	api.Ls()
 	os.Exit(0)
 	c := campaign.NewCampaign()
 	fmt.Println(prototype.PricingLoop(c))
