@@ -14,7 +14,7 @@ func main() {
 	// api.Ls()
 	ts := api.Timestamp()
 	// fmt.Println(ts)
-	api.Signature(ts, "YT4DtosTWcptwdlScXUISNA9FQ5FxsXGtnSoROeTxyuJBQEGfi8X9lziav2bW9tf")
+	api.Signature(ts, "")
 	os.Exit(0)
 	c := campaign.NewCampaign()
 	fmt.Println(prototype.PricingLoop(c))
