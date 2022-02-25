@@ -19,7 +19,7 @@ func Order(api_key string, timestamp string, signature string) {
        log.Fatal(err)
   }
   q := req.URL.Query()
-  q.Add("timestamp", api_key)
+  q.Add("timestamp", timestamp)
   q.Add("signature", signature)
   req.URL.RawQuery = q.Encode()
 
