@@ -16,16 +16,18 @@ func Order(api_key string, timestamp string, signature string) {
     CheckRedirect: redirectPolicyFunc,
   }
   req, err := httpNewRequest("GET", url, nil)
-  req.Header.Add("X-MBX-APIKEY", api_key)
-
-  resp, err :=client.Do(req)
   if err != nil {
+       log.Fatal(err)
+  }
+  req.Header.Add("X-MBX-APIKEY", api_key)
+  resp, err2 :=client.Do(req)
+  if err2 != nil {
        log.Fatal(err)
   }
 
   defer resp.Body.Close()
-  body, err := io.ReadAll(resp.Body)
-  if err != nil {
+  body, err3 := io.ReadAll(resp.Body)
+  if err3 != nil {
        log.Fatal(err)
   }  
   fmt.Println(string(body))
