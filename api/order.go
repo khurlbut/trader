@@ -25,6 +25,7 @@ func Order(api_key string, timestamp string, signature string) {
 
   req.Header.Add("X-MBX-APIKEY", api_key)
 
+  fmt.Println(req.URL.String())
   resp, err2 :=client.Do(req)
   if err2 != nil {
        log.Fatal(err)
