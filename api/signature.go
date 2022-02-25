@@ -2,8 +2,8 @@ package api
 
 import (
     "fmt"
-    "log"
-    "os/exec"
+    // "log"
+    // "os/exec"
     "crypto/hmac"
     "crypto/sha256"
     "encoding/hex"
