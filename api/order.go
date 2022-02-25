@@ -1,7 +1,7 @@
 package api
 
 import (
-    // "io"
+    "io"
     "fmt"
     "log"
     "net/http"
@@ -14,8 +14,9 @@ func Order(api_key string, timestamp string, signature string) {
        log.Fatal(err)
   }
   defer resp.Body.Close()
-  // body, err := io.ReadAll(resp.Body)
+  body, err := io.ReadAll(resp.Body)
   if err != nil {
        log.Fatal(err)
   }  
+  fmt.Println(body)
 }
