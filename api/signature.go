@@ -9,7 +9,7 @@ import (
     "encoding/hex"
 )
 
-func Signature(timestamp string, secret_key string) {
+func Signature(timestamp string, secret_key string) string {
 
     // // out, err := exec.Command("echo", "-n", "timestamp="+timestamp, "|", "openssl", "dgst", "-sha256", "-hmac", secret_key).Output()
     // out, err := exec.Command("`echo -n timestamp="+ timestamp +"| openssl dgst -sha256 -hmac "secret_key"`).Output()
@@ -35,4 +35,5 @@ func Signature(timestamp string, secret_key string) {
 
     // fmt.Println("Result: " + sha)
     fmt.Printf(sha)
+    return sha
 }
