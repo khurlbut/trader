@@ -28,11 +28,11 @@ type quote struct {
      Price string
 }
 
-func NewBinanceQuoteService(propertiesFile string) *BinanceQuoteService {
+func NewBinanceQuoteService(baseQuotePair string, propertiesFile string) *BinanceQuoteService {
      props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
      quoteService := &BinanceQuoteService{
-          baseQuotePair: props.GetString("base_quote_pair", ""),
+          baseQuotePair: baseQuotePair),
           // pingEndPoint: props.GetString("url_ping", ""), 
           pause: props.GetString("pause", "60s"), 
           quit: props.GetBool("quit", false),

@@ -5,3 +5,6 @@ alias f='make fast'
 gvm use go1.17
 
 TRADER_HOME="/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader"
+
+. ~/.trader/setup
+
