@@ -6,9 +6,9 @@ import (
     "os/exec"
 )
 
-func Signature(timeStamp string) {
+func Signature(timestamp string) {
 
-    out, err := exec.Command("echo", "-n", timeStamp).Output()
+    out, err := exec.Command("echo", "-n", "timestamp="+timestamp).Output()
 
     if err != nil {
         log.Fatal(err)
