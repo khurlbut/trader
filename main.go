@@ -10,7 +10,7 @@ import(
 
 func main() {
 	// api.Ls()
-	api.Timestamp()
+	fmt.Println(api.Timestamp())
 	os.Exit(0)
 	c := campaign.NewCampaign()
 	fmt.Println(prototype.PricingLoop(c))
