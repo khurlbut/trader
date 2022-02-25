@@ -96,8 +96,7 @@ func (qs *BinanceQuoteService) readPrice(bytes []byte) float64 {
      return parseFloat(q.Price)
 }
 
-func (qs *BinanceQuoteService) buildPriceURL() string {
-     baseQuotePair := qs.props.GetString("base_quote_pair", "")
+func (qs *BinanceQuoteService) buildPriceURL(baseQuotePair string) string {
      priceURL := qs.props.GetString("url_price", "")
      queryPrefix := qs.props.GetString("price_query_prefix", "")
      priceEndPoint := priceURL + queryPrefix + baseQuotePair
