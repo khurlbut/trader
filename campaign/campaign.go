@@ -15,13 +15,13 @@ type Campaign struct {
 	Purse *purse.Purse
 }
 
-const propertiesFile = "/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader/campaign.properties"
+const propertiesFile = "campaign.properties"
 
 func NewCampaign() *Campaign {
   props := properties.MustLoadFile(propertiesFile, properties.UTF8)
 
 	baseQuotePair := props.GetString("base_quote_pair", "")
-	quoteService := props.GetString("quoteService", "StubQuoteService")
+	quoteService := props.GetString("quoteService", "")
 	quoteServicePropsFile := props.GetString("quoteServicePropsFile", "")
 
 	var qs price_quotes.QuoteService = nil
