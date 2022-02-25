@@ -13,7 +13,7 @@ func main() {
 	// props := properties.MustLoadFile("api/binance.properties", properties.UTF8)
 	// api.Ls()
 	ts := api.Timestamp()
-	fmt.Println(ts)
+	// fmt.Println(ts)
 	api.Signature(ts, "YT4DtosTWcptwdlScXUISNA9FQ5FxsXGtnSoROeTxyuJBQEGfi8X9lziav2bW9tf")
 	os.Exit(0)
 	c := campaign.NewCampaign()

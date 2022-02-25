@@ -33,5 +33,6 @@ func Signature(timestamp string, secret_key string) {
     // Get result and encode as hexadecimal string
     sha := hex.EncodeToString(h.Sum(nil))
 
-    fmt.Println("Result: " + sha)
+    // fmt.Println("Result: " + sha)
+    fmt.Printf(sha)
 }
