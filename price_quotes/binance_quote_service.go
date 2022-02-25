@@ -40,7 +40,7 @@ func NewBinanceQuoteService(baseQuotePair string, propertiesFile string) *Binanc
           propertiesFile: propertiesFile,
           props: props,
      }
-     quoteService.priceEndPoint = quoteService.buildPriceURL()
+     quoteService.priceEndPoint = quoteService.buildPriceURL(baseQuotePair)
      return quoteService
 }
 
