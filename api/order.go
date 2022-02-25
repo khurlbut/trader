@@ -19,8 +19,8 @@ func Order(api_key string, timestamp string, signature string) {
        log.Fatal(err)
   }
   q := req.URL.Query()
-  q.Add("timestamp", timestamp)
   q.Add("signature", signature)
+  q.Add("timestamp", timestamp)
   req.URL.RawQuery = q.Encode()
 
   req.Header.Add("X-MBX-APIKEY", api_key)
