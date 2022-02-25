@@ -15,7 +15,7 @@ func Order(api_key string, timestamp string, signature string) {
   client := &http.Client{
     CheckRedirect: redirectPolicyFunc,
   }
-  req, err := httpNewRequest("GET", url nil)
+  req, err := httpNewRequest("GET", url, nil)
   req.Header.Add("X-MBX-APIKEY", api_key)
 
   resp, err :=client.Do(req)
