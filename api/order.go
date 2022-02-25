@@ -12,10 +12,8 @@ func Order(api_key string, timestamp string, signature string) {
   url := fmt.Sprintf("https://api.binance.us/api/v3/account?timestamp=%s&signature=%s", timestamp, signature)
   fmt.Printf("\n%s\n",url)
   
-  client := &http.Client{
-    CheckRedirect: redirectPolicyFunc,
-  }
-  req, err := httpNewRequest("GET", url, nil)
+  client := &http.Client{}
+  req, err := http.NewRequest("GET", url, nil)
   if err != nil {
        log.Fatal(err)
   }
