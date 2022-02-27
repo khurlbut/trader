@@ -5,6 +5,7 @@ import (
     "fmt"
     "log"
     "net/http"
+    "bytes"
 )
 
 func Order(api_key string, secret_key string, timestamp string) {
