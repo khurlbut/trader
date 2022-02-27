@@ -1,3 +1,5 @@
+#!/bin/sh
+
 timestamp=`date +%s000`
 
 api_key=$1
