@@ -20,7 +20,7 @@ func Order(api_key string, secret_key string, timestamp string) {
   }
   buf := new(bytes.Buffer)
   buf.ReadFrom(req.GetBody()) 
-  api.Signature(ts, secret_key, buf.String())
+  signature := api.Signature(ts, secret_key, buf.String())
   fmt.Println("signature: ", signature)
   q := req.URL.Query()
   q.Add("signature", signature)
