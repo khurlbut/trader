@@ -18,6 +18,7 @@ func Order(api_key string, timestamp string, signature string) {
   if err != nil {
        log.Fatal(err)
   }
+  fmt.Println("signature: ", signature)
   q := req.URL.Query()
   q.Add("signature", signature)
   q.Add("timestamp", timestamp)
