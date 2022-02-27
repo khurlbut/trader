@@ -27,7 +27,7 @@ func Signature(timestamp string, secret_key string, request_body string) string 
     // Create a new HMAC by defining the hash type and the key (as byte array)
     h := hmac.New(sha256.New, []byte(secret_key))
 
-    q := fmt.Printf("%s%s", timestamp, request_body)
+    q := fmt.Sprintf("%s%s", timestamp, request_body)
     // Write Data to it
     h.Write([]byte(q))
 
