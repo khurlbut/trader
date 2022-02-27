@@ -19,8 +19,12 @@ func Order(api_key string, secret_key string, timestamp string) {
   if err != nil {
        log.Fatal(err)
   }
+  closer, err := req.GetBody()
+  if err != nil {
+    log.Fatal(err)
+  }
   buf := new(bytes.Buffer)
-  buf.ReadFrom(req.GetBody()) 
+  buf.ReadFrom(closer) 
   signature := Signature(timestamp, secret_key, buf.String())
   fmt.Println("signature: ", signature)
   q := req.URL.Query()
