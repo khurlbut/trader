@@ -28,7 +28,7 @@ func Signature(timestamp string, secret_key string) string {
     h := hmac.New(sha256.New, []byte(secret_key))
 
     // Write Data to it
-    h.Write([]byte(timestamp))
+    h.Write([]byte("timestamp=" + timestamp))
 
     // Get result and encode as hexadecimal string
     sha := hex.EncodeToString(h.Sum(nil))
