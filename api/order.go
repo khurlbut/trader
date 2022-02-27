@@ -19,7 +19,7 @@ func Order(api_key string, secret_key string, timestamp string) {
   if err != nil {
        log.Fatal(err)
   }
-  closer, err := req.GetBody()
+  closer := req.Body
   if err != nil {
     log.Fatal(err)
   }
