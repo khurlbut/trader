@@ -27,7 +27,7 @@ func Order(api_key string, secret_key string, timestamp string) {
     }
     buf := new(bytes.Buffer)
     buf.ReadFrom(closer) 
-    request_body = buf.String
+    request_body = buf.String()
   }
   signature := Signature(timestamp, secret_key, request_body)
   fmt.Println("signature: ", signature)
