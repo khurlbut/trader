@@ -9,7 +9,7 @@ import (
     "encoding/hex"
 )
 
-func Signature(timestamp string, secret_key string) string {
+func Signature(timestamp string, secret_key string, request_body string) string {
 
     // // out, err := exec.Command("echo", "-n", "timestamp="+timestamp, "|", "openssl", "dgst", "-sha256", "-hmac", secret_key).Output()
     // out, err := exec.Command("`echo -n timestamp="+ timestamp +"| openssl dgst -sha256 -hmac "secret_key"`).Output()
@@ -27,8 +27,9 @@ func Signature(timestamp string, secret_key string) string {
     // Create a new HMAC by defining the hash type and the key (as byte array)
     h := hmac.New(sha256.New, []byte(secret_key))
 
+    q := fmt.Printf("%s%s", timestamp, request_body)
     // Write Data to it
-    h.Write([]byte("timestamp=" + timestamp))
+    h.Write([]byte(q))
 
     // Get result and encode as hexadecimal string
     sha := hex.EncodeToString(h.Sum(nil))
