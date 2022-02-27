@@ -16,7 +16,7 @@ func main() {
 	fmt.Printf("api_key: %s\nsecret_key: %s\n", api_key, secret_key)
 	// api.Ls()
 	ts := api.Timestamp()
-	api.Order(api_key, secret_key, ts))
+	api.Order(api_key, secret_key, ts)
 	// fmt.Println(ts)
 	os.Exit(0)
 	c := campaign.NewCampaign()
