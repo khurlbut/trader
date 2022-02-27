@@ -7,7 +7,7 @@ import (
     "net/http"
 )
 
-func Order(api_key string, timestamp string, signature string) {
+func Order(api_key string, secret_key string) {
   // url := fmt.Sprintf("https://api.binance.us/api/v3/account?timestamp=%s&signature=%s -H X-MBX-APIKEY: %s", timestamp, signature, api_key)
   // url := fmt.Sprintf("https://api.binance.us/api/v3/account?timestamp=%s&signature=%s", timestamp, signature)
   url := "https://api.binance.us/api/v3/account"
