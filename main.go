@@ -1,12 +1,12 @@
 package main
 
 import(
-	"os"
+	// "os"
+	// "github.com/khurlbut/trader/api"
+	// "github.com/magiconair/properties"
 	"fmt"
-	"github.com/khurlbut/trader/api"
 	"github.com/khurlbut/trader/campaign"
 	"github.com/khurlbut/trader/prototype"
-	"github.com/magiconair/properties"
 )
 
 func main() {
