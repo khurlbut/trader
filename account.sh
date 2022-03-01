@@ -1,9 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+# api_key=$1
+# secret_key=$2
+
+echo "api_key: ${api_key}"
+echo "secret_key: ${secret_key}"
 
 timestamp=`date +%s000`
-
-api_key=$1
-secret_key=$2
 
 api_url="https://api.binance.us"
 
