@@ -18,7 +18,8 @@ func main() {
 	// ts := api.Timestamp()
 	// api.Order(api_key, secret_key, ts)
 	// // fmt.Println(ts)
-	// os.Exit(0)
+	api.Dk()
+	os.Exit(0)
 	c := campaign.NewCampaign()
 	fmt.Println(prototype.PricingLoop(c))
 }
