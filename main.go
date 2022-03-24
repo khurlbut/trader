@@ -17,7 +17,7 @@ func main() {
 	// api_key := props.GetString("api_key_prop", "")
 	// secret_key := props.GetString("secret_key_prop", "")
 	// fmt.Printf("api_key: %s\nsecret_key: %s\n", api_key, secret_key)
-	// // api.Ls()
+	// api.Ls()
 	// ts := api.Timestamp()
 	// api.Order(api_key, secret_key, ts)
 	// // fmt.Println(ts)
