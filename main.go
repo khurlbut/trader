@@ -1,10 +1,13 @@
 package main
 
-import(
-	// "os"
-	// "github.com/khurlbut/trader/api"
+import (
+	"os"
+
+	"github.com/khurlbut/trader/api"
+
 	// "github.com/magiconair/properties"
 	"fmt"
+
 	"github.com/khurlbut/trader/campaign"
 	"github.com/khurlbut/trader/prototype"
 )
