@@ -2,11 +2,8 @@ alias b='./build.sh'
 alias r='make run'
 alias f='make fast'
 
-echo "HI!"
-
-export GOPATH="/Users/Ke015t7/Code/golang/src"
-
 gvm use go1.17
+export GOPATH="/Users/Ke015t7/Code/golang/src"
 
 # TRADER_HOME="/Users/Ke015t7/.gvm/pkgsets/go1.17.7/global/src/github.com/khurlbut/trader"
 TRADER_HOME="${GOPATH}/github.com/khurlbut/trader"
